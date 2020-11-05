@@ -1,6 +1,6 @@
 <?php
 
-namespace mediaphoto\model;
+namespace mediaphotoapp\model;
 
 class Photo extends \Illuminate\Database\Eloquent\Model{
 
