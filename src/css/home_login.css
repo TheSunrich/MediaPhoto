@@ -3,7 +3,7 @@ sass --watch scss:css */
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #fafafa !important;
+  background-color: #fafafa;
   color: inherit;
 }
 
@@ -82,6 +82,73 @@ header div.icon a:hover {
     font-size: 2rem;
   }
 }
+/******************************* MENU *******************************/
+.menu {
+  width: 100%;
+}
+.menu > ul {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+  background-color: #ef4532;
+}
+.menu > ul > li:nth-child(1) {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+.menu > ul > li:nth-child(2) {
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+.menu > ul > li:nth-child(3) {
+  grid-column-start: 5;
+  grid-column-end: 7;
+}
+.menu > ul > li:nth-child(4) {
+  grid-column-start: 7;
+  grid-column-end: 8;
+}
+.menu > ul > li:nth-child(5) {
+  grid-column-start: 8;
+  grid-column-end: 10;
+}
+.menu > ul > li:nth-child(6) {
+  grid-column-start: 10;
+  grid-column-end: 11;
+}
+
+li {
+  width: 100%;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+  font-size: 1rem;
+}
+li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  font: 100% "Trebuchet MS", Arial, sans-serif;
+}
+li a:hover {
+  color: black;
+}
+
+/*************************** MEDIUM MENU **********************/
+@media screen and (min-width: 768px) {
+  body > div.menu > ul > li {
+    font-size: 1.5rem;
+  }
+}
+/*************************** LARGE MENU **********************/
+@media screen and (min-width: 992px) {
+  body > div.menu > ul > li {
+    font-size: 2rem;
+  }
+}
+/*********************************************************************/
 body > footer {
   background-color: #383838;
   padding: 1% 0;
@@ -178,10 +245,6 @@ body main.addPhoto {
 }
 body main.addPhoto h1 {
   text-align: center;
-  color: black;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1.5vw;
-  font-weight: bold;
   grid-column: col-start/span 12;
 }
 body main.addPhoto hr {
@@ -192,46 +255,23 @@ body main.addPhoto hr {
 body main.addPhoto form {
   grid-column: col-start/span 12;
 }
-body main.addPhoto form label {
-  color: black;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1vw;
-  font-weight: bold;
-}
 body main.addPhoto form label span {
   color: red;
 }
-body main.addPhoto form .sendForm {
-  margin-top: 1%;
-  width: 10vw;
-  border-radius: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  color: #3d3d3d;
+body main.addPhoto form > .sendForm {
+  grid-column: col-start 6/span 2;
+  margin-top: 2%;
 }
 body main.addPhoto form input {
   width: 100%;
-  background-color: #d3d9df;
-  border-color: #d3d9df;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 0.8vw;
-}
-body main.addPhoto form input::placeholder {
-  color: #3d3d3d;
+  color: #999;
 }
 body main.addPhoto form .bootstrap-select {
   width: 100% !important;
-}
-body main.addPhoto form .bootstrap-select button {
-  background-color: #d3d9df;
-  border-color: #d3d9df;
-}
-body main.addPhoto form .bootstrap-select * {
-  font-size: 0.8vw;
-  color: #3d3d3d;
 }
 body main.addPhoto form .nom {
   grid-column: col-start/span 12;
@@ -244,32 +284,15 @@ body main.addPhoto form .galeries {
 }
 body main.addPhoto form .importerPhoto {
   grid-column: col-start/span 12;
-  position: relative;
-}
-body main.addPhoto form .importerPhoto input[type=file] {
-  width: unset;
-  background-color: unset;
-  padding: 0.375rem 0.75rem 0.375rem 0;
 }
 body main.addPhoto form .importerPhoto img {
+  grid-column: col-start/span 12;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1%;
+  margin-top: 2%;
   max-width: 100%;
-  max-height: 600px;
-  border: 1px solid black;
-  width: 100%;
-}
-body main.addPhoto form .importerPhoto p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 2.5vw;
-  font-weight: bold;
+  height: auto;
 }
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=home_login.css.map */
