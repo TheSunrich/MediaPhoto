@@ -1,0 +1,19 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #fafafa;
+  color: inherit;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+  /*scroll-behavior: smooth;*/
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+}
+
+/*# sourceMappingURL=styles.css.map */
