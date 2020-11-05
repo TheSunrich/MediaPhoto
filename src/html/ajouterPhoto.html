@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ajouter une photo</title>
+		<link rel="stylesheet" href="../css/styles.css" />
+		<!-- Bootstrap -->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"
+		/>
+	</head>
+	<body>
+		<main class="grid addPhoto">
+			<h1>AJOUTER PHOTO</h1>
+			<hr />
+			<form class="grid" action="post">
+				<div class="nom">
+					<label for="nom">Nom : <span>*</span></label>
+					<br />
+					<input type="text" name="nom" />
+				</div>
+				<div class="motsCles">
+					<label for="motsCles">Mots-clés : <span>*</span></label>
+					<br />
+					<input type="text" name="motsCles" />
+				</div>
+				<div class="galeries">
+					<label for="galeries">Galeries :</label>
+					<br />
+					<select
+						class="selectpicker"
+						multiple
+						data-live-search="true"
+						title="Sélectionnez des galeries"
+						name="galerie"
+					>
+						<option>Japon</option>
+						<option>Chine</option>
+						<option>Corée</option>
+					</select>
+				</div>
+			</form>
+		</main>
+
+		<!-- Importation de jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Importation de popper -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+		<!-- Importation du script des select -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+	</body>
+</html>

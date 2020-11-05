@@ -1,3 +1,5 @@
+/* Se placer sur le chemin MediaPhoto\src dans le terminal puis faire la commande suivante pour activer le watcher
+sass --watch scss:css */
 body {
   margin: 0px;
   padding: 0px;
@@ -11,9 +13,182 @@ html {
   /*scroll-behavior: smooth;*/
 }
 
-.row {
+.grid {
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
+  gap: 1%;
+  row-gap: 0;
+}
+
+/*************************** SMALL HEADER **********************/
+header {
+  background-color: black;
+}
+header div.recherche {
+  grid-column: col-start/span 4;
+  width: 100%;
+}
+header div.recherche form {
+  text-align: center;
+}
+header div.recherche form input {
+  width: 80%;
+  margin: 20px auto 0px auto;
+}
+header div.recherche form input:hover {
+  border: solid 3px white;
+}
+header div.logo {
+  grid-column: col-start 5/span 4;
+  width: 100%;
+}
+header div.logo img {
+  margin: 0px auto 0px auto;
+  width: 100%;
+  height: auto;
+}
+header div.icon {
+  grid-column: col-start 11;
+  display: flex;
+  flex-direction: column;
+  margin: auto 0px auto 0px;
+  width: 100%;
+}
+header div.icon img {
+  margin: 0px auto 0px auto;
+  width: 100%;
+}
+header div.icon a {
+  margin: 10px 0px 0px 0px;
+  font-family: "Heebo", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+header div.icon a:hover {
+  color: red;
+}
+
+/***************************@media screen and (min-width: 768px) {
+ MEDIUM HEADER **********************/
+body > header > div:nth-child(3) > a {
+  margin: 10px 0px 0px 0px;
+  font-size: 1.5rem;
+}
+
+/*************************** LARGE HEADER **********************/
+@media screen and (min-width: 992px) {
+  body > header > div:nth-child(3) > a {
+    margin: 10px 0px 0px 0px;
+    font-size: 2rem;
+  }
+}
+/*********************************************************************/
+body > footer {
+  background-color: #383838;
+  padding: 1% 0;
+  margin-top: 2%;
+}
+body > footer .socialNetworks {
+  grid-column: col-start/span 6;
+  display: flex;
+  align-items: center;
+}
+body > footer .socialNetworks a {
+  padding: 0 3%;
+}
+body > footer p {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  grid-column: col-start 7/span 6;
+  text-align: right;
+  margin-right: 5%;
+  color: white;
+}
+
+body main.home {
+  column-gap: 3%;
+  margin: 0 2% 0 2%;
+}
+body main.home .galerie {
+  margin-top: 5%;
+  position: relative;
+}
+body main.home .galerie img {
+  width: 100%;
+  height: auto;
+}
+body main.home .galerie:hover {
+  filter: grayscale(50%);
+  transition: all 0.3s ease-in-out 0s;
+}
+body main.home .galerie:hover .infosGalerieHover {
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+body main.home .infosGalerieHover {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 80%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+@media screen and (max-width: 768px) {
+  body > main .galerie {
+    grid-column: col-start/span 12;
+  }
+}
+@media screen and (min-width: 768px) {
+  body > main .galerie:nth-child(2n+0) {
+    grid-column: col-start 7/span 6;
+  }
+  body > main .galerie:nth-child(2n+1) {
+    grid-column: col-start/span 6;
+  }
+}
+@media screen and (min-width: 992px) {
+  body > main .galerie:nth-child(3n+0) {
+    grid-column: col-start 9/span 4;
+  }
+  body > main .galerie:nth-child(3n+1) {
+    grid-column: col-start/span 4;
+  }
+  body > main .galerie:nth-child(3n+2) {
+    grid-column: col-start 5/span 4;
+  }
+}
+body main.addPhoto {
+  margin: 0 10% 0 10%;
+}
+body main.addPhoto h1 {
+  text-align: center;
+  grid-column: col-start/span 12;
+}
+body main.addPhoto hr {
+  border-color: black;
+  grid-column: col-start/span 12;
+  width: 100%;
+}
+body main.addPhoto form {
+  grid-column: col-start/span 12;
+}
+body main.addPhoto form input, body main.addPhoto form .bootstrap-select {
+  width: 100%;
+}
+body main.addPhoto form .nom {
+  grid-column: col-start/span 12;
+}
+body main.addPhoto form .motsCles {
+  grid-column: col-start/span 6;
+}
+body main.addPhoto form .galeries {
+  grid-column: col-start 7/span 6;
 }
 
 /*# sourceMappingURL=styles.css.map */

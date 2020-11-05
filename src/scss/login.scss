@@ -1,0 +1,110 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: rgb(240, 240, 240);
+}
+
+.content {
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	gap: 0%;
+}
+
+header {
+	grid-column: 5/9;
+	grid-row: 2/3;
+	text-align: center;
+	font-size: 1.3em;
+	background-color: #383838;
+	color: white;
+	padding-top: 5%;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+	box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
+}
+
+.logo {
+	width: 40%;
+}
+
+.icon {
+	padding-left: 4%;
+	width: 3.5%;
+}
+
+.label {
+	font-family: "Arial";
+}
+
+.form {
+	grid-column: 5/9;
+	grid-row: 3/5;
+	padding: 5%;
+	box-shadow: 0 1px 30px rgba(0, 0, 0, 0.308);
+	background-color: white;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+
+	& input[type="text"],
+	& input[type="password"] {
+		outline: none;
+		width: 90%;
+		height: 35px;
+		border: 0px;
+		margin: 3%;
+		margin: 3%;
+		right: 0px;
+		font-size: 100%;
+		padding: 1%;
+		border-radius: 5px;
+		background: rgb(235, 235, 235);
+
+		&:hover {
+			background: rgb(212, 212, 212);
+			border-bottom: 1px solid #a93226;
+		}
+	}
+
+	& input[type="submit"] {
+		margin-top: 5%;
+		background: #a93226;
+		width: 60%;
+		height: 40px;
+		border-radius: 5px;
+		border: 0;
+		cursor: pointer;
+		color: white;
+		font-size: 90%;
+		margin: auto auto;
+		margin-bottom: 2%;
+
+		&:hover {
+			background-color: #7a231b;
+		}
+	}
+
+	& > .actions {
+		display: block;
+		text-align: center;
+		padding-top: 7%;
+
+		& > div > a {
+			text-decoration: underline;
+			color: rgb(92, 92, 92);
+			font-family: "Arial";
+
+			&:hover {
+				color: #7a231b;
+			}
+		}
+	}
+}
+
+p {
+	grid-column: 5/9;
+	grid-row: 5/6;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 0.7rem;
+	text-align: center;
+}

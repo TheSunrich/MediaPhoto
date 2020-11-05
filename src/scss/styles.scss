@@ -1,6 +1,7 @@
-// Se placer sur le chemin MediaPhoto\src dans le terminal puis faire la commande suivante pour activer le watcher
-// sass --watch scss:css
+/* Se placer sur le chemin MediaPhoto\src dans le terminal puis faire la commande suivante pour activer le watcher
+sass --watch scss:css */
 
+// Les définitions générales
 body {
 	margin: 0px;
 	padding: 0px;
@@ -14,8 +15,216 @@ html {
 	/*scroll-behavior: smooth;*/
 }
 
-.row {
+.grid {
 	display: grid;
 	grid-template-columns: repeat(12, [col-start] 1fr);
-	// gap: 5px;
+	gap: 1%;
+	row-gap: 0;
+}
+/*************************** SMALL HEADER **********************/
+header {
+	background-color: black;
+	// formulaire
+	& div.recherche {
+		grid-column: col-start / span 4;
+		width: 100%;
+		& form {
+			text-align: center;
+			& input {
+				width: 80%;
+				// Top Right Bottom Left
+				margin: 20px auto 0px auto;
+			}
+			& input:hover {
+				border: solid 3px white;
+			}
+		}
+	}
+
+	// nom de l'application
+	& div.logo {
+		grid-column: col-start 5 / span 4;
+		width: 100%;
+		& img {
+			margin: 0px auto 0px auto;
+			width: 100%;
+			height: auto;
+		}
+	}
+	// image du login
+	& div.icon {
+		grid-column: col-start 11;
+		display: flex;
+		flex-direction: column;
+		margin: auto 0px auto 0px;
+		width: 100%;
+		& img {
+			margin: 0px auto 0px auto;
+			width: 100%;
+		}
+		& a {
+			margin: 10px 0px 0px 0px;
+			font-family: "Heebo", sans-serif;
+			font-size: 1rem;
+			text-align: center;
+			text-decoration: none;
+			color: white;
+		}
+		& a:hover {
+			color: red;
+		}
+	}
+}
+/***************************@media screen and (min-width: 768px) {
+ MEDIUM HEADER **********************/
+body > header > div:nth-child(3) > a {
+	margin: 10px 0px 0px 0px;
+	font-size: 1.5rem;
+}
+/*************************** LARGE HEADER **********************/
+@media screen and (min-width: 992px) {
+	body > header > div:nth-child(3) > a {
+		margin: 10px 0px 0px 0px;
+		font-size: 2rem;
+	}
+}
+/*********************************************************************/
+// Le footer
+body > footer {
+	background-color: #383838;
+	padding: 1% 0;
+	margin-top: 2%;
+	// Les réseaux sociaux
+	& .socialNetworks {
+		grid-column: col-start / span 6;
+		display: flex;
+		align-items: center;
+		& a {
+			padding: 0 3%;
+		}
+	}
+
+	// Les copyright
+	& p {
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.2rem;
+		grid-column: col-start 7 / span 6;
+		text-align: right;
+		margin-right: 5%;
+		color: white;
+	}
+}
+
+// Le main de la page d'accueil
+// Les galeries
+body main.home {
+	column-gap: 3%;
+	margin: 0 2% 0 2%;
+
+	& .galerie {
+		margin-top: 5%;
+		position: relative;
+		& img {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	// Apparition du texte + effet au hover de l'image
+	& .galerie:hover {
+		filter: grayscale(50%);
+		transition: all 0.3s ease-in-out 0s;
+	}
+
+	& .galerie:hover .infosGalerieHover {
+		top: 50%;
+		left: 50%;
+		opacity: 1;
+	}
+
+	& .infosGalerieHover {
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		top: 80%;
+		left: 50%;
+		opacity: 0;
+		transform: translate(-50%, -50%);
+		transition: all 0.3s ease-in-out 0s;
+	}
+}
+
+// Extra small devices et small devices
+@media screen and (max-width: 768px) {
+	body > main {
+		& .galerie {
+			grid-column: col-start / span 12;
+		}
+	}
+}
+
+// Medium devices
+@media screen and (min-width: 768px) {
+	body > main {
+		& .galerie:nth-child(2n + 0) {
+			grid-column: col-start 7 / span 6;
+		}
+
+		& .galerie:nth-child(2n + 1) {
+			grid-column: col-start / span 6;
+		}
+	}
+}
+
+// Large devices et extra large devices
+@media screen and (min-width: 992px) {
+	body > main {
+		& .galerie:nth-child(3n + 0) {
+			grid-column: col-start 9 / span 4;
+		}
+
+		& .galerie:nth-child(3n + 1) {
+			grid-column: col-start / span 4;
+		}
+
+		& .galerie:nth-child(3n + 2) {
+			grid-column: col-start 5 / span 4;
+		}
+	}
+}
+
+// Le main de la page "Ajouter photo"
+body main.addPhoto {
+	margin: 0 10% 0 10%;
+	& h1 {
+		text-align: center;
+		grid-column: col-start / span 12;
+	}
+
+	& hr {
+		border-color: black;
+		grid-column: col-start / span 12;
+		width: 100%;
+	}
+
+	& form {
+		grid-column: col-start / span 12;
+
+		& input,
+		& .bootstrap-select {
+			width: 100%;
+		}
+
+		& .nom {
+			grid-column: col-start / span 12;
+		}
+
+		& .motsCles {
+			grid-column: col-start / span 6;
+		}
+
+		& .galeries {
+			grid-column: col-start 7 / span 6;
+		}
+	}
 }
