@@ -192,6 +192,9 @@ body main.addPhoto hr {
 body main.addPhoto form {
   grid-column: col-start/span 12;
 }
+body main.addPhoto form > div {
+  margin-top: 1%;
+}
 body main.addPhoto form label {
   color: black;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -257,7 +260,7 @@ body main.addPhoto form .importerPhoto img {
   margin-right: auto;
   margin-top: 1%;
   max-width: 100%;
-  max-height: 600px;
+  max-height: 550px;
   border: 1px solid black;
   width: 100%;
 }
