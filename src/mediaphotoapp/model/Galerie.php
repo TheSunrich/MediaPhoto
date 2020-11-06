@@ -9,6 +9,6 @@ class Galerie extends \Illuminate\Database\Eloquent\Model{
 	public $timestamps=false;
 
 	public function createur(){
-		return this->belongsTo('\mediaphotoapp\model\Utilisateur','idUser');
+		//return this->belongsTo('\mediaphotoapp\model\Utilisateur','idUser');
 	}
 }
