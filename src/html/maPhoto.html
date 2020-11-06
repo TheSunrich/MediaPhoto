@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ma photo</title>
+		<link rel="stylesheet" href="../css/styles.css" />
+	</head>
+	<body>
+		<main class="grid myGallery">
+			<div class="grid heading">
+				<button type="button" class="deletePhoto">Supprimer la photo</button>
+				<button type="button" class="modifyPhoto">Modifier la photo</button>
+
+				<h1>
+					MA SUPERBE PHOTO <br />
+					<span>L'auteur de la photo</span>
+				</h1>
+			</div>
+
+			<p class="dateCreation">
+				Photo ajoutée à la galerie le 06/11/2020 par Antonin Winterstein
+			</p>
+
+			<div class="grid photosGallery">
+				<div class="thePhoto" id="myPhoto">
+					<img src="../images/image_test.jpg" alt="Photo test" />
+				</div>
+			</div>
+
+			<div class="keywordsPhoto">
+				<span>japon</span>
+				<span>paysage</span>
+				<span>beauté</span>
+			</div>
+
+			<textarea
+				class="writeComment"
+				name="writeComment"
+				placeholder="Écrire un commentaire..."
+			></textarea>
+			<button class="envoyerCommentaire" type="submit">Commenter</button>
+
+			<div class="commentsGallery" id="commentsGallery">
+				<h2>3 commentaires</h2>
+				<div class="comment">
+					<h3 class="author">Antonin Winterstein <span>le 06/11/2020</span></h3>
+					<p class="text">Le premier</p>
+					<button class="deleteComment">Supprimer le commentaire</button>
+				</div>
+
+				<div class="comment">
+					<h3 class="author">Antonin Winterstein <span>le 06/11/2020</span></h3>
+					<p class="text">
+						Vraiment la meilleure galeriiiiiiiiiiiiiiiiiiiiiiiiiiiie meilleure
+						meilleure meilleure meilleure meilleure meilleure!
+					</p>
+					<button class="deleteComment">Supprimer le commentaire</button>
+				</div>
+
+				<div class="comment">
+					<h3 class="author">Antonin Winterstein <span>le 06/11/2020</span></h3>
+					<p class="text">Le dernier</p>
+					<button class="deleteComment">Supprimer le commentaire</button>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

@@ -20,46 +20,47 @@
 			<h1>AJOUTER PHOTO</h1>
 			<hr />
 			<form class="grid" action="post">
-				<div class="nom">
-					<label for="nom">Nom : <span>*</span></label>
+				<div class="namePhoto">
+					<label for="namePhoto">Nom : <span>*</span></label>
 					<br />
 					<input
 						type="text"
-						name="nom"
+						name="namePhoto"
 						placeholder="Entrez le nom de la photo"
 					/>
 				</div>
-				<div class="motsCles">
-					<label for="motsCles">Mots-clés : <span>*</span></label>
+				<div class="keywordsPhoto">
+					<label for="keywordsPhoto">Mots-clés : <span>*</span></label>
 					<br />
 					<input
 						class="select"
 						type="text"
-						name="motsCles"
+						name="keywordsPhoto"
 						placeholder="Entrez un ou plusieurs mots-clés"
 					/>
 				</div>
-				<div class="galeries">
-					<label for="galeries">Galeries :</label>
+				<div class="gallery">
+					<label for="gallery">Galeries :</label>
 					<br />
 					<select
 						class="selectpicker"
 						multiple
 						data-live-search="true"
 						title="Sélectionner des galeries"
-						name="galerie"
+						name="gallery"
 					>
 						<option>Japon</option>
 						<option>Chine</option>
 						<option>Corée</option>
 					</select>
 				</div>
-				<div class="importerPhoto">
-					<label for="importerPhoto">Importer Photo : <span>*</span></label>
+				<div class="importPhoto">
+					<label for="importPhoto">Importer Photo : <span>*</span></label>
 					<br />
-					<input name="importerPhoto" type="file" onchange="readURL(this);" />
+					<input name="importPhoto" type="file" onchange="readURL(this);" />
           <img id="photo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Image importée" />
-          <p>Votre photo s'affichera ici</p>
+					<p>Votre photo s'affichera ici</p>
+				</div>
 				<input class="sendForm" type="submit" value="Ajouter la photo"></input>
 			</form>
 		</main>

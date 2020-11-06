@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MediaPhoto - Home</title>
+		<link rel="stylesheet" href="../css/profil.css" />
+	</head>
+	<body>
+		<header class="grid">
+			<div class="recherche" method="GET" action="searchbar.php">
+				<form>
+					<input id="search" type="search" name="searchbar" placeholder="Recherche..." ></input>
+				</form>
+			</div>
+			
+			<div class="logo">
+				<img src="../images/logo.png" alt="logo-app"/>
+			</div>
+
+			<div class="icon">
+				<img src="../images/icon_login.png" alt="icon-login"/>
+				<a href="login.html">Login</a>
+				<a href="login.html">Register</a>	
+			</div>		
+		</header>
+
+		<div class="menu">
+			<ul class="grid">
+			   <li><a href="index.html">Accueil</a></li>
+			   <li><a href="#">Photos</a></li>
+			   <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
+			   <li><a href="#">Galeries</a></li>
+			   <li><a href="#">Créer Galeries</a></li>
+			   <li><a href="profil.html">Profil</a></li>
+		   </ul>
+	   </div>
+
+
+		<main class="grid home">
+			<h1>PROFIL</h1>
+			<form action="" name="" class="form">
+				<div>
+					<img class="icon" src="../images/userIcon2.png" />
+					<label>Nom d'utilisateur</label><span> *</span>
+					<input name="Username" type="text" placeholder="" />
+				</div>
+				<div>
+					<img class="icon" src="../images/passIcon.png" />
+					<label>Mot de passe</label><span> *</span>
+					<input name="password" type="password" placeholder="" />
+				</div>
+
+				<div class="actions">
+					<div>
+						<input type="submit" value="SE CONNECTER" />
+					</div>
+					<div>
+				</div>
+			</form>
+		</main>
+		
+		<footer class="grid">
+			<div class="socialNetworks">
+				<a href="https://github.com/RichardJohnRx/MediaPhoto"><img src="../images/icon_github.svg" alt="Logo de Github" width="30px"/></a>
+				<a href="https://www.univ-lorraine.fr/"><img src="../images/icon_lorraine.svg" alt="Logo de l'Université de Lorraine" width="95px"/></a>
+			</div>
+			
+			<p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>
+		</footer>
+	</body>
+</html>
