@@ -50,4 +50,41 @@ class PhotoController extends \mf\control\AbstractController{
 		return $listsPhotos;
 	}
 	
+	//Ajouter une nouvelle photo
+	public function ajouterPhoto(string $nom, string $metaDonnees, string $motsCles, int $idUser){
+
+		$photo = new Photo();
+		$photo->nom=$nom;
+		$photo->metaDonnees=$metaDonnees;
+		$photo->motsCles=$motsCles;
+		$photo->idUser=$idUser;
+		
+		$photo->save(); 
+
+		return $photo;
+
+	}
+	//Modifier une photo
+	public function modifierPhoto(int $idPhoto, string $nom, string $metaDonnees, string $motsCles, int $idUser){
+		
+		$photo = $this->listerUnePhoto($idPhoto);
+		$photo->nom=$nom;
+		$photo->metaDonnees=$metaDonnees;
+		$photo->motsCles=$motsCles;
+		$photo->idUser=$idUser;
+		
+		$photo->save(); 
+
+		return $photo;
+
+	}
+	//supprimer une photo
+	public function supprimerPhoto(int $idPhoto){
+
+		$pic = $this->listerUnePhoto($idPhoto);
+		$pic->delete(); 
+
+		return $photo;
+
+	}
 }

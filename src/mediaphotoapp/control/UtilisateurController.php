@@ -51,6 +51,7 @@ class UtilisateurController extends \mf\control\AbstractController{
 		$user->username=$username;
 		$user->mail=$mail;
 		$user->motPasse=$motPasse;
+
 		$user->save();
 
 		return $user;
@@ -69,6 +70,7 @@ class UtilisateurController extends \mf\control\AbstractController{
 
 	//Modifier le profil 
 	public function modifierProfil(int $idUser, string $nom,string $prenom,string $username,string $mail,string $motPasse){
+		
 		$user = $this->listUser($idUser);
 		$user->nom=$nom;
 		$user->prenom=$prenom;

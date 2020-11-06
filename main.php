@@ -97,4 +97,13 @@
     echo "Modifier le profil :"; echo "<br>";
     echo $userController->modifierProfil(11,"bouuuum","PRENOM1","boumazaamine","haha@gmail.com","pipiii");
 
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "Ajouter photo :"; echo "<br>";
+    $photoController = new mediaphotoapp\control\PhotoController();
+    echo $photoController->ajouterPhoto("photoTEST","blablablablabla","Nature",4);
+
+    
+
 
