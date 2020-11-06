@@ -35,10 +35,10 @@ USE mediaphoto;
 
 CREATE TABLE `utilisateur` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL UNIQUE,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
-  `mail` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL UNIQUE,
   `motPasse` varchar(255) NOT NULL,
   PRIMARY KEY (`idUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
