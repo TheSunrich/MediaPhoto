@@ -8,7 +8,5 @@ class Galerie extends \Illuminate\Database\Eloquent\Model{
 	protected $primaryKey ='idGalerie';
 	public $timestamps=false;
 
-	public function createur(){
-		//return this->belongsTo('\mediaphotoapp\model\Utilisateur','idUser');
-	}
+	
 }
