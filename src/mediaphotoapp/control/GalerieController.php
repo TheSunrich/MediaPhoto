@@ -16,7 +16,7 @@ class GalerieController extends \mf\control\AbstractController {
 	public function listUneGalerie(int $id){ 
 		$galerie = Galerie::select()
 					->where("idGalerie","=",$id)
-					->get();
+					->first();
 		return $galerie;
 	}
 
