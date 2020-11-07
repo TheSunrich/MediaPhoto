@@ -104,6 +104,13 @@
     $photoController = new mediaphotoapp\control\PhotoController();
     echo $photoController->ajouterPhoto("photoTEST","blablablablabla","Nature",4);
 
-    
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "Ajouter photo DANS GALERIE 1:"; echo "<br>";
+    $photoController->ajouterPhotoDansGalerie(6,1);
+    echo "ok";
+
+
 
 

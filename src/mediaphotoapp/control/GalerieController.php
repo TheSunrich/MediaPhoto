@@ -44,4 +44,45 @@ class GalerieController extends \mf\control\AbstractController {
 		return $listsGaleries;
 	}
 
+	//Ajouter une nouvelle galerie
+	public function ajouterGalerie(string $nom, int $type,string $motsCles, string $description, string $dateCreation, int $idUser){
+
+		$galerie = new Galerie();
+		$galerie->nom=$nom;
+		$galerie->type=$type;
+		$galerie->motsCles=$motsCles;
+		$galerie->description=$description;
+		$galerie->dateCreation=$dateCreation;
+		$galerie->idUser=$idUser;
+		
+		$galerie->save(); 
+
+		return $galerie;
+
+	}
+	//Modifier une galerie
+	public function modifierGalerie(int $idGalerie, string $nom, string $metaDonnees, string $motsCles, int $idUser){
+		
+		$galerie = $this->listUneGalerie($idGalerie);
+		$galerie->nom=$nom;
+		$galerie->type=$type;
+		$galerie->motsCles=$motsCles;
+		$galerie->description=$description;
+		$galerie->dateCreation=$dateCreation;
+		$galerie->idUser=$idUser;
+		
+		$galerie->save(); 
+
+		return $galerie;
+
+	}
+	//supprimer une galerie
+	public function supprimerGalerie(int $idGalerie){
+
+		$galerie = $this->listUneGalerie($idGalerie);
+		$galerie->delete(); 
+
+		return "OK";
+
+	}
 }

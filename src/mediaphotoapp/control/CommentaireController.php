@@ -50,6 +50,52 @@ class CommentaireController extends \mf\control\AbstractController{
 					->get();
 		return $listsCommentaires;
 	}
+	//Ajouter un nouveau commentaire à une photo
+	public function ajouterCmtPhoto(int $idUser, int $idPhoto, string $commentaire){
 
+		$cmt = new Commentaire();
+		$cmt->idUser=$idUser;
+		$cmt->idPhoto=$idPhoto;
+		$cmt->commentaire=$commentaire;
+		
+		$cmt->save(); 
+
+		return $cmt;
+
+	}
+	//Ajouter un nouveau commentaire à une galerie
+	public function ajouterCmtGalerie(int $idUser, int $idGalerie, string $commentaire){
+
+		$cmt = new Commentaire();
+		$cmt->idUser=$idUser;
+		$cmt->idGalerie=$idGalerie;
+		$cmt->commentaire=$commentaire;
+		
+		$cmt->save(); 
+
+		return $cmt;
+
+	}
+	//Modifier un commentaire 
+	public function modifierCmtPhoto(int $idCommentaire, string $commentaire){
+
+		$cmt = $this->listCommentaire($idCommentaire);
+		$cmt->commentaire=$commentaire;
+		
+		$cmt->save(); 
+
+		return $cmt;
+
+	}
+	//supprimer un commentaire
+	public function supprimerCmtPhoto(int $idCommentaire){
+
+		$cmt = $this->listCommentaire($idCommentaire);
+		$cmt->delete(); 
+
+		return "ok";
+
+	}
+	
 	
 }

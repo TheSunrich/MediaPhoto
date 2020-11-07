@@ -2,6 +2,7 @@
 
 namespace mediaphotoapp\control;
 use \mediaphotoapp\model\Photo as Photo;
+use Illuminate\Support\Facades\DB;
 
 class PhotoController extends \mf\control\AbstractController{
 
@@ -66,7 +67,7 @@ class PhotoController extends \mf\control\AbstractController{
 	}
 	//Modifier une photo
 	public function modifierPhoto(int $idPhoto, string $nom, string $metaDonnees, string $motsCles, int $idUser){
-		
+
 		$photo = $this->listerUnePhoto($idPhoto);
 		$photo->nom=$nom;
 		$photo->metaDonnees=$metaDonnees;
@@ -86,5 +87,12 @@ class PhotoController extends \mf\control\AbstractController{
 
 		return $photo;
 
+	}
+
+	//Ajouter photo dans une galerie ** À réaliser après **
+	public function ajouterPhotoDansGalerie(int $idPhoto,int $idGalerie){ 
+		/*DB::table('depot')->insert(
+    		['idPhoto' => $idPhoto, 'idGalerie' => $idGalerie]
+		);*/
 	}
 }
