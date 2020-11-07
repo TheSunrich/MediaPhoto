@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Créer une galerie</title>
+		<link rel="stylesheet" href="../css/styles.css" />
+	</head>
+	<body>
+		<main class="grid createGallery">
+			<h1>CRÉER GALERIE</h1>
+			<hr />
+			<form class="grid" action="post">
+				<div class="nameGallery">
+					<label for="nameGallery">Nom : <span>*</span></label>
+					<br />
+					<input
+						type="text"
+						name="nameGallery"
+						placeholder="Entrez le nom de la photo"
+					/>
+				</div>
+				<div class="keywordsGallery">
+					<label for="keywordsGallery">Mots-clés : <span>*</span></label>
+					<br />
+					<input
+						type="text"
+						name="keywordsGallery"
+						placeholder="Entrez un ou plusieurs mots-clés"
+					/>
+        </div>
+        <div class="descriptionGallery">
+          <label for="descriptionGallery">Description :</label>
+          <br />
+          <textarea name="descriptionGallery" placeholder="Entrer une définition pour la galerie"></textarea>
+        </div>
+				<div class="accessMode">
+					<label for="accessMode">Mode d'accès : <span>*</span></label>
+					<br />
+					<select
+						name="accessMode">
+						<option selected>Public</option>
+						<option>Privé</option>
+						<option>Partagé</option>
+					</select>
+        </div>
+        
+        <div class="choosePhotos">
+          <label for="choosePhotos">Choisir les photos : <span>*</span></label>
+          <br />
+          <!-- Le bouton pour la modal -->
+          <button type="button" id="myBtn">Choisir des photos</button>
+          
+          <img id="photo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Image importée" />
+            <p>Vos photos s'afficheront ici</p>
+          
+
+          <!-- La modal -->
+          <div id="myModal" class="modal">
+            <!-- Le contenu de la modal -->
+            <div class="modal-content grid">
+              <!-- Le header -->
+              <div class="modal-header">
+                <span class="close">&times;</span>
+                <input class="search" type="search" placeholder="Chercher une photo..."></input>
+              </div>
+              <!-- Le body -->
+              <div class="modal-body grid">
+                <h1>Sélectionnez les photos que vous voulez ajouter à votre galerie</h1>
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+                <img src="../images/image_test.jpg" alt="Image test">
+              </div>
+              <a class="arrowGoTop" id="buttonGoTop"><img src="../images/icon_arrow.svg" alt="Flèche pour remonter" width="50px"></a>
+            </div>
+            
+          </div>
+          
+				</div>
+				<input class="sendForm" type="submit" value="Créer la galerie"></input>
+			</form>
+    </main>
+
+    <script>
+      //Get the button
+      // var mybutton = document.getElementById("buttonGoTop");
+
+     
+      
+      // Flèche pour revenir en haut de page
+      var mybutton = document.getElementById("buttonGoTop");
+      
+      mybutton.onclick = function () {
+        $('#myModal').scrollTop(0);
+      };
+
+      </script>
+    
+    <!-- Importation de la méthode pour la modal -->
+		<script src="../js/modal.js"></script>
+
+		<!-- Importation de jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Importation de popper -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+		<!-- Importation du script des select -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+	</body>
+</html>

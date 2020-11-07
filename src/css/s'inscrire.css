@@ -8,16 +8,17 @@ body {
   padding: 0;
   background-image: url("https://ma-credence-deco.com/2265-cred_large/fond-de-hotte-marbre-blanc-de-carrare.jpg");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 120%;
 }
 
 .content {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 0.5fr);
 }
 
 header {
+  margin-top: 15%;
   /************* EXTRA SMALL devices **************/
   /************* MEDIUM devices **************/
   /************* LARGE devices **************/
@@ -33,19 +34,19 @@ header {
 @media screen and (max-width: 570px) {
   header {
     grid-column: 2/12;
-    grid-row: 2/3;
+    grid-row: 1/2;
   }
 }
 @media screen and (min-width: 571px) {
   header {
     grid-column: 4/10;
-    grid-row: 2/3;
+    grid-row: 1/2;
   }
 }
 @media screen and (min-width: 920px) {
   header {
     grid-column: 5/9;
-    grid-row: 2/3;
+    grid-row: 1/2;
   }
 }
 
@@ -75,22 +76,22 @@ label {
 @media screen and (max-width: 570px) {
   .form {
     grid-column: 2/12;
-    grid-row: 3/5;
+    grid-row: 2/6;
   }
 }
 @media screen and (min-width: 571px) {
   .form {
     grid-column: 4/10;
-    grid-row: 3/5;
+    grid-row: 2/6;
   }
 }
 @media screen and (min-width: 920px) {
   .form {
     grid-column: 5/9;
-    grid-row: 3/5;
+    grid-row: 2/6;
   }
 }
-.form input[type=text], .form input[type=password] {
+.form input[type=text], .form input[type=email], .form input[type=password] {
   outline: none;
   width: 90%;
   height: 35px;
@@ -103,7 +104,7 @@ label {
   border-radius: 5px;
   background: #ebebeb;
 }
-.form input[type=text]:hover, .form input[type=password]:hover {
+.form input[type=text]:hover, .form input[type=email]:hover, .form input[type=password]:hover {
   background: #d4d4d4;
   border-bottom: 1px solid #a93226;
 }
@@ -140,7 +141,7 @@ label {
 
 p {
   grid-column: 5/9;
-  grid-row: 5/6;
+  grid-row: 6/7;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.7rem;
   text-align: center;
@@ -159,4 +160,4 @@ span {
   color: red;
 }
 
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=s'inscrire.css.map */
