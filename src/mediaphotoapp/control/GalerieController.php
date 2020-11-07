@@ -5,6 +5,8 @@ namespace mediaphotoapp\control;
 use mf\router\Router;
 
 use \mediaphotoapp\model\Galerie as Galerie;
+use \mediaphotoapp\model\Depot as Depot;
+
 
 class GalerieController extends \mf\control\AbstractController {
 
@@ -84,5 +86,18 @@ class GalerieController extends \mf\control\AbstractController {
 
 		return "OK";
 
+	}
+
+	//Ajouter photo/photos dans une galerie 
+	public function ajouterPhotoDansGalerie(array $photos,int $idGalerie){ 
+		
+		foreach ($photos as $key) {
+			$depot = new Depot();
+			$depot->idGalerie=$idGalerie;
+			$depot->idPhoto=$key;
+			$depot->save();
+		}
+		
+		return "ok";
 	}
 }

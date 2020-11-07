@@ -83,4 +83,12 @@ class UtilisateurController extends \mf\control\AbstractController{
 
 	}
 
+	//Se Désinscrire  *** à vérifier avec tout le monde ***
+	/*public function seDesinscrire(int $idUser){
+		$user = $this->listUser($idUser);
+        $user->delete();
+
+        return "ok";
+	}*/
+
 }

@@ -229,7 +229,7 @@ INSERT INTO `groupe` (`idGroupe`, `idGalerie`, `idUser`, `typeUser`) VALUES
 --
 
 CREATE TABLE `depot` (
-  `idDepot` int(11) NOT NULL,
+  `idDepot` int(11) NOT NULL AUTO_INCREMENT,
   `idGalerie` int(11) NOT NULL,
   `idPhoto` int(11) NOT NULL,
   PRIMARY KEY (`idDepot`),

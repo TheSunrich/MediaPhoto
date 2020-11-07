@@ -9,6 +9,7 @@
     $loader->register();
 
 
+
     use \mediaphotoapp\model\Commentaire;
     use \mediaphotoapp\model\Utilisateur;
     use \mediaphotoapp\model\Photo;
@@ -95,7 +96,7 @@
     echo "<br>";
     echo "<br>";
     echo "Modifier le profil :"; echo "<br>";
-    echo $userController->modifierProfil(11,"bouuuum","PRENOM1","boumazaamine","haha@gmail.com","pipiii");
+    echo $userController->modifierProfil(3,"bouuuum","PRENOM1","BBBBBBB","BBB@mail.fr","pipiii");
 
     echo "<br>";
     echo "<br>";
@@ -108,8 +109,7 @@
     echo "<br>";
     echo "<br>";
     echo "Ajouter photo DANS GALERIE 1:"; echo "<br>";
-    $photoController->ajouterPhotoDansGalerie(6,1);
-    echo "ok";
+    echo $galController->ajouterPhotoDansGalerie([7,8],1);
 
 
 

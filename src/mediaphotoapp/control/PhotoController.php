@@ -2,7 +2,8 @@
 
 namespace mediaphotoapp\control;
 use \mediaphotoapp\model\Photo as Photo;
-use Illuminate\Support\Facades\DB;
+
+
 
 class PhotoController extends \mf\control\AbstractController{
 
@@ -89,10 +90,5 @@ class PhotoController extends \mf\control\AbstractController{
 
 	}
 
-	//Ajouter photo dans une galerie ** À réaliser après **
-	public function ajouterPhotoDansGalerie(int $idPhoto,int $idGalerie){ 
-		/*DB::table('depot')->insert(
-    		['idPhoto' => $idPhoto, 'idGalerie' => $idGalerie]
-		);*/
-	}
+	
 }
