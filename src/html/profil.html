@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>MediaPhoto - Home</title>
-		<link rel="stylesheet" href="../css/profil.css" />
+		<title>MediaPhoto - Profil</title>
+		<link rel="stylesheet" href="../css/home_login.css" />
 	</head>
 	<body>
 		<header class="grid">
@@ -20,35 +20,66 @@
 
 			<div class="icon">
 				<img src="../images/icon_login.png" alt="icon-login"/>
-				<a href="login.html">Login</a>
-				<a href="login.html">Register</a>	
+				<a href="profil.html">[$username]</a>
+				<a href="index.html">Deconnexion</a>
 			</div>		
 		</header>
 
 		<div class="menu">
 			<ul class="grid">
-			   <li><a href="index.html">Accueil</a></li>
-			   <li><a href="#">Photos</a></li>
-			   <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
-			   <li><a href="#">Galeries</a></li>
-			   <li><a href="#">Créer Galeries</a></li>
-			   <li><a href="profil.html">Profil</a></li>
-		   </ul>
-	   </div>
+			  <li><a href="home_login.html">Accueil</a></li>
+			  <li><a href="mesPhotos.html">Mes Photos</a></li>
+			  <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
+			  <div class="deroulant">
+			  <li><a href="#">Galeries</a></li>
+			  <ul class="enfant">
+				  <li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
+				  <li><a href="galeriesPartage.html">Galeries Partagées</a></li>
+				  <li><a href="galeriesPrivé.html">Galeries Privées</a></li>
+			  </ul>
+			  </div>
+			  <li><a href="creerGalerie.html">Créer Galerie</a></li>
+			  <li><a href="profil.html">Profil</a></li>
+			</ul>
+		</div>
 
 
 		<main class="grid home">
-			<h1>PROFIL</h1>
 			<form action="" name="" class="form">
 				<div>
-					<img class="icon" src="../images/userIcon2.png" />
-					<label>Nom d'utilisateur</label><span> *</span>
-					<input name="Username" type="text" placeholder="" />
+					<img class="iconSmall" src="../images/userIcon2.png" />
+					<label>Prénom</label><span> *</span>
+					<input name="firstName" type="text" placeholder="" required/>
 				</div>
 				<div>
-					<img class="icon" src="../images/passIcon.png" />
-					<label>Mot de passe</label><span> *</span>
-					<input name="password" type="password" placeholder="" />
+					<img class="iconSmall" src="../images/userIcon2.png" />
+					<label>Nom</label><span> *</span>
+					<input name="lastName" type="text" placeholder="" required />
+				</div>
+				<div>
+					<img class="iconMedium" src="../images/userIcon.png" />
+					<label>Nom d'utilisateur</label><span> *</span>
+					<input name="username" type="text" placeholder="" required />
+				</div>
+				<div>
+					<img class="iconSmall" src="../images/emailIcon.png" />
+					<label>Courrier</label><span> *</span>
+					<input name="email" type="email" placeholder="" required />
+				</div>
+				<div>
+					<img class="iconLarge" src="../images/passIcon.png" />
+					<label>Mot de passe actuel</label><span> *</span>
+					<input name="passAct" type="password" placeholder="" required />
+				</div>
+				<div>
+					<img class="iconLarge" src="../images/passIcon.png" />
+					<label>Nouveau mot de passe</label><span> *</span>
+					<input name="passwordNew" type="password" placeholder="" required />
+				</div>
+				<div>
+					<img class="iconLarge" src="../images/passIcon.png" />
+					<label>Confirmer mot de passe</label><span> *</span>
+					<input name="passwordConf" type="password" placeholder="" required />
 				</div>
 
 				<div class="actions">

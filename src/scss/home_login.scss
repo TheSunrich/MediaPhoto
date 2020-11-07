@@ -15,6 +15,10 @@ html {
 	/*scroll-behavior: smooth;*/
 }
 
+* {
+	box-sizing: border-box;
+}
+
 .grid {
 	display: grid;
 	grid-template-columns: repeat(12, [col-start] 1fr);
@@ -90,11 +94,13 @@ header {
 /******************************* MENU *******************************/
 .menu {
 	width: 100%;
+	z-index: 2;
+	background-color: #a93226;
+	box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
 	& > ul {
 		padding: 0px;
 		margin: 0px;
 		list-style-type: none;
-		background-color: #ef4532;
 		& > li:nth-child(1) {
 			grid-column-start: 3;
 			grid-column-end: 4;
@@ -134,21 +140,49 @@ li {
 		display: block;
 		text-decoration: none;
 		color: white;
-		font: 100% "Trebuchet MS", Arial, sans-serif;
+		font-family: "Trebuchet MS", Arial, sans-serif;
+		font-size: 100%;
 	}
 	& a:hover {
-		color: black;
+		color: #f28c8c;
 	}
 }
+
+.enfant {
+	display: none;
+	background-color: #a93226;
+	box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
+	width: 20%;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+}
+.enfant li {
+	list-style-type: none;
+	& a {
+		color: white;
+		display: block;
+		text-align: left;
+		padding: 5px 5px 0px 5px;
+	}
+}
+.enfant li:hover {
+	background-color: #f28c8c;
+	width: 90%;
+}
+.deroulant:hover .enfant {
+	display: block;
+}
+
 /*************************** MEDIUM MENU **********************/
 @media screen and (min-width: 768px) {
-	body > div.menu > ul > li {
+	body > div.menu ul li {
 		font-size: 1.5rem;
 	}
 }
 /*************************** LARGE MENU **********************/
 @media screen and (min-width: 992px) {
-	body > div.menu > ul > li {
+	body > div.menu ul li {
 		font-size: 2rem;
 	}
 }
@@ -185,7 +219,15 @@ body > footer {
 body main.home {
 	column-gap: 3%;
 	margin: 0 2% 0 2%;
-
+	& h1 {
+		grid-column-start: 1;
+		grid-column-end: span 12;
+		text-align: center;
+		margin-top: 5%;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 3rem;
+		margin-bottom: 0%;
+	}
 	& .galerie {
 		margin-top: 5%;
 		position: relative;
@@ -247,11 +289,11 @@ body main.home {
 @media screen and (min-width: 768px) {
 	body > main {
 		& .galerie:nth-child(2n + 0) {
-			grid-column: col-start 7 / span 6;
+			grid-column: col-start / span 6;
 		}
 
 		& .galerie:nth-child(2n + 1) {
-			grid-column: col-start / span 6;
+			grid-column: col-start 7 / span 6;
 		}
 	}
 }
@@ -260,27 +302,36 @@ body main.home {
 @media screen and (min-width: 992px) {
 	body > main {
 		& .galerie:nth-child(3n + 0) {
-			grid-column: col-start 9 / span 4;
+			grid-column: col-start 5 / span 4;
+			//grid-column: col-start 9 / span 4;
 		}
 
 		& .galerie:nth-child(3n + 1) {
-			grid-column: col-start / span 4;
+			grid-column: col-start 9 / span 4;
+			//grid-column: col-start / span 4;
 		}
 
 		& .galerie:nth-child(3n + 2) {
-			grid-column: col-start 5 / span 4;
+			grid-column: col-start / span 4;
+			//grid-column: col-start 5 / span 4;
 		}
 	}
 }
 
-// Le main de la page "Ajouter photo"
-body main.addPhoto {
+// Le main de la page "Ajouter photo" et "Créer galerie"
+body main.addPhoto,
+body main.createGallery {
 	// Marges à gauche et à droite du contenu
 	margin: 0 10% 0 10%;
 	// Le titre
 	& h1 {
 		text-align: center;
+		color: black;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 2.5vw;
+		font-weight: bold;
 		grid-column: col-start / span 12;
+		margin: 0;
 	}
 
 	// La barre horizontale
@@ -291,57 +342,844 @@ body main.addPhoto {
 	}
 
 	// Le formulaire
-	& form {
+	form {
 		grid-column: col-start / span 12;
-
+		& > div {
+			margin-top: 1%;
+		}
+		// Les labels
 		& label {
+			color: black;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 1.3vw;
+			font-weight: bold;
+			display: inline-block;
+			margin-bottom: 0.5rem;
 			& span {
 				color: red;
 			}
 		}
 
-		& > .sendForm {
-			grid-column: col-start 6 / span 2;
-			margin-top: 2%;
+		// Le bouton
+		& .sendForm {
+			margin-top: 5%;
+			border-radius: 15px;
+			color: #3d3d3d;
+			grid-column: col-start 5 / span 4;
+			margin-bottom: 5%;
+			cursor: pointer;
 		}
 
-		& input {
+		// Les champs de remplissage
+		& input,
+		select,
+		textarea {
 			width: 100%;
-			background-color: #f8f9fa;
-			//background-color: red;
-			border-color: #f8f9fa;
+			background-color: #d3d9df;
+			border-color: #d3d9df;
 			border: 1px solid transparent;
 			padding: 0.375rem 0.75rem;
-			color: #999;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 1.2vw;
 		}
 
+		// La couleur du placeholder des champs de remplissage
+		& input::placeholder,
+		textarea::placeholder {
+			color: #3d3d3d;
+		}
+
+		// Les différentes champs à remplir de Ajouter Photo
+		// Le select multiple (sélectionenr galeries)
 		& .bootstrap-select {
 			width: 100% !important;
+
+			& button {
+				background-color: #d3d9df;
+				border-color: #d3d9df;
+			}
 		}
 
-		& .nom {
+		& .bootstrap-select * {
+			font-size: 0.8vw;
+			color: #3d3d3d;
+		}
+
+		// Organisation des champs de remplissage
+		& .namePhoto {
 			grid-column: col-start / span 12;
 		}
 
-		& .motsCles {
+		& .keywordsPhoto {
 			grid-column: col-start / span 6;
 		}
 
-		& .galeries {
+		& .gallery {
 			grid-column: col-start 7 / span 6;
 		}
 
-		& .importerPhoto {
+		// Le champ pour importer les photos
+		& .importPhoto,
+		.choosePhotos {
 			grid-column: col-start / span 12;
+			position: relative;
 
-			& img {
-				grid-column: col-start / span 12;
+			& input[type="file"] {
+				width: unset;
+				background-color: unset;
+				padding: 0.375rem 0.75rem 0.375rem 0;
+			}
+
+			& > img {
 				display: block;
 				margin-left: auto;
 				margin-right: auto;
-				margin-top: 2%;
+				margin-top: 1%;
 				max-width: 100%;
-				height: auto;
+				max-height: 550px;
+				border: 1px solid black;
+				width: 100%;
+			}
+
+			// Le texte "Votre photo s'affichera ici"
+			& p {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				color: black;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				font-size: 3vw;
+				font-weight: bold;
+			}
+		}
+
+		// Les différents champs à remplir de Créer Galerie
+		// Organisation des champs de remplissage
+		& .nameGallery {
+			grid-column: col-start / span 6;
+		}
+
+		& .keywordsGallery {
+			grid-column: col-start 7 / span 6;
+		}
+
+		& .descriptionGallery {
+			grid-column: col-start / span 6;
+		}
+
+		& .accessMode {
+			grid-column: col-start 7 / span 6;
+		}
+
+		& .choosePhotos {
+			grid-column: col-start / span 12;
+
+			// La modal au clic sur le bouton "Choisir des photos"
+			.modal {
+				display: none;
+				position: fixed;
+				z-index: 1;
+				padding-top: 100px;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				background-color: rgba(0, 0, 0, 0.3);
+				scroll-behavior: smooth;
+			}
+
+			// Le contenu de la modal
+			.modal-content {
+				position: relative;
+				background-color: #fefefe;
+				margin: auto;
+				padding: 0;
+				border: 1px solid #888;
+				width: 80%;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+					0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				-webkit-animation-name: animatetop;
+				-webkit-animation-duration: 0.4s;
+				animation-name: animatetop;
+				animation-duration: 0.4s;
+			}
+
+			// Animations de la modal
+			@-webkit-keyframes animatetop {
+				from {
+					top: -300px;
+					opacity: 0;
+				}
+				to {
+					top: 0;
+					opacity: 1;
+				}
+			}
+
+			@keyframes animatetop {
+				from {
+					top: -300px;
+					opacity: 0;
+				}
+				to {
+					top: 0;
+					opacity: 1;
+				}
+			}
+
+			// Le bouton "fermer" de la modal (icone croix)
+			.close {
+				color: white;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: #000;
+				text-decoration: none;
+				cursor: pointer;
+			}
+
+			// Le header de la modal
+			.modal-header {
+				padding: 16px 16px;
+				background-color: #a93226;
+				color: white;
+				grid-column: col-start / span 12;
+				position: relative;
+
+				// La barre de recherche de la modal
+				& .search {
+					max-width: 25%;
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
+
+			// Le body de la modal
+			.modal-body {
+				padding: 2px 16px;
+				grid-column: col-start / span 12;
+				margin-bottom: 1%;
+
+				// Le positionnement et la dimension des images de la modal
+				& img {
+					width: 100%;
+					margin-top: 5%;
+				}
+
+				& img:nth-child(4n + 0) {
+					grid-column: col-start 7 / span 3;
+				}
+
+				& img:nth-child(4n + 1) {
+					grid-column: col-start 10 / span 3;
+				}
+
+				& img:nth-child(4n + 2) {
+					grid-column: col-start / span 3;
+				}
+
+				& img:nth-child(4n + 3) {
+					grid-column: col-start 4 / span 3;
+				}
+			}
+
+			// La flèche de la modal pour revenir tout en haut
+			& .arrowGoTop {
+				grid-column: col-start 12 / span 1;
+				text-align: right;
+				margin-right: 10%;
+				margin-bottom: 10%;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+// Extra small devices et small devices
+// Réorganisation de la taille des polices
+@media screen and (max-width: 768px) {
+	body main.addPhoto,
+	body main.createGallery {
+		& h1 {
+			font-size: 4vw;
+		}
+
+		& form {
+			& label {
+				font-size: 2vw;
+			}
+
+			& input,
+			select,
+			textarea {
+				font-size: 1.9vw;
+				padding: 0.375rem 0.45rem;
+			}
+		}
+	}
+}
+
+// Le main de la page "Ma galerie", "Ma photo", "Galeries publiques" et "Photos publiques"
+body main.myGallery {
+	margin: 0 5%;
+	// Le titre, les boutons, infos de la galerie ou photo
+	& .heading {
+		grid-column: col-start / span 12;
+		align-items: center;
+		margin-top: 1%;
+
+		// Les boutons de suppression et modification (seulement pour "Ma galerie" et "Ma photo")
+		& .deleteGallery,
+		.modifyGallery,
+		.deletePhoto,
+		.modifyPhoto {
+			height: 80%;
+			background-color: #d3d9df;
+			border-color: #d3d9df;
+			border: 1px solid transparent;
+			padding: 0.375rem 0.75rem;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 1.2vw;
+			cursor: pointer;
+		}
+
+		// Le positionnement des éléments
+		& .deleteGallery,
+		.deletePhoto {
+			grid-column: col-start / span 2;
+		}
+
+		& .modifyGallery,
+		.modifyPhoto {
+			grid-column: col-start 3 / span 2;
+		}
+
+		& > h1 {
+			grid-column: col-start 5 / span 4;
+			text-align: center;
+			color: black;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 2vw;
+			font-weight: bold;
+			margin: 0;
+
+			& span {
+				font-size: 1.8vw;
+				font-weight: 500;
+			}
+		}
+	}
+
+	// Positionnement des photos de la page "Ma galerie" et "Galeries publiques"
+	& .photosGallery {
+		grid-column: col-start / span 12;
+		margin-bottom: 1%;
+
+		& #myPhoto {
+			grid-column: col-start / span 12;
+			margin-top: 1%;
+		}
+		& .thePhoto {
+			margin-top: 2%;
+			position: relative;
+
+			// La croix sur la photo qui permet la suppression d'une photo dans la page "Ma galerie"
+			& .deletePhoto {
+				position: absolute;
+				right: 3%;
+				top: -1%;
+				font-size: 6rem;
+				cursor: pointer;
+			}
+
+			& .deletePhoto:hover {
+				color: white;
+			}
+		}
+
+		& .thePhoto img {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	// Les mots clés d'une photo ou d'une galerie
+	& .keywordsPhoto {
+		grid-column: col-start / span 12;
+		text-align: center;
+		margin-bottom: 1%;
+		& span {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 1.5vw;
+			font-style: italic;
+			color: white;
+			background-color: #383838;
+			border-radius: 20px;
+			padding: 0.5rem 1.5rem;
+			font-weight: 600;
+			margin-right: 5px;
+			display: inline-block;
+			margin-bottom: 5px;
+		}
+		& span:last-child {
+			margin-right: 0;
+		}
+	}
+
+	// Le nombre de photos dans une galerie
+	& .lengthPhotos {
+		grid-column: col-start / span 6;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.5vw;
+		font-weight: bold;
+		margin: 3% 0 1% 0;
+	}
+
+	// La date de création d'une galerie ou d'ajout d'une photo dans la galerie
+	& .dateCreation {
+		grid-column: col-start 7 / span 6;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.5vw;
+		font-weight: bold;
+		margin: 3% 0 1% 0;
+		text-align: right;
+	}
+
+	// Le champ de saisi pour écrire un commentaire
+	& .writeComment {
+		grid-column: col-start / span 11;
+		background-color: #d3d9df;
+		border-color: #d3d9df;
+		border: 1px solid transparent;
+		padding: 0.375rem 0.75rem;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.5vw;
+	}
+	& .writeComment::placeholder {
+		color: #3d3d3d;
+	}
+
+	// Le bouton d'envoi du commentaire
+	& .envoyerCommentaire {
+		grid-column: col-start 12 / span 1;
+		background-color: #383838;
+		border-color: #383838;
+		color: white;
+		border: 1px solid transparent;
+		padding: 0.375rem 0.75rem;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.5vw;
+		border-radius: 10px 100px / 120px;
+		cursor: pointer;
+	}
+
+	// Les commentaires de la galerie et de la photo
+	& .commentsGallery {
+		grid-column: col-start / span 12;
+		margin-bottom: 1%;
+
+		// Le nombre de commentaires
+		& .lengthComments {
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			font-size: 1.5vw;
+		}
+
+		& .comment {
+			// l'auteur du commentaire
+			& .author {
+				margin: 0;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				font-size: 1.3vw;
+
+				& span {
+					font-style: italic;
+					font-weight: 400;
+					color: #383838;
+				}
+			}
+
+			// Le bouton de suppression du commentaire (seulemennt dans "Ma galerie" et "Ma photo")
+			& .deleteComment {
+				margin-bottom: 1%;
+				background-color: #d3d9df;
+				border-color: #d3d9df;
+				border: 1px solid transparent;
+				padding: 0.375rem 0.75rem;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				font-size: 1vw;
+				cursor: pointer;
+			}
+
+			// Le texte du commentaire
+			& .text {
+				margin: 4px 0 0.5% 0;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				font-size: 1.1vw;
+			}
+		}
+	}
+}
+
+// Extra small devices et small devices
+// Réorganisation des éléments + taille des polices
+@media screen and (max-width: 768px) {
+	body main.myGallery {
+		& .photosGallery {
+			& .thePhoto {
+				grid-column: col-start / span 12;
+			}
+		}
+
+		& .heading {
+			& .deleteGallery,
+			.modifyGallery,
+			.deletePhoto,
+			.modifyPhoto {
+				font-size: 2vw;
+				height: 100%;
+			}
+
+			& h1 {
+				font-size: 2.5vw;
+
+				& span {
+					font-size: 2vw;
+				}
+			}
+		}
+		& .keywordsPhoto {
+			& span {
+				padding: 0.25rem 1rem;
+			}
+		}
+
+		& .lengthPhotos {
+			font-size: 1.8vw;
+		}
+
+		& .dateCreation {
+			font-size: 1.8vw;
+		}
+
+		& .writeComment {
+			padding: 0.375rem 0.75rem;
+			font-size: 1.8vw;
+		}
+
+		& .envoyerCommentaire {
+			font-size: 1.8vw;
+		}
+
+		& .commentsGallery {
+			& h2 {
+				font-size: 2.2vw;
+			}
+
+			& .comment {
+				& .author {
+					font-size: 2vw;
+				}
+
+				& .deleteComment {
+					padding: 0.375rem 0.75rem;
+					font-size: 1.7vw;
+				}
+
+				& .text {
+					font-size: 1.8vw;
+				}
+			}
+		}
+	}
+}
+
+// Medium devices
+// Réorganisation des éléments
+@media screen and (min-width: 768px) {
+	body main.myGallery {
+		& .photosGallery {
+			& .thePhoto:nth-child(2n + 0) {
+				grid-column: col-start 7 / span 6;
+			}
+
+			& .thePhoto:nth-child(2n + 1) {
+				grid-column: col-start / span 6;
+			}
+		}
+	}
+}
+
+// Large devices et extra large devices
+@media screen and (min-width: 992px) {
+	body main.myGallery {
+		& .photosGallery {
+			.thePhoto:nth-child(3n + 0) {
+				grid-column: col-start 9 / span 4;
+			}
+			.thePhoto:nth-child(3n + 1) {
+				grid-column: col-start / span 4;
+			}
+			.thePhoto:nth-child(3n + 2) {
+				grid-column: col-start 5 / span 4;
+			}
+		}
+	}
+}
+
+// PROFIL
+.form {
+	& .iconLarge {
+		padding-left: 4%;
+		width: 8%;
+	}
+
+	& .iconMedium {
+		padding-left: 4%;
+		width: 7%;
+	}
+
+	& .iconSmall {
+		padding-left: 4%;
+		width: 6.5%;
+	}
+
+	& label {
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.5rem;
+	}
+	@extend .grid;
+
+	margin: 1% !important;
+	margin-top: 5% !important;
+
+	& > div:nth-child(1) {
+		grid-column: 1/7;
+	}
+
+	& > div:nth-child(2) {
+		grid-column: 7/13;
+	}
+
+	& > div:nth-child(3) {
+		grid-column: 1/7;
+	}
+
+	& > div:nth-child(4) {
+		grid-column: 7/13;
+	}
+
+	& > div:nth-child(5) {
+		grid-column: 1/5;
+	}
+
+	& > div:nth-child(6) {
+		grid-column: 5/9;
+	}
+
+	& > div:nth-child(7) {
+		grid-column: 9/13;
+	}
+
+	& > div:nth-child(8) {
+		grid-column: 5/9;
+	}
+
+	/************* MEDIUM devices **************/
+	@media screen and (max-width: 768px) {
+		grid-column: 1/13;
+		& > div:nth-child(1) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(2) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(3) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(4) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(5) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(6) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(7) {
+			grid-column: 1/13;
+		}
+
+		& > div:nth-child(8) {
+			grid-column: 1/13;
+		}
+
+		& .iconLarge {
+			padding-left: 4%;
+			width: 7%;
+		}
+	}
+
+	/************* LARGE devices **************/
+	@media screen and (min-width: 769px) {
+		grid-column: 1/13;
+	}
+
+	& span {
+		color: red;
+	}
+
+	& input[type="text"],
+	& input[type="password"],
+	& input[type="email"] {
+		outline: none;
+		width: 90%;
+		height: 35px;
+		border: 0px;
+		margin: 3%;
+		margin-top: 3px !important;
+		padding: 1%;
+		border-radius: 5px;
+		background: rgb(235, 235, 235);
+
+		&:hover {
+			background: rgb(212, 212, 212);
+			border-bottom: 1px solid #a93226;
+		}
+	}
+
+	& input[type="submit"] {
+		margin-top: 5%;
+		background: #a93226;
+		width: 90%;
+		height: 40px;
+		border-radius: 5px;
+		border: 0;
+		cursor: pointer;
+		color: white;
+		font-size: 1.3rem;
+		margin-bottom: 10%;
+
+		&:hover {
+			background-color: #7a231b;
+		}
+	}
+
+	& > .actions {
+		display: block;
+		text-align: center;
+		padding-top: 7%;
+
+		& > div > a {
+			text-decoration: underline;
+			color: rgb(83, 81, 95);
+			font-family: "Arial";
+			font-size: 90%;
+
+			&:hover {
+				color: #7a231b;
+			}
+		}
+	}
+}
+
+// RECHERCHER
+
+.keywordsSearch {
+	grid-column: 1/7;
+	margin-top: 10%;
+	margin-bottom: 1%;
+
+	& button {
+		border-radius: 30px;
+		border: none;
+		margin-bottom: 4%;
+		margin-left: 5px;
+		cursor: pointer;
+	}
+
+	& span {
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.2vw;
+		font-style: italic;
+		color: white;
+		background-color: #383838;
+		border-radius: 20px;
+		padding: 0.5rem 1.5rem;
+		font-weight: 600;
+		margin-right: 5px;
+		display: inline-block;
+		margin-bottom: 5px;
+	}
+	& span:last-child {
+		margin-right: 0;
+	}
+}
+
+.search {
+	grid-column: 7/13;
+
+	& form {
+		@extend .grid;
+
+		& div:nth-child(1) {
+			grid-column: 1/7;
+
+			@media screen and (max-width: 768px) {
+				grid-column: 1/13;
+				& > input {
+					margin-top: 3% !important;
+					width: 100% !important;
+				}
+			}
+
+			& > input {
+				outline: none;
+				border: 0px;
+				background-color: transparent;
+				border-bottom: 1px solid black;
+				width: 90%;
+				height: 35px;
+				margin-top: 15%;
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				font-size: 1.2vw;
+			}
+		}
+
+		& div:nth-child(2) {
+			grid-column: 7/13;
+
+			@media screen and (max-width: 768px) {
+				grid-column: 1/13;
+			}
+
+			& input {
+				margin-top: 15%;
+				background: #a93226;
+				width: 100%;
+				height: 35px;
+				border-radius: 5px;
+				border: 0;
+				cursor: pointer;
+				color: white;
+				font-size: 1.5rem;
+				margin-bottom: 10%;
+
+				&:hover {
+					background-color: #7a231b;
+				}
 			}
 		}
 	}

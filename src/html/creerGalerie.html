@@ -4,9 +4,45 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Créer une galerie</title>
-		<link rel="stylesheet" href="../css/styles.css" />
+		<link rel="stylesheet" href="../css/home_login.css" />
 	</head>
 	<body>
+    <header class="grid">
+      <div class="recherche" method="GET" action="searchbar.php">
+        <form>
+          <input id="search" type="search" name="searchbar" placeholder="Recherche..." ></input>
+        </form>
+      </div>
+      
+      <div class="logo">
+        <img src="../images/logo.png" alt="logo-app"/>
+      </div>
+  
+      <div class="icon">
+        <img src="../images/icon_login.png" alt="icon-login"/>
+        <a href="profil.html">[$username]</a>
+        <a href="index.html">Deconnexion</a>	
+      </div>		
+    </header>
+  
+    <div class="menu">
+      <ul class="grid">
+        <li><a href="home_login.html">Accueil</a></li>
+        <li><a href="mesPhotos.html">Mes Photos</a></li>
+        <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
+        <div class="deroulant">
+        <li><a href="#">Galeries</a></li>
+        <ul class="enfant">
+            <li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
+            <li><a href="galeriesPartage.html">Galeries Partagées</a></li>
+            <li><a href="mesGaleries.html">Galeries Privées</a></li>
+        </ul>
+        </div>
+        <li><a href="creerGalerie.html">Créer Galerie</a></li>
+        <li><a href="profil.html">Profil</a></li>
+      </ul>
+    </div>
+
 		<main class="grid createGallery">
 			<h1>CRÉER GALERIE</h1>
 			<hr />

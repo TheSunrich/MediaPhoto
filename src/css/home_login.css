@@ -13,7 +13,11 @@ html {
   /*scroll-behavior: smooth;*/
 }
 
-.grid {
+* {
+  box-sizing: border-box;
+}
+
+.grid, .search form, .form {
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
   gap: 1%;
@@ -85,12 +89,14 @@ header div.icon a:hover {
 /******************************* MENU *******************************/
 .menu {
   width: 100%;
+  z-index: 2;
+  background-color: #a93226;
+  box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
 }
 .menu > ul {
   padding: 0px;
   margin: 0px;
   list-style-type: none;
-  background-color: #ef4532;
 }
 .menu > ul > li:nth-child(1) {
   grid-column-start: 3;
@@ -130,21 +136,51 @@ li a {
   display: block;
   text-decoration: none;
   color: white;
-  font: 100% "Trebuchet MS", Arial, sans-serif;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 100%;
 }
 li a:hover {
-  color: black;
+  color: #f28c8c;
+}
+
+.enfant {
+  display: none;
+  background-color: #a93226;
+  box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
+  width: 20%;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.enfant li {
+  list-style-type: none;
+}
+.enfant li a {
+  color: white;
+  display: block;
+  text-align: left;
+  padding: 5px 5px 0px 5px;
+}
+
+.enfant li:hover {
+  background-color: #f28c8c;
+  width: 90%;
+}
+
+.deroulant:hover .enfant {
+  display: block;
 }
 
 /*************************** MEDIUM MENU **********************/
 @media screen and (min-width: 768px) {
-  body > div.menu > ul > li {
+  body > div.menu ul li {
     font-size: 1.5rem;
   }
 }
 /*************************** LARGE MENU **********************/
 @media screen and (min-width: 992px) {
-  body > div.menu > ul > li {
+  body > div.menu ul li {
     font-size: 2rem;
   }
 }
@@ -174,6 +210,15 @@ body > footer p {
 body main.home {
   column-gap: 3%;
   margin: 0 2% 0 2%;
+}
+body main.home h1 {
+  grid-column-start: 1;
+  grid-column-end: span 12;
+  text-align: center;
+  margin-top: 5%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3rem;
+  margin-bottom: 0%;
 }
 body main.home .galerie {
   margin-top: 5%;
@@ -223,76 +268,750 @@ body main.home .infosGalerieHover p {
 }
 @media screen and (min-width: 768px) {
   body > main .galerie:nth-child(2n+0) {
-    grid-column: col-start 7/span 6;
+    grid-column: col-start/span 6;
   }
   body > main .galerie:nth-child(2n+1) {
-    grid-column: col-start/span 6;
+    grid-column: col-start 7/span 6;
   }
 }
 @media screen and (min-width: 992px) {
   body > main .galerie:nth-child(3n+0) {
-    grid-column: col-start 9/span 4;
-  }
-  body > main .galerie:nth-child(3n+1) {
-    grid-column: col-start/span 4;
-  }
-  body > main .galerie:nth-child(3n+2) {
     grid-column: col-start 5/span 4;
   }
+  body > main .galerie:nth-child(3n+1) {
+    grid-column: col-start 9/span 4;
+  }
+  body > main .galerie:nth-child(3n+2) {
+    grid-column: col-start/span 4;
+  }
 }
-body main.addPhoto {
+body main.addPhoto,
+body main.createGallery {
   margin: 0 10% 0 10%;
 }
-body main.addPhoto h1 {
+body main.addPhoto h1,
+body main.createGallery h1 {
   text-align: center;
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5vw;
+  font-weight: bold;
   grid-column: col-start/span 12;
+  margin: 0;
 }
-body main.addPhoto hr {
+body main.addPhoto hr,
+body main.createGallery hr {
   border-color: black;
   grid-column: col-start/span 12;
   width: 100%;
 }
-body main.addPhoto form {
+body main.addPhoto form,
+body main.createGallery form {
   grid-column: col-start/span 12;
 }
-body main.addPhoto form label span {
+body main.addPhoto form > div,
+body main.createGallery form > div {
+  margin-top: 1%;
+}
+body main.addPhoto form label,
+body main.createGallery form label {
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.3vw;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+body main.addPhoto form label span,
+body main.createGallery form label span {
   color: red;
 }
-body main.addPhoto form > .sendForm {
-  grid-column: col-start 6/span 2;
-  margin-top: 2%;
+body main.addPhoto form .sendForm,
+body main.createGallery form .sendForm {
+  margin-top: 5%;
+  border-radius: 15px;
+  color: #3d3d3d;
+  grid-column: col-start 5/span 4;
+  margin-bottom: 5%;
+  cursor: pointer;
 }
-body main.addPhoto form input {
+body main.addPhoto form input,
+body main.addPhoto form select,
+body main.addPhoto form textarea,
+body main.createGallery form input,
+body main.createGallery form select,
+body main.createGallery form textarea {
   width: 100%;
-  background-color: #f8f9fa;
-  border-color: #f8f9fa;
+  background-color: #d3d9df;
+  border-color: #d3d9df;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  color: #999;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2vw;
 }
-body main.addPhoto form .bootstrap-select {
+body main.addPhoto form input::placeholder,
+body main.addPhoto form textarea::placeholder,
+body main.createGallery form input::placeholder,
+body main.createGallery form textarea::placeholder {
+  color: #3d3d3d;
+}
+body main.addPhoto form .bootstrap-select,
+body main.createGallery form .bootstrap-select {
   width: 100% !important;
 }
-body main.addPhoto form .nom {
+body main.addPhoto form .bootstrap-select button,
+body main.createGallery form .bootstrap-select button {
+  background-color: #d3d9df;
+  border-color: #d3d9df;
+}
+body main.addPhoto form .bootstrap-select *,
+body main.createGallery form .bootstrap-select * {
+  font-size: 0.8vw;
+  color: #3d3d3d;
+}
+body main.addPhoto form .namePhoto,
+body main.createGallery form .namePhoto {
   grid-column: col-start/span 12;
 }
-body main.addPhoto form .motsCles {
+body main.addPhoto form .keywordsPhoto,
+body main.createGallery form .keywordsPhoto {
   grid-column: col-start/span 6;
 }
-body main.addPhoto form .galeries {
+body main.addPhoto form .gallery,
+body main.createGallery form .gallery {
   grid-column: col-start 7/span 6;
 }
-body main.addPhoto form .importerPhoto {
+body main.addPhoto form .importPhoto,
+body main.addPhoto form .choosePhotos,
+body main.createGallery form .importPhoto,
+body main.createGallery form .choosePhotos {
   grid-column: col-start/span 12;
+  position: relative;
 }
-body main.addPhoto form .importerPhoto img {
-  grid-column: col-start/span 12;
+body main.addPhoto form .importPhoto input[type=file],
+body main.addPhoto form .choosePhotos input[type=file],
+body main.createGallery form .importPhoto input[type=file],
+body main.createGallery form .choosePhotos input[type=file] {
+  width: unset;
+  background-color: unset;
+  padding: 0.375rem 0.75rem 0.375rem 0;
+}
+body main.addPhoto form .importPhoto > img,
+body main.addPhoto form .choosePhotos > img,
+body main.createGallery form .importPhoto > img,
+body main.createGallery form .choosePhotos > img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
+  margin-top: 1%;
   max-width: 100%;
+  max-height: 550px;
+  border: 1px solid black;
+  width: 100%;
+}
+body main.addPhoto form .importPhoto p,
+body main.addPhoto form .choosePhotos p,
+body main.createGallery form .importPhoto p,
+body main.createGallery form .choosePhotos p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3vw;
+  font-weight: bold;
+}
+body main.addPhoto form .nameGallery,
+body main.createGallery form .nameGallery {
+  grid-column: col-start/span 6;
+}
+body main.addPhoto form .keywordsGallery,
+body main.createGallery form .keywordsGallery {
+  grid-column: col-start 7/span 6;
+}
+body main.addPhoto form .descriptionGallery,
+body main.createGallery form .descriptionGallery {
+  grid-column: col-start/span 6;
+}
+body main.addPhoto form .accessMode,
+body main.createGallery form .accessMode {
+  grid-column: col-start 7/span 6;
+}
+body main.addPhoto form .choosePhotos,
+body main.createGallery form .choosePhotos {
+  grid-column: col-start/span 12;
+}
+body main.addPhoto form .choosePhotos .modal,
+body main.createGallery form .choosePhotos .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  scroll-behavior: smooth;
+}
+body main.addPhoto form .choosePhotos .modal-content,
+body main.createGallery form .choosePhotos .modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+body main.addPhoto form .choosePhotos .close,
+body main.createGallery form .choosePhotos .close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+body main.addPhoto form .choosePhotos .close:hover,
+body main.addPhoto form .choosePhotos .close:focus,
+body main.createGallery form .choosePhotos .close:hover,
+body main.createGallery form .choosePhotos .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+body main.addPhoto form .choosePhotos .modal-header,
+body main.createGallery form .choosePhotos .modal-header {
+  padding: 16px 16px;
+  background-color: #a93226;
+  color: white;
+  grid-column: col-start/span 12;
+  position: relative;
+}
+body main.addPhoto form .choosePhotos .modal-header .search,
+body main.createGallery form .choosePhotos .modal-header .search {
+  max-width: 25%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+body main.addPhoto form .choosePhotos .modal-body,
+body main.createGallery form .choosePhotos .modal-body {
+  padding: 2px 16px;
+  grid-column: col-start/span 12;
+  margin-bottom: 1%;
+}
+body main.addPhoto form .choosePhotos .modal-body img,
+body main.createGallery form .choosePhotos .modal-body img {
+  width: 100%;
+  margin-top: 5%;
+}
+body main.addPhoto form .choosePhotos .modal-body img:nth-child(4n+0),
+body main.createGallery form .choosePhotos .modal-body img:nth-child(4n+0) {
+  grid-column: col-start 7/span 3;
+}
+body main.addPhoto form .choosePhotos .modal-body img:nth-child(4n+1),
+body main.createGallery form .choosePhotos .modal-body img:nth-child(4n+1) {
+  grid-column: col-start 10/span 3;
+}
+body main.addPhoto form .choosePhotos .modal-body img:nth-child(4n+2),
+body main.createGallery form .choosePhotos .modal-body img:nth-child(4n+2) {
+  grid-column: col-start/span 3;
+}
+body main.addPhoto form .choosePhotos .modal-body img:nth-child(4n+3),
+body main.createGallery form .choosePhotos .modal-body img:nth-child(4n+3) {
+  grid-column: col-start 4/span 3;
+}
+body main.addPhoto form .choosePhotos .arrowGoTop,
+body main.createGallery form .choosePhotos .arrowGoTop {
+  grid-column: col-start 12/span 1;
+  text-align: right;
+  margin-right: 10%;
+  margin-bottom: 10%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  body main.addPhoto h1,
+body main.createGallery h1 {
+    font-size: 4vw;
+  }
+  body main.addPhoto form label,
+body main.createGallery form label {
+    font-size: 2vw;
+  }
+  body main.addPhoto form input,
+body main.addPhoto form select,
+body main.addPhoto form textarea,
+body main.createGallery form input,
+body main.createGallery form select,
+body main.createGallery form textarea {
+    font-size: 1.9vw;
+    padding: 0.375rem 0.45rem;
+  }
+}
+body main.myGallery {
+  margin: 0 5%;
+}
+body main.myGallery .heading {
+  grid-column: col-start/span 12;
+  align-items: center;
+  margin-top: 1%;
+}
+body main.myGallery .heading .deleteGallery,
+body main.myGallery .heading .modifyGallery,
+body main.myGallery .heading .deletePhoto,
+body main.myGallery .heading .modifyPhoto {
+  height: 80%;
+  background-color: #d3d9df;
+  border-color: #d3d9df;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2vw;
+  cursor: pointer;
+}
+body main.myGallery .heading .deleteGallery,
+body main.myGallery .heading .deletePhoto {
+  grid-column: col-start/span 2;
+}
+body main.myGallery .heading .modifyGallery,
+body main.myGallery .heading .modifyPhoto {
+  grid-column: col-start 3/span 2;
+}
+body main.myGallery .heading > h1 {
+  grid-column: col-start 5/span 4;
+  text-align: center;
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2vw;
+  font-weight: bold;
+  margin: 0;
+}
+body main.myGallery .heading > h1 span {
+  font-size: 1.8vw;
+  font-weight: 500;
+}
+body main.myGallery .photosGallery {
+  grid-column: col-start/span 12;
+  margin-bottom: 1%;
+}
+body main.myGallery .photosGallery #myPhoto {
+  grid-column: col-start/span 12;
+  margin-top: 1%;
+}
+body main.myGallery .photosGallery .thePhoto {
+  margin-top: 2%;
+  position: relative;
+}
+body main.myGallery .photosGallery .thePhoto .deletePhoto {
+  position: absolute;
+  right: 3%;
+  top: -1%;
+  font-size: 6rem;
+  cursor: pointer;
+}
+body main.myGallery .photosGallery .thePhoto .deletePhoto:hover {
+  color: white;
+}
+body main.myGallery .photosGallery .thePhoto img {
+  width: 100%;
   height: auto;
+}
+body main.myGallery .keywordsPhoto {
+  grid-column: col-start/span 12;
+  text-align: center;
+  margin-bottom: 1%;
+}
+body main.myGallery .keywordsPhoto span {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+  font-style: italic;
+  color: white;
+  background-color: #383838;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  margin-right: 5px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+body main.myGallery .keywordsPhoto span:last-child {
+  margin-right: 0;
+}
+body main.myGallery .lengthPhotos {
+  grid-column: col-start/span 6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+  font-weight: bold;
+  margin: 3% 0 1% 0;
+}
+body main.myGallery .dateCreation {
+  grid-column: col-start 7/span 6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+  font-weight: bold;
+  margin: 3% 0 1% 0;
+  text-align: right;
+}
+body main.myGallery .writeComment {
+  grid-column: col-start/span 11;
+  background-color: #d3d9df;
+  border-color: #d3d9df;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+}
+body main.myGallery .writeComment::placeholder {
+  color: #3d3d3d;
+}
+body main.myGallery .envoyerCommentaire {
+  grid-column: col-start 12/span 1;
+  background-color: #383838;
+  border-color: #383838;
+  color: white;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+  border-radius: 10px 100px/120px;
+  cursor: pointer;
+}
+body main.myGallery .commentsGallery {
+  grid-column: col-start/span 12;
+  margin-bottom: 1%;
+}
+body main.myGallery .commentsGallery .lengthComments {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5vw;
+}
+body main.myGallery .commentsGallery .comment .author {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.3vw;
+}
+body main.myGallery .commentsGallery .comment .author span {
+  font-style: italic;
+  font-weight: 400;
+  color: #383838;
+}
+body main.myGallery .commentsGallery .comment .deleteComment {
+  margin-bottom: 1%;
+  background-color: #d3d9df;
+  border-color: #d3d9df;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1vw;
+  cursor: pointer;
+}
+body main.myGallery .commentsGallery .comment .text {
+  margin: 4px 0 0.5% 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1vw;
+}
+
+@media screen and (max-width: 768px) {
+  body main.myGallery .photosGallery .thePhoto {
+    grid-column: col-start/span 12;
+  }
+  body main.myGallery .heading .deleteGallery,
+body main.myGallery .heading .modifyGallery,
+body main.myGallery .heading .deletePhoto,
+body main.myGallery .heading .modifyPhoto {
+    font-size: 2vw;
+    height: 100%;
+  }
+  body main.myGallery .heading h1 {
+    font-size: 2.5vw;
+  }
+  body main.myGallery .heading h1 span {
+    font-size: 2vw;
+  }
+  body main.myGallery .keywordsPhoto span {
+    padding: 0.25rem 1rem;
+  }
+  body main.myGallery .lengthPhotos {
+    font-size: 1.8vw;
+  }
+  body main.myGallery .dateCreation {
+    font-size: 1.8vw;
+  }
+  body main.myGallery .writeComment {
+    padding: 0.375rem 0.75rem;
+    font-size: 1.8vw;
+  }
+  body main.myGallery .envoyerCommentaire {
+    font-size: 1.8vw;
+  }
+  body main.myGallery .commentsGallery h2 {
+    font-size: 2.2vw;
+  }
+  body main.myGallery .commentsGallery .comment .author {
+    font-size: 2vw;
+  }
+  body main.myGallery .commentsGallery .comment .deleteComment {
+    padding: 0.375rem 0.75rem;
+    font-size: 1.7vw;
+  }
+  body main.myGallery .commentsGallery .comment .text {
+    font-size: 1.8vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  body main.myGallery .photosGallery .thePhoto:nth-child(2n+0) {
+    grid-column: col-start 7/span 6;
+  }
+  body main.myGallery .photosGallery .thePhoto:nth-child(2n+1) {
+    grid-column: col-start/span 6;
+  }
+}
+@media screen and (min-width: 992px) {
+  body main.myGallery .photosGallery .thePhoto:nth-child(3n+0) {
+    grid-column: col-start 9/span 4;
+  }
+  body main.myGallery .photosGallery .thePhoto:nth-child(3n+1) {
+    grid-column: col-start/span 4;
+  }
+  body main.myGallery .photosGallery .thePhoto:nth-child(3n+2) {
+    grid-column: col-start 5/span 4;
+  }
+}
+.form {
+  margin: 1% !important;
+  margin-top: 5% !important;
+  /************* MEDIUM devices **************/
+  /************* LARGE devices **************/
+}
+.form .iconLarge {
+  padding-left: 4%;
+  width: 8%;
+}
+.form .iconMedium {
+  padding-left: 4%;
+  width: 7%;
+}
+.form .iconSmall {
+  padding-left: 4%;
+  width: 6.5%;
+}
+.form label {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+}
+.form > div:nth-child(1) {
+  grid-column: 1/7;
+}
+.form > div:nth-child(2) {
+  grid-column: 7/13;
+}
+.form > div:nth-child(3) {
+  grid-column: 1/7;
+}
+.form > div:nth-child(4) {
+  grid-column: 7/13;
+}
+.form > div:nth-child(5) {
+  grid-column: 1/5;
+}
+.form > div:nth-child(6) {
+  grid-column: 5/9;
+}
+.form > div:nth-child(7) {
+  grid-column: 9/13;
+}
+.form > div:nth-child(8) {
+  grid-column: 5/9;
+}
+@media screen and (max-width: 768px) {
+  .form {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(1) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(2) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(3) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(4) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(5) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(6) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(7) {
+    grid-column: 1/13;
+  }
+  .form > div:nth-child(8) {
+    grid-column: 1/13;
+  }
+  .form .iconLarge {
+    padding-left: 4%;
+    width: 7%;
+  }
+}
+@media screen and (min-width: 769px) {
+  .form {
+    grid-column: 1/13;
+  }
+}
+.form span {
+  color: red;
+}
+.form input[type=text], .form input[type=password], .form input[type=email] {
+  outline: none;
+  width: 90%;
+  height: 35px;
+  border: 0px;
+  margin: 3%;
+  margin-top: 3px !important;
+  padding: 1%;
+  border-radius: 5px;
+  background: #ebebeb;
+}
+.form input[type=text]:hover, .form input[type=password]:hover, .form input[type=email]:hover {
+  background: #d4d4d4;
+  border-bottom: 1px solid #a93226;
+}
+.form input[type=submit] {
+  margin-top: 5%;
+  background: #a93226;
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 1.3rem;
+  margin-bottom: 10%;
+}
+.form input[type=submit]:hover {
+  background-color: #7a231b;
+}
+.form > .actions {
+  display: block;
+  text-align: center;
+  padding-top: 7%;
+}
+.form > .actions > div > a {
+  text-decoration: underline;
+  color: #53515f;
+  font-family: "Arial";
+  font-size: 90%;
+}
+.form > .actions > div > a:hover {
+  color: #7a231b;
+}
+
+.keywordsSearch {
+  grid-column: 1/7;
+  margin-top: 10%;
+  margin-bottom: 1%;
+}
+.keywordsSearch button {
+  border-radius: 30px;
+  border: none;
+  margin-bottom: 4%;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.keywordsSearch span {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2vw;
+  font-style: italic;
+  color: white;
+  background-color: #383838;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  margin-right: 5px;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.keywordsSearch span:last-child {
+  margin-right: 0;
+}
+
+.search {
+  grid-column: 7/13;
+}
+.search form div:nth-child(1) {
+  grid-column: 1/7;
+}
+@media screen and (max-width: 768px) {
+  .search form div:nth-child(1) {
+    grid-column: 1/13;
+  }
+  .search form div:nth-child(1) > input {
+    margin-top: 3% !important;
+    width: 100% !important;
+  }
+}
+.search form div:nth-child(1) > input {
+  outline: none;
+  border: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+  width: 90%;
+  height: 35px;
+  margin-top: 15%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2vw;
+}
+.search form div:nth-child(2) {
+  grid-column: 7/13;
+}
+@media screen and (max-width: 768px) {
+  .search form div:nth-child(2) {
+    grid-column: 1/13;
+  }
+}
+.search form div:nth-child(2) input {
+  margin-top: 15%;
+  background: #a93226;
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 10%;
+}
+.search form div:nth-child(2) input:hover {
+  background-color: #7a231b;
 }
 
 /*# sourceMappingURL=home_login.css.map */

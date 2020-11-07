@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>MediaPhoto - Home</title>
-		<link rel="stylesheet" href="../css/profil.css" />
+		<link rel="stylesheet" href="../css/home_login.css" />
 	</head>
 	<body>
 		<header class="grid">
@@ -27,19 +27,87 @@
 
 		<div class="menu">
 			<ul class="grid">
-			   <li><a href="index.html">Accueil</a></li>
-			   <li><a href="#">Photos</a></li>
-			   <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
-			   <li><a href="#">Galeries</a></li>
-			   <li><a href="#">Créer Galeries</a></li>
-			   <li><a href="profil.html">Profil</a></li>
-		   </ul>
-	   </div>
+			  <li><a href="home_login.html">Accueil</a></li>
+			  <li><a href="mesPhotos.html">Mes Photos</a></li>
+			  <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
+			  <div class="deroulant">
+			  <li><a href="#">Galeries</a></li>
+			  <ul class="enfant">
+				  <li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
+				  <li><a href="galeriesPartage.html">Galeries Partagées</a></li>
+				  <li><a href="mesGaleries.html">Galeries Privées</a></li>
+			  </ul>
+			  </div>
+			  <li><a href="creerGalerie.html">Créer Galerie</a></li>
+			  <li><a href="profil.html">Profil</a></li>
+			</ul>
+		</div>
 
+	   <main class="grid myGallery">
+		<div class="keywordsSearch">
+			<span class="keyword">japon <button id="">x</button></span>
+			<span class="keyword">paysage <button id="">x</button></span>
+			<span class="keyword">beauté <button id="">x</button></span>
+			<span class="keyword">rêve <button id="">x</button></span>
+		</div>
 
-		<main class="grid home">
-			<h1>PROFIL</h1>
-		</main>
+		<div class="search">
+			<form>
+				<div>
+					<input id="search" type="search" name="searchbar" placeholder="Écrire mot clé..." ></input>
+				</div>
+				<div class="actions">
+					<div>
+						<input type="submit" value="Rechercher" />
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="grid photosGallery">
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+
+			<div class="thePhoto">
+				<a href="#"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
+			</div>
+		</div>
+	</main>
 		
 		<footer class="grid">
 			<div class="socialNetworks">

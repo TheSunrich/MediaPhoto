@@ -1,23 +1,23 @@
-// Get the modal
+// On récupère la modal
 var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
+// On récupère le bouton qui permet d'ouvrir la modal
 var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
+// On récupère le span qui permet de fermer la modal (la croix)
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal
+// Lorsqu'on clique sur le bouton, la modal passe en display block et s'affiche en conséquence (car de base en display none)
 btn.onclick = function () {
 	modal.style.display = "block";
 };
 
-// When the user clicks on <span> (x), close the modal
+// Lorsque l'utilisateur clique sur la croix, on ferme la modal en la passant en display none
 span.onclick = function () {
 	modal.style.display = "none";
 };
 
-// When the user clicks anywhere outside of the modal, close it
+// Lorsque l'utilisateur n'importe où en dehors de la modal, on ferme la modal en la passant en display none
 window.onclick = function (event) {
 	if (event.target == modal) {
 		modal.style.display = "none";
