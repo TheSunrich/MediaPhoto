@@ -229,9 +229,10 @@ INSERT INTO `groupe` (`idGroupe`, `idGalerie`, `idUser`, `typeUser`) VALUES
 --
 
 CREATE TABLE `depot` (
+  `idDepot` int(11) NOT NULL,
   `idGalerie` int(11) NOT NULL,
   `idPhoto` int(11) NOT NULL,
-  PRIMARY KEY (`idGalerie`,`idPhoto`),
+  PRIMARY KEY (`idDepot`),
   FOREIGN KEY(`idGalerie`) REFERENCES galerie(`idGalerie`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(`idPhoto`) REFERENCES photo(`idPhoto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
