@@ -55,8 +55,8 @@
             $instance->$mth();
         }
 
-        public function iconesPath() {
+        /*public function iconesPath() {
             return $this->http_req->root . '/html/images/';
-        }
+        }*/
     }
 ?>

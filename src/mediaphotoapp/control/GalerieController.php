@@ -31,7 +31,7 @@ class GalerieController extends \mf\control\AbstractController {
 		return $galeries;
 	}
 
-	//Lister les galeries d'un utilisateurs (public OR private OR protected)
+	//Lister les galeries d'un utilisateurs 
 	public function listGaleriesUser(int $idUser){
 		$listsGaleries = Galerie::select()
 					->where("idUser","=",$idUser)
@@ -65,18 +65,17 @@ class GalerieController extends \mf\control\AbstractController {
 	}
 	//Modifier une galerie
 	public function modifierGalerie(int $idGalerie, string $nom, int $type,string $motsCles, string $description){
-		
 		$galerie = $this->listUneGalerie($idGalerie);
 		$galerie->nom=$nom;
 		$galerie->type=$type;
 		$galerie->motsCles=$motsCles;
 		$galerie->description=$description;
 		
-		$galerie->save(); 
+		$galerie->save();
 
 		return $galerie;
-
 	}
+
 	//supprimer une galerie
 	public function supprimerGalerie(int $idGalerie){
 
