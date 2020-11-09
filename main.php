@@ -97,7 +97,7 @@
     echo "<br>";
     echo "Modifier le profil :"; echo "<br>";
     echo $userController->modifierProfil(3,"bouuuum","PRENOM1","BBBBBBB","BBB@mail.fr","pipiii");
-
+/*
     echo "<br>";
     echo "<br>";
     echo "<br>";
@@ -110,7 +110,18 @@
     echo "<br>";
     echo "Ajouter photo DANS GALERIE 1:"; echo "<br>";
     echo $galController->ajouterPhotoDansGalerie([7,8],1);
+*/
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "Ajouter user DANS GROUPE:"; echo "<br>";
+    $galController->ajouterUserDansGalerie(false);
 
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    echo "Ajouter user DANS GROUPE:"; echo "<br>";
+    $galController->ajouterUserDansGalerie(true);
 
 
 
