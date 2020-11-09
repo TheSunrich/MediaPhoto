@@ -20,6 +20,7 @@
 
     $config = parse_ini_file('conf/conf.ini');
 
+    \mf\view\AbstractView::addStyleSheet('src/css/styles.css');
 
     // une instance de connexion
     $db = new Illuminate\Database\Capsule\Manager();
@@ -31,10 +32,12 @@
     //Les routes ! : 
     $router = new Router();
 
-    $router->addRoute('Home','/home/', '\mediaphotoapp\control\GalerieController','homeGuest');
+    $router->addRoute('Home',
+                  '/Home',
+                  '\mediaphotoapp\control\GalerieController',
+                  'homeGuest');
 
-    
-    $router->setDefaultRoute('/home/');
+    $router->setDefaultRoute('/Home');
 
     
     $router->run();

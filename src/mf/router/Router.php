@@ -21,7 +21,7 @@ class Router extends AbstractRouter
 
     public function setDefaultRoute($url)
     {
-        self::$aliases['default'] = $url;
+        self::$aliases['default'] = "$url";
     }
 
     public function urlFor($route_name, $param_list = [])

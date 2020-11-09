@@ -22,7 +22,7 @@ class GalerieController extends \mf\control\AbstractController {
 					->get();	
 
 		$viewGuest = new GalerieView($galeries);
-		$viewGuest->render('home');
+		$viewGuest->render('Home');
 	}
 
 	//Lister une galerie spécifique

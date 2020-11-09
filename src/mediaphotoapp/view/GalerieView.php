@@ -4,6 +4,7 @@ namespace mediaphotoapp\view;
 use \mf\view\AbstractView;
 use \mediaphotoapp\control\GalerieController as GalerieController;
 use \mediaphotoapp\model\Galerie as Galerie;
+use \mf\router\Router as Router;
 
 class GalerieView extends AbstractView {
 
@@ -39,20 +40,47 @@ class GalerieView extends AbstractView {
     static public function addStyleSheet($path_to_css_files){
         parent::addStyleSheet($path_to_css_files);
     }
+    private function renderHeader(){
+        $router = new Router();
+        $html = "
+            <div class='recherche' method='GET' action='searchbar.php'>
+                <form>
+                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' ></input>
+                </form>
+            </div>
+            
+            <div class='logo'>
+                <a href= '" . $router->urlFor('Home',"") ."  ' > <img src='../src/images/logo.png' alt='logo-app' /> <a/>
+            </div>
 
+            <div class='icon'>
+                <img src='../src/images/icon_login.png' alt='icon-login'/>
+                <a href='login.html'>Login</a>
+                <a href='inscription.html'>Register</a> 
+            </div>";
+        return $html;
+    } 
     private function renderFooter(){
-        return "Application réalisé lors d'un projet en LP CIASIE &copy;2020'";
+        $html = "
+            <div class='socialNetworks'>
+                <a href='https://github.com/RichardJohnRx/MediaPhoto'><img src='../src/images/icon_github.svg' alt='Logo de Github' width='30px'/></a>
+                <a href='https://www.univ-lorraine.fr/'><img src='../src/images/icon_lorraine.svg' alt='Logo de l'Université de Lorraine' width='95px'/></a>
+            </div>
+            
+            <p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>";
+        return $html;
     }
 
     //View des galeries public 
     public function renderHomeGuest(){
-        $html="Affichage des galeries public : <br> -------- ";
+        $html="";
+        $html="Affichage des galeries public : <br>--------";
         foreach ($this->data as $key) {
-           $html .= "Nom : $key->nom , <br>
+           $html .= "<br>Nom : $key->nom , <br>
                     Description : $key->description , <br>
                     Mots Clés : $key->motsCles <br>
                     Date de création : $key->dateCreation " ;
-            $html .="--------";
+            $html .="<br>--------";
         }
         return $html;
     }
@@ -89,16 +117,20 @@ class GalerieView extends AbstractView {
         $this->viewGaleriesUser();
     }
     protected function renderBody($selector){
-        //$header = $this->renderHeader();
-        
+        $header = $this->renderHeader();
         $footer = $this->renderFooter();
         $section = $this->renderHomeGuest();
         
         $html="
+<header  class='grid'>
+    ${header}
+</header>
 <section>
-${section}
+    ${section}
 </section>
-<footer>${footer}</footer>";
+<footer class='grid'>
+    ${footer}
+</footer>";
 
         return $html;
     } 
