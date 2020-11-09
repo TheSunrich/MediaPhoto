@@ -15,6 +15,7 @@
     use \mediaphotoapp\model\Photo;
     use \mediaphotoapp\model\Galerie;
     use \mediaphotoapp\control\GalerieController;
+
     use \mf\router\Router;
 
     $config = parse_ini_file('conf/conf.ini');
@@ -26,6 +27,21 @@
     $db->addConnection( $config ); // configuration avec nos paramètres
     $db->setAsGlobal();            // rendre la connexion visible dans tout le projet
     $db->bootEloquent();           // établir la connexion
+
+    //Les routes ! : 
+    $router = new Router();
+
+    $router->addRoute('Home','/home/', '\mediaphotoapp\control\GalerieController','listGaleriesPublic');
+
+    
+    $router->setDefaultRoute('/home/');
+
+    
+    $router->run();
+
+
+
+
 
     //$galeriesPublic = new Galerie();
     $galController = new mediaphotoapp\control\GalerieController();
@@ -110,7 +126,7 @@
     echo "<br>";
     echo "Ajouter photo DANS GALERIE 1:"; echo "<br>";
     echo $galController->ajouterPhotoDansGalerie([7,8],1);
-
+    
 
 
 

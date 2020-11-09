@@ -7,7 +7,7 @@ abstract class AbstractView {
     static protected $style_sheets = []; /* un tableau de fichiers style */
     static protected $app_title    = "MediaPhoto"; /* un titre de document */
     
-    protected $data        = null; /* les données nécessaires */
+    protected $data = null; /* les données nécessaires */
     
     /* Constructeur 
      * 
@@ -127,7 +127,7 @@ abstract class AbstractView {
     </head>
 
     <body>
-        
+        aaaa
        ${body}
 
     </body>

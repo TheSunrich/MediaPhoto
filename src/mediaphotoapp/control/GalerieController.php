@@ -6,12 +6,23 @@ use mf\router\Router;
 
 use \mediaphotoapp\model\Galerie as Galerie;
 use \mediaphotoapp\model\Depot as Depot;
+use \mediaphotoapp\view\GalerieView as GalerieView;
 
 
 class GalerieController extends \mf\control\AbstractController {
 
 	public function __construct(){
 		parent::__construct();
+	}
+
+	//Lister les galeries (public)
+	public function listGaleriesPublic(){ 
+		$galeries = Galerie::select()
+					->where("type","=",0)
+					->get();	
+		
+		$viewGalerie = new GalerieView($galeries);
+		$viewGalerie->renderGaleriesPublic($galeries);
 	}
 
 	//Lister une galerie spécifique
@@ -29,6 +40,7 @@ class GalerieController extends \mf\control\AbstractController {
 					->get();
 		return $galeries;
 	}
+	
 
 	//Lister les galeries d'un utilisateurs 
 	public function listGaleriesUser(int $idUser){

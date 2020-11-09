@@ -1,15 +1,13 @@
 <?php
 
-namespace mf\view;
+namespace mediaphotoapp\view;
+use \mf\view\AbstractView;
 use \mediaphotoapp\control\GalerieController as GalerieController;
+use \mediaphotoapp\model\Galerie as Galerie;
+
 class GalerieView extends AbstractView {
 
-    static protected $style_sheets = []; /* un tableau de fichiers style */
-    static protected $app_title    = "MediaPhoto"; /* un titre de document */
-    
-    protected $data        = null; /* les données nécessaires */
-    
-    /* Constructeur 
+      /* Constructeur 
      * 
      * Paramètres :  
      *
@@ -42,6 +40,25 @@ class GalerieView extends AbstractView {
         parent::addStyleSheet($path_to_css_files);
     }
 
+    private function renderFooter(){
+        return "Application réalisé lors d'un projet en LP CIASIE &copy;2020'";
+    }
+
+    //View des galeries public 
+    public function renderGaleriesPublic($galeries){
+
+        $html="Affichage des galeries public : <br> -------- ";
+        foreach ($galeries as $key) {
+           $html .= 'Nom : $key->nom , <br>
+                    Description : $key->description , <br>
+                    Mots Clés : $key->motsCles <br>
+                    Date de création : $key->dateCreation ' ;
+            $html .="--------";
+        }
+        return $html;
+    }
+
+
     //view d'une galerie spécifique
     public function viewUneGalerie(){
         $galCtr = new GalerieController();
@@ -69,7 +86,22 @@ class GalerieView extends AbstractView {
         $result = $galCtr->ajouterGalerie($_POST['nom'],$_POST['type'],
                                             $_POST['motsCles'] , $_POST['description'],
                                             $_POST['dateCreation'], $_POST['idUser']);
-        $photos = $galCtr->ajouterPhotoDansGalerie(,$_POST['idGalerie'])
+        $photos = $galCtr->ajouterPhotoDansGalerie($_POST['idGalerie']);
         $this->viewGaleriesUser();
     }
+    protected function renderBody($selector){
+        //$header = $this->renderHeader();
+        
+        $footer = $this->renderFooter();
+        $section = $this->renderGaleriesPublic();
+        
+        $html="
+<section>
+${section}
+</section>
+<footer>${footer}</footer>";
+
+        return $html;
+    } 
+    
 }
