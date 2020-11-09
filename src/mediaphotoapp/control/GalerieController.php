@@ -6,7 +6,11 @@ use mf\router\Router;
 
 use \mediaphotoapp\model\Galerie as Galerie;
 use \mediaphotoapp\model\Depot as Depot;
+<<<<<<< HEAD
 use \mediaphotoapp\view\GalerieView as GalerieView;
+=======
+use \mediaphotoapp\model\Groupe as Groupe;
+>>>>>>> 4c2489c268c3958423067103c0b38fa857cf3af1
 
 
 class GalerieController extends \mf\control\AbstractController {
@@ -75,19 +79,18 @@ class GalerieController extends \mf\control\AbstractController {
 
 	}
 	//Modifier une galerie
-	public function modifierGalerie(int $idGalerie, string $type, string $motsCles, int $description){
-		
+	public function modifierGalerie(int $idGalerie, string $nom, int $type,string $motsCles, string $description){
 		$galerie = $this->listUneGalerie($idGalerie);
 		$galerie->nom=$nom;
 		$galerie->type=$type;
 		$galerie->motsCles=$motsCles;
 		$galerie->description=$description;
 		
-		$galerie->save(); 
+		$galerie->save();
 
 		return $galerie;
-
 	}
+
 	//supprimer une galerie
 	public function supprimerGalerie(int $idGalerie){
 
@@ -110,4 +113,29 @@ class GalerieController extends \mf\control\AbstractController {
 		
 		return "ok";
 	}
+
+	//Ajouter un utilisateur dans une galerie privée/partagée (Table pivote Groupe)
+    public function ajouterUserDansGroupe(int $idUser, int $idGalerie, $typeUser= true){
+        $groupe = new Groupe();
+        $groupe->idUser = $idUser;
+        $groupe->idGalerie = $idGalerie;
+        $groupe->typeUser = $typeUser;
+        $groupe->save();
+
+        return "ok";
+    }
+
+    //Supprimer un utilisateur dans une galerie privée/partagée (Table pivote Groupe)
+    public function supprimerUserDansGroupe(int $idUser, int $idGalerie){
+	    $groupe = Groupe::select()
+                        ->where("idUser","=",$idUser)
+                        ->where("idGalerie","=",$idGalerie)
+                        ->first();
+        $groupe->delete();
+
+        return "ok";
+    }
+
+
+
 }

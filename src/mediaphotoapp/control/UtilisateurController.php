@@ -5,6 +5,19 @@ use \mediaphotoapp\model\Utilisateur as Utilisateur;
 
 class UtilisateurController extends \mf\control\AbstractController{
 
+    private function verifyDuplicates(string $username, string $mail){
+        $query = $this->listUsers();
+        foreach ($query as $key) {
+            if($key->username == $username){
+                return "Nom d'utilisateur existe déjà veuillez le changer svp";
+            }
+            if($key->mail == $mail){
+                return "Mail existe déjà veuillez le changer svp";
+            }
+        }
+        return null;
+    }
+
 	public function __construct(){
 		parent::__construct();
 	}
@@ -26,26 +39,30 @@ class UtilisateurController extends \mf\control\AbstractController{
 
 	//Lister les utilisateurs qui ont une ou + galeries 
 	public function listUserGalerie(){
-		$listsUsers = Utilisateur::select('utilisateur.idUser')
+		$listsUsers = Utilisateur::select()
             ->join('galerie', 'galerie.idUser', '=', 'utilisateur.idUser')
             ->groupBy('utilisateur.idUser')
             ->get();
 		return $listsUsers;
 	}
 
+	//Lister les utilisateurs d'un groupe
+	public function listUserGroupe($idGalerie){
+        $listUser = Utilisateur::select()
+            ->join('groupe', 'groupe.idUser', '=', 'utilisateur.idUser')
+            ->where('groupe.idGalerie','=',$idGalerie)
+            ->get();
+        return $listUser;
+    }
+
 	// S'inscrire :
 	public function inscrire(string $nom,string $prenom,string $username,string $mail,string $motPasse){
 
 		$user = new Utilisateur();
-		$query = $this->listUsers();
-		foreach ($query as $key) {
-			if($key->username == $username){
-				return "Nom d'utilisateur existe déjà veuillez le changer svp";
-			}
-			if($key->mail == $mail){
-				return "Mail existe déjà veuillez le changer svp";
-			}
-		}
+		$ver = $this->verifyDuplicates($username,$mail);
+		if($ver != null) {
+            return $ver;
+        }
 		$user->nom=$nom;
 		$user->prenom=$prenom;
 		$user->username=$username;
@@ -70,8 +87,11 @@ class UtilisateurController extends \mf\control\AbstractController{
 
 	//Modifier le profil 
 	public function modifierProfil(int $idUser, string $nom,string $prenom,string $username,string $mail,string $motPasse){
-		
-		$user = $this->listUser($idUser);
+        $ver = $this->verifyDuplicates($username,$mail);
+        if($ver != null) {
+            return $ver;
+        }
+        $user = $this->listUser($idUser);
 		$user->nom=$nom;
 		$user->prenom=$prenom;
 		$user->username=$username;

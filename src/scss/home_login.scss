@@ -102,28 +102,28 @@ header {
 		margin: 0px;
 		list-style-type: none;
 		& > li:nth-child(1) {
-			grid-column-start: 3;
-			grid-column-end: 4;
+			grid-column-start: 1;
+			grid-column-end: 3;
 		}
 		& > li:nth-child(2) {
-			grid-column-start: 4;
+			grid-column-start: 3;
 			grid-column-end: 5;
 		}
 		& > li:nth-child(3) {
 			grid-column-start: 5;
 			grid-column-end: 7;
 		}
-		& > li:nth-child(4) {
+		& > .deroulant {
 			grid-column-start: 7;
-			grid-column-end: 8;
+			grid-column-end: 9;
 		}
 		& > li:nth-child(5) {
-			grid-column-start: 8;
-			grid-column-end: 10;
+			grid-column-start: 9;
+			grid-column-end: 11;
 		}
 		& > li:nth-child(6) {
-			grid-column-start: 10;
-			grid-column-end: 11;
+			grid-column-start: 11;
+			grid-column-end: 13;
 		}
 	}
 }
@@ -156,22 +156,28 @@ li {
 	padding: 0;
 	position: absolute;
 	z-index: 1;
-}
-.enfant li {
-	list-style-type: none;
 	& a {
-		color: white;
-		display: block;
-		text-align: left;
-		padding: 5px 5px 0px 5px;
+	text-align : left;
 	}
 }
+
+a {
+		color: white;
+		display: block;
+		text-align : center;
+		padding: 0px 0px 0px 5px;
+}
+
 .enfant li:hover {
 	background-color: #f28c8c;
 	width: 90%;
 }
 .deroulant:hover .enfant {
 	display: block;
+	text-align: center;
+	list-style-type: none;
+	width : 30%;
+	
 }
 
 /*************************** MEDIUM MENU **********************/
@@ -325,6 +331,7 @@ body main.createGallery {
 	margin: 0 10% 0 10%;
 	// Le titre
 	& h1 {
+		padding-top : 20px;
 		text-align: center;
 		color: black;
 		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -436,7 +443,7 @@ body main.createGallery {
 				margin-right: auto;
 				margin-top: 1%;
 				max-width: 100%;
-				max-height: 550px;
+				max-height: 300px;
 				border: 1px solid black;
 				width: 100%;
 			}
