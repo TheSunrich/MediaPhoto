@@ -8,5 +8,7 @@ class Photo extends \Illuminate\Database\Eloquent\Model{
 	protected $primaryKey ='idPhoto';
 	public $timestamps=false;
 
-	
+	public function metaDonnees() {
+	return $this->belongsTo('\mediaphotoapp\model\Galerie', 'motsCles');
+}
 }

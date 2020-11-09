@@ -15,6 +15,7 @@
     use \mediaphotoapp\model\Photo;
     use \mediaphotoapp\model\Galerie;
     use \mediaphotoapp\control\GalerieController;
+    use \mediaphotoapp\control\PhotoController;
 
     use \mf\router\Router;
 
@@ -29,6 +30,9 @@
     $db->setAsGlobal();            // rendre la connexion visible dans tout le projet
     $db->bootEloquent();           // établir la connexion
 
+    
+   
+
     //Les routes ! : 
     $router = new Router();
 
@@ -39,15 +43,26 @@
 
     $router->setDefaultRoute('/Home');
 
+ 
+
     
     $router->run();
+    
+/*$base64 = Photo::select()
+            ->get();
+        $html='';
+        foreach ($base64 as $v) {
+        $html .= "<img src=" . $v->metaDonnees . ">";
+   }
+   echo $html;*/
+
+
+/*'<img src="' . $html . ' ">';*/
 
 
 
-
-
-    //$galeriesPublic = new Galerie();
-    /*$galController = new mediaphotoapp\control\GalerieController();
+    /*$galeriesPublic = new Galerie();
+    $galController = new mediaphotoapp\control\GalerieController();
     echo "afficher une galerie (idGalerie = 7) :";echo "<br>";
     echo $galController->listUneGalerie(7);
 

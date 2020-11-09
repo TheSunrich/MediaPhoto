@@ -74,13 +74,18 @@ class GalerieView extends AbstractView {
     //View des galeries public 
     public function renderHomeGuest(){
         $html="";
-        $html="Affichage des galeries public : <br>--------";
         foreach ($this->data as $key) {
-           $html .= "<br>Nom : $key->nom , <br>
-                    Description : $key->description , <br>
-                    Mots Clés : $key->motsCles <br>
-                    Date de création : $key->dateCreation " ;
-            $html .="<br>--------";
+            $html .="<section class='galerie'>
+                <a href='guestGalerie.html'>
+                
+            
+                 $key->nom
+                </a>
+                <div class='infosGalerieHover'>
+                    <h3>Style japonais</h3>
+                    <p>Par Antonin Winterstein</p>
+                </div>
+            </section>";
         }
         return $html;
     }
@@ -125,9 +130,10 @@ class GalerieView extends AbstractView {
 <header  class='grid'>
     ${header}
 </header>
-<section>
+<main class='grid home'>
     ${section}
-</section>
+   
+</main>
 <footer class='grid'>
     ${footer}
 </footer>";
