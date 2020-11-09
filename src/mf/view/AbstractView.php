@@ -127,7 +127,7 @@ abstract class AbstractView {
     </head>
 
     <body>
-        aaaa
+        
        ${body}
 
     </body>

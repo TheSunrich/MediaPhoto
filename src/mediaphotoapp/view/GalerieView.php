@@ -45,14 +45,13 @@ class GalerieView extends AbstractView {
     }
 
     //View des galeries public 
-    public function renderGaleriesPublic($galeries){
-
+    public function renderHomeGuest(){
         $html="Affichage des galeries public : <br> -------- ";
-        foreach ($galeries as $key) {
-           $html .= 'Nom : $key->nom , <br>
+        foreach ($this->data as $key) {
+           $html .= "Nom : $key->nom , <br>
                     Description : $key->description , <br>
                     Mots Clés : $key->motsCles <br>
-                    Date de création : $key->dateCreation ' ;
+                    Date de création : $key->dateCreation " ;
             $html .="--------";
         }
         return $html;
@@ -93,7 +92,7 @@ class GalerieView extends AbstractView {
         //$header = $this->renderHeader();
         
         $footer = $this->renderFooter();
-        $section = $this->renderGaleriesPublic();
+        $section = $this->renderHomeGuest();
         
         $html="
 <section>
