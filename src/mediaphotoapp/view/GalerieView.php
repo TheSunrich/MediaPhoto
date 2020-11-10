@@ -176,7 +176,21 @@ class GalerieView extends AbstractView {
 
         $photos = '';
 
+        
+
         foreach ($liste_photos as $v) {
+
+            switch($requete->type) {
+                case "0":
+                    $type = 'publique';
+                break;
+                case "1":
+                    $type = 'privée';
+                break;
+                case "2":
+                    $type = 'protégée';
+                break;
+            }
 
             $photos .= "<div class='thePhoto'><a href=\"" . $router->urlFor('photo', [['id', $v->idPhoto]]) . "\"><img src=" . $v->metaDonnees . "></a></div>";
 
@@ -185,7 +199,7 @@ class GalerieView extends AbstractView {
             $html = "<div class='grid heading'>
             <h1>
                 " . $requete->nom . " <br />
-                <span>Galerie publique (par " . $user->prenom . ' ' .  $user->nom . ")</span>
+                <span>Galerie " . $type . " (par " . $user->prenom . ' ' .  $user->nom . ")</span>
             </h1>
         </div>
     
