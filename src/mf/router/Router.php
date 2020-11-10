@@ -37,15 +37,12 @@ class Router extends AbstractRouter {
         }
     }
 
-    static function executeRoute($alias) {
-        if (array_key_exists($alias, self::$aliases)) {
-            $route = self::$aliases[$alias];
-            $controller = self::$routes[$alias][0];
-            $method = self::$routes[$alias][1];
+    public static function executeRoute($alias) {
+        $ctrl = self::$routes[self::$aliases[$alias]][0];
+        $mth = self::$routes[self::$aliases[$alias]][1];
 
-            $c = new $controller();
-            $c->$method();
-        }
+        $instance = new $ctrl();
+        $instance->$mth();
     }
 
     public function urlFor($route_name, $param_list=[]) {
