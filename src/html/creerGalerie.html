@@ -46,9 +46,9 @@
 		<main class="grid createGallery">
 			<h1>CRÉER GALERIE</h1>
 			<hr />
-			<form class="grid" action="post">
-				<div class="nameGallery">
-					<label for="nameGallery">Nom : <span>*</span></label>
+			<form class="grid" method="post" action="add">
+				<div class="nom">
+					<label for="nom">Nom : <span>*</span></label>
 					<br />
 					<input
 						type="text"
@@ -56,8 +56,8 @@
 						placeholder="Entrez le nom de la photo"
 					/>
 				</div>
-				<div class="keywordsGallery">
-					<label for="keywordsGallery">Mots-clés : <span>*</span></label>
+				<div class="motsCles">
+					<label for="motsCles">Mots-clés : <span>*</span></label>
 					<br />
 					<input
 						type="text"
@@ -65,21 +65,20 @@
 						placeholder="Entrez un ou plusieurs mots-clés"
 					/>
         </div>
-        <div class="descriptionGallery">
-          <label for="descriptionGallery">Description :</label>
+        <div class="description">
+          <label for="description">Description :</label>
           <br />
           <textarea name="descriptionGallery" placeholder="Entrer une définition pour la galerie"></textarea>
         </div>
-				<div class="accessMode">
-					<label for="accessMode">Mode d'accès : <span>*</span></label>
-					<br />
-					<select
-						name="accessMode">
-						<option selected>Public</option>
-						<option>Privé</option>
-						<option>Partagé</option>
-					</select>
-        </div>
+                <div class='accessMode'>
+                    <label for='type'>Mode d'accès : <span>*</span></label>
+                    <br />
+                    <select name='type'>
+                        <option selected value='0'>Public</option>
+                        <option value='1'>Privé</option>
+                        <option value='2'>Partagé</option>
+                    </select>
+                </div>
         
         <div class="choosePhotos">
           <label for="choosePhotos">Choisir les photos : <span>*</span></label>

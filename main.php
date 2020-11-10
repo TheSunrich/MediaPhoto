@@ -101,7 +101,7 @@
                   'listMesPhoto');
 
     $router->addRoute('creerGalerie',
-                  '/creerGalerie/',
+                  '/galerie/add',
                   '\mediaphotoapp\control\GalerieController',
                   'ajouterGalerie');
 
