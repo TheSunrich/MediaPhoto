@@ -11,20 +11,6 @@ class PhotoController extends \mf\control\AbstractController{
 		parent::__construct();
 	}
 
-
-	//Lister une photo spécifique
-	public function listerUnePhoto(){ 
-		$photo = \mediaphotoapp\model\Photo::all();
-    $vue = new \mediaphotoapp\view\GalerieView($photo);
-
-
-    $vue->render('photo');
-		// $photo = Photo::select()
-		// 			->where("idPhoto","=",$idPhoto)
-		// 			->first();
-		// return $photo;
-	}
-
 	//Lister toutes les photos 
 	public function listsPhotos(){ 
 		$photos = Photo::select()

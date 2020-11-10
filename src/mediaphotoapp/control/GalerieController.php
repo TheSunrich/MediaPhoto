@@ -18,35 +18,103 @@ class GalerieController extends \mf\control\AbstractController {
 
 	//Lister les galeries (public) (GUEST)
 	public function homeGuest(){ 
-		// $galeries = Galerie::select()
-		// 			->where("type","=",0)
-		// 			->get();	
-
-		// $viewGuest = new GalerieView($galeries);
-		// $viewGuest->render('home');
-
-		$galerie = \mediaphotoapp\model\Galerie::all();
-    $vue = new \mediaphotoapp\view\GalerieView($galerie);
-
-
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
     $vue->render('home');
 	}
 
-	//Lister une galerie spécifique
-	public function listUneGalerie(){ 
-		// $galerie = Galerie::select()
-		// 			->where("idGalerie","=",$id)
-		// 			->first();
-		// return $galerie;
+	//Lister une photo spécifique
+	public function listerUnePhoto(){ 
 
-		$galerie = \mediaphotoapp\model\Galerie::all();
-    $vue = new \mediaphotoapp\view\GalerieView($galerie);
-
-
-		$vue->render('galerie');
+	$photo = Photo::all();
+    $vue = new GalerieView($photo);
+    $vue->render('photo');
+		
 	}
 
-	//Lister les galeries (public OR private OR protected)
+	//Lister une galerie spécifique 
+	public function listUneGalerie(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+	$vue->render('galerie');
+	}
+
+	//Lister les galeries (public) (CONNECTER)
+	public function homeLogin(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+    $vue->render('homelogin');
+	}
+
+	public function touteGalerie(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+    $vue->render('toutegalerie');
+	}
+
+	public function partageGalerie(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+    $vue->render('partagegalerie');
+	}
+
+	
+	public function listerUnePhotoLogin(){ 
+
+	$photo = Photo::all();
+    $vue = new GalerieView($photo);
+    $vue->render('photologin');
+		
+	}
+
+	
+	public function listUneGalerieLogin(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+	$vue->render('galerielogin');
+	}
+
+	
+	public function mesPhoto(){ 
+	
+	$photo = Photo::all();
+    $vue = new GalerieView($photo);
+	$vue->render('mesphoto');
+	}
+	
+	public function mesGalerie(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+	$vue->render('mesgalerie');
+	}
+
+	
+	public function listMesPhoto(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+	$vue->render('photomy');
+	}
+	
+	public function listMesGalerie(){ 
+	
+	$galerie = Galerie::all();
+    $vue = new GalerieView($galerie);
+	$vue->render('galeriemy');
+	}
+
+
+}
+
+
+/*	//Lister les galeries (public OR private OR protected)
 	public function listGalerie(int $type){ 
 		$galeries = Galerie::select()
 					->where("type","=",$type)
@@ -136,4 +204,4 @@ class GalerieController extends \mf\control\AbstractController {
 		
 		return "ok";
 	}
-}
+}*/
