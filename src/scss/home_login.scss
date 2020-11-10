@@ -247,7 +247,7 @@ body main.home {
 
 	// Apparition du texte + effet au hover de l'image
 	& .galerie:hover {
-		filter: grayscale(50%);
+		filter: grayscale(100%);
 		transition: all 0.3s ease-in-out 0s;
 	}
 
