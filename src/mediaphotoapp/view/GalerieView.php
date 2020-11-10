@@ -178,6 +178,10 @@ class GalerieView extends AbstractView {
     private function renderModGalerie(){
         $router = new Router();
         $photos = Photo::all();
+        $galerie = Photo::select()
+            ->join('depot','depot.idPhoto','=','photo.idPhoto')
+            ->where('depot.idGalerie','=',$this->data->idGalerie)
+            ->get();
         $html = "
 
             
@@ -232,11 +236,13 @@ class GalerieView extends AbstractView {
           <!-- Le bouton pour la modal -->
           <button type='button' id='myBtn'>Choisir des photos</button>
           
-          <img id='photo' src='".$photos[2]->metaDonnees."' alt='Image importée' />
-          <img id='photo' src='".$photos[3]->metaDonnees."' alt='Image importée' />
-            <p>Vos photos s'afficheront ici</p>
-          
+          ";
+        foreach ($galerie as $image){
+            $html .= "<img id='photo' src='".$image->metaDonnees."' alt='" . $image->nom . "' />";
+        }
 
+        $html .= "
+            <p>Vos photos s'afficheront ici</p>
           <!-- La modal -->
           <div id='myModal' class='modal'>
             <!-- Le contenu de la modal -->
@@ -255,7 +261,8 @@ class GalerieView extends AbstractView {
             }
         }
 
-        $html .= "</div>
+        $html .= "
+            </div>
               <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
             </div>
             
@@ -265,6 +272,42 @@ class GalerieView extends AbstractView {
                 <input class='sendForm' type='submit' value='Modifier la galerie' src='" . $router->urlfor('/ModGalerie',["idGalerie" => $this->data->idGalerie]) ."'></form>
     ";
 
+        $html .= '
+        <script>
+        // On récupère la modal
+        var modal = document.getElementById("myModal");
+        
+        // On récupère le bouton qui permet ouvrir la modal
+        var btn = document.getElementById("myBtn");
+        
+        // On récupère le span qui permet de fermer la modal (la croix)
+        var span = document.getElementsByClassName("close")[0];
+        
+        // Lorsqu on clique sur le bouton, la modal passe en display block et s affiche en conséquence (car de base en display none)
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+        
+        // Lorsque l utilisateur clique sur la croix, on ferme la modal en la passant en display none
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+        
+        // Lorsque l utilisateur n importe où en dehors de la modal, on ferme la modal en la passant en display none
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+        
+        </script>
+        <!-- Importation de jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Importation de popper -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+		<!-- Importation du script des select -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        ';
         return $html;
     }
 
