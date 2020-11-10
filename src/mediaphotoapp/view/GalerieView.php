@@ -114,7 +114,7 @@ class GalerieView extends AbstractView {
                   <li><a href=\"" . $router->urlFor('#') . "\">Galeries Privées</a></li>
               </ul>
               </div>
-              <li><a href='#'>Créer Galerie</a></li>
+              <li><a href='". $router->urlFor('creerGalerie')."'>Créer Galerie</a></li>
               <li><a href='#'>Profil</a></li>
             </ul>
             </div>";

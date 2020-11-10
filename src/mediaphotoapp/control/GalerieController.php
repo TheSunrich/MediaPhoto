@@ -111,10 +111,9 @@ class GalerieController extends \mf\control\AbstractController {
 	}
 
 
-}
 
 
-/*	//Lister les galeries (public OR private OR protected)
+    //Lister les galeries (public OR private OR protected)
 	public function listGalerie(int $type){ 
 		$galeries = Galerie::select()
 					->where("type","=",$type)
@@ -203,4 +202,4 @@ class GalerieController extends \mf\control\AbstractController {
 		
 		return "ok";
 	}
-}*/
+}
