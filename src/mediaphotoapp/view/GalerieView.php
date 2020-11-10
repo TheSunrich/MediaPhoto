@@ -103,6 +103,8 @@ class GalerieView extends AbstractView {
         return $titre . $html;
     }
 
+
+
     //view d'une galerie spécifique
     public function viewUneGalerie(){
         $galCtr = new GalerieController();
@@ -217,6 +219,139 @@ class GalerieView extends AbstractView {
         </div>
      </form>";
 
+    private function renderModGalerie(){
+        $router = new Router();
+        $photos = Photo::all();
+        $galerie = Photo::select()
+            ->join('depot','depot.idPhoto','=','photo.idPhoto')
+            ->where('depot.idGalerie','=',$this->data->idGalerie)
+            ->get();
+        $html = "
+
+            
+			<h1>MODIFIER GALERIE</h1>
+			<hr />
+        <form class='grid' method='post' action='mod'>
+
+                <input
+                type='text'
+                name='idGalerie'
+                value='" . $this->data->idGalerie . "'
+                hidden
+                />
+				<div class='nameGallery'>
+					<label for='nom'>Nom : <span>*</span></label>
+					<br />
+					<input
+						type='text'
+						name='nom'
+                        placeholder='Entrez le nom de la photo'
+                        value='" . $this->data->nom . "'
+					/>
+				</div>
+				<div class='keywordsGallery'>
+					<label for='motsCles'>Mots-clés : <span>*</span></label>
+					<br />
+					<input
+						type='text'
+						name='motsCles'
+                        placeholder='Entrez un ou plusieurs mots-clés'
+                        value='".$this->data->motsCles."'
+					/>
+        </div>
+        <div class='descriptionGallery'>
+          <label for='description'>Description :</label>
+          <br />
+          <textarea name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
+        </div>
+				<div class='accessMode'>
+					<label for='type'>Mode d'accès : <span>*</span></label>
+					<br />
+					<select name='type' value='".$this->data->type."'>
+						<option value='0'>Public</option>
+						<option value='1'>Privé</option>
+						<option value='2'>Partagé</option>
+					</select>
+        </div>
+        
+        <div class='choosePhotos'>
+          <label for='choosePhotos'>Choisir les photos : <span>*</span></label>
+          <br />
+          <!-- Le bouton pour la modal -->
+          <button type='button' id='myBtn'>Choisir des photos</button>
+          
+          ";
+        foreach ($galerie as $image){
+            $html .= "<img id='photo' src='".$image->metaDonnees."' alt='" . $image->nom . "' />";
+        }
+
+        $html .= "
+            <p>Vos photos s'afficheront ici</p>
+          <!-- La modal -->
+          <div id='myModal' class='modal'>
+            <!-- Le contenu de la modal -->
+            <div class='modal-content grid'>
+              <!-- Le header -->
+              <div class='modal-header'>
+                <span class='close'>&times;</span>
+                <input class='search' type='search' placeholder='Chercher une photo...'>
+              </div>
+              <!-- Le body -->
+              <div class='modal-body grid'>
+                <h1>Sélectionnez les photos que vous voulez ajouter à votre galerie</h1>";
+        if(isset($photos)){
+            foreach($photos as $photo){
+                $html .= "<img src='" . $photo->metaDonnees . "' alt='" . $photo->nom . "'>";
+            }
+        }
+
+        $html .= "
+            </div>
+              <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
+            </div>
+            
+          </div>
+          
+				</div>
+                <input class='sendForm' type='submit' value='Modifier la galerie' src='" . $router->urlfor('/ModGalerie',["idGalerie" => $this->data->idGalerie]) ."'></form>
+    ";
+
+        $html .= '
+        <script>
+        // On récupère la modal
+        var modal = document.getElementById("myModal");
+        
+        // On récupère le bouton qui permet ouvrir la modal
+        var btn = document.getElementById("myBtn");
+        
+        // On récupère le span qui permet de fermer la modal (la croix)
+        var span = document.getElementsByClassName("close")[0];
+        
+        // Lorsqu on clique sur le bouton, la modal passe en display block et s affiche en conséquence (car de base en display none)
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+        
+        // Lorsque l utilisateur clique sur la croix, on ferme la modal en la passant en display none
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
+        
+        // Lorsque l utilisateur n importe où en dehors de la modal, on ferme la modal en la passant en display none
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+        
+        </script>
+        <!-- Importation de jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!-- Importation de popper -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+		<!-- Importation du script des select -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        ';
         return $html;
     }
 
@@ -229,6 +364,7 @@ class GalerieView extends AbstractView {
         $photos = $galCtr->ajouterPhotoDansGalerie($_POST['idGalerie']);
         $this->viewGaleriesUser();
     }
+
     protected function renderBody($selector){
         $header = $this->renderHeader();
         $footer = $this->renderFooter();
@@ -246,6 +382,8 @@ class GalerieView extends AbstractView {
                 break;
             case "creerGalerie":
                 $main = $this->renderCreerGalerie();
+            case "modGalerie":
+                $main = $this->renderModGalerie();
                 break;
         }
         

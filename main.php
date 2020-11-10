@@ -56,6 +56,10 @@
                   '/creerGalerie/',
                   '\mediaphotoapp\control\GalerieController',
                   'ajouterGalerie');
+    $router->addRoute('modGalerie',
+                  '/galerie/mod',
+                  '\mediaphotoapp\control\GalerieController',
+                  'modifierGalerie');
 
     $router->setDefaultRoute('/home/');
 

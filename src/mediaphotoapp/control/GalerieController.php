@@ -94,17 +94,24 @@ class GalerieController extends \mf\control\AbstractController {
 
 	}
 	//Modifier une galerie
-	public function modifierGalerie(int $idGalerie, string $type, string $motsCles, int $description){
-		
-		$galerie = $this->listUneGalerie($idGalerie);
-		$galerie->nom=$nom;
-		$galerie->type=$type;
-		$galerie->motsCles=$motsCles;
-		$galerie->description=$description;
-		
-		$galerie->save(); 
-
-		return $galerie;
+	public function modifierGalerie(){
+	    $galerie = Galerie::select()->first();
+	    if(isset($_GET['id']) || isset($_POST['idGalerie'])){
+            if(isset($_GET['id'])){
+                $galerie = Galerie::select()->where("idGalerie","=",$_GET['id'])->first();
+            } else {
+                $galerie = Galerie::select()->where("idGalerie","=",$_POST['idGalerie'])->first();
+                $galerie->nom=$_POST['nom'];
+                $galerie->type=$_POST['type'];
+                $galerie->motsCles=$_POST['motsCles'];
+                $galerie->description=$_POST['description'];
+                $galerie->save();
+            }
+	    } else {
+	        Router::executeRoute('home');
+        }
+        $vue = new \mediaphotoapp\view\GalerieView($galerie);
+        $vue->render('modGalerie');
 
 	}
 	//supprimer une galerie
