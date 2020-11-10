@@ -100,6 +100,8 @@ class GalerieView extends AbstractView {
         return $titre . $html;
     }
 
+
+
     //view d'une galerie spécifique
     public function viewUneGalerie(){
         $galCtr = new GalerieController();
@@ -173,6 +175,99 @@ class GalerieView extends AbstractView {
 		return $html;
     }
 
+    private function renderModGalerie(){
+        $router = new Router();
+        $photos = Photo::all();
+        $html = "
+
+            
+			<h1>MODIFIER GALERIE</h1>
+			<hr />
+        <form class='grid' method='post' action='mod'>
+
+                <input
+                type='text'
+                name='idGalerie'
+                value='" . $this->data->idGalerie . "'
+                hidden
+                />
+				<div class='nameGallery'>
+					<label for='nom'>Nom : <span>*</span></label>
+					<br />
+					<input
+						type='text'
+						name='nom'
+                        placeholder='Entrez le nom de la photo'
+                        value='" . $this->data->nom . "'
+					/>
+				</div>
+				<div class='keywordsGallery'>
+					<label for='motsCles'>Mots-clés : <span>*</span></label>
+					<br />
+					<input
+						type='text'
+						name='motsCles'
+                        placeholder='Entrez un ou plusieurs mots-clés'
+                        value='".$this->data->motsCles."'
+					/>
+        </div>
+        <div class='descriptionGallery'>
+          <label for='description'>Description :</label>
+          <br />
+          <textarea name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
+        </div>
+				<div class='accessMode'>
+					<label for='type'>Mode d'accès : <span>*</span></label>
+					<br />
+					<select name='type' value='".$this->data->type."'>
+						<option value='0'>Public</option>
+						<option value='1'>Privé</option>
+						<option value='2'>Partagé</option>
+					</select>
+        </div>
+        
+        <div class='choosePhotos'>
+          <label for='choosePhotos'>Choisir les photos : <span>*</span></label>
+          <br />
+          <!-- Le bouton pour la modal -->
+          <button type='button' id='myBtn'>Choisir des photos</button>
+          
+          <img id='photo' src='".$photos[2]->metaDonnees."' alt='Image importée' />
+          <img id='photo' src='".$photos[3]->metaDonnees."' alt='Image importée' />
+            <p>Vos photos s'afficheront ici</p>
+          
+
+          <!-- La modal -->
+          <div id='myModal' class='modal'>
+            <!-- Le contenu de la modal -->
+            <div class='modal-content grid'>
+              <!-- Le header -->
+              <div class='modal-header'>
+                <span class='close'>&times;</span>
+                <input class='search' type='search' placeholder='Chercher une photo...'>
+              </div>
+              <!-- Le body -->
+              <div class='modal-body grid'>
+                <h1>Sélectionnez les photos que vous voulez ajouter à votre galerie</h1>";
+        if(isset($photos)){
+            foreach($photos as $photo){
+                $html .= "<img src='" . $photo->metaDonnees . "' alt='" . $photo->nom . "'>";
+            }
+        }
+
+        $html .= "</div>
+              <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
+            </div>
+            
+          </div>
+          
+				</div>
+                <input class='sendForm' type='submit' value='Modifier la galerie' src='" . $router->urlfor('/ModGalerie',["idGalerie" => $this->data->idGalerie]) ."'></form>
+    ";
+
+        return $html;
+    }
+
     //Ajouter une galerie, après afficher toutes les galeries de cet user
     public function viewAjouterGalerie(){
         $galCtr = new GalerieController();
@@ -182,6 +277,7 @@ class GalerieView extends AbstractView {
         $photos = $galCtr->ajouterPhotoDansGalerie($_POST['idGalerie']);
         $this->viewGaleriesUser();
     }
+
     protected function renderBody($selector){
         $header = $this->renderHeader();
         $footer = $this->renderFooter();
@@ -197,12 +293,15 @@ class GalerieView extends AbstractView {
             case "galerie":
                 $main = $this->renderGalerie();
                 break;
+            case "modGalerie":
+                $main = $this->renderModGalerie();
+                break;
         }
         
         $html = "
         <body>
             <header class='grid'>$header</header>
-            <main class='grid home myGallery'>
+            <main class='grid home myGallery createGallery'>
                 $main
             </main>
             <footer class='grid'>$footer</footer>
