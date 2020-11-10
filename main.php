@@ -15,6 +15,7 @@
     use \mediaphotoapp\model\Photo;
     use \mediaphotoapp\model\Galerie;
     use \mediaphotoapp\control\GalerieController;
+    use \mediaphotoapp\control\PhotoController;
 
     use \mf\router\Router;
 
@@ -29,6 +30,9 @@
     $db->addConnection( $config ); // configuration avec nos paramètres
     $db->setAsGlobal();            // rendre la connexion visible dans tout le projet
     $db->bootEloquent();           // établir la connexion
+
+    
+   
 
     //Les routes ! : 
     $router = new Router();

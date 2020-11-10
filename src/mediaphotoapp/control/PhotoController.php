@@ -11,6 +11,7 @@ class PhotoController extends \mf\control\AbstractController{
 		parent::__construct();
 	}
 
+
 	//Lister une photo spécifique
 	public function listerUnePhoto(){ 
 		$photo = \mediaphotoapp\model\Photo::all();
@@ -33,7 +34,7 @@ class PhotoController extends \mf\control\AbstractController{
 
 	//Lister les photos d'un utilisateur
 	public function listsPhotosUser(int $idUser){
-		$listsPhotos = Photo::select('photo.idPhoto')
+		$listsPhotos = Photo::select('metaDonnees')
 					->where("idUser","=",$idUser)
 					->get();
 		return $listsPhotos;

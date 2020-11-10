@@ -6,6 +6,7 @@ use mf\router\Router;
 
 use \mediaphotoapp\model\Galerie as Galerie;
 use \mediaphotoapp\model\Depot as Depot;
+use \mediaphotoapp\model\Photo as Photo;
 use \mediaphotoapp\view\GalerieView as GalerieView;
 
 
