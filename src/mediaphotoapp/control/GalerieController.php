@@ -17,20 +17,32 @@ class GalerieController extends \mf\control\AbstractController {
 
 	//Lister les galeries (public) (GUEST)
 	public function homeGuest(){ 
-		$galeries = Galerie::select()
-					->where("type","=",0)
-					->get();	
+		// $galeries = Galerie::select()
+		// 			->where("type","=",0)
+		// 			->get();	
 
-		$viewGuest = new GalerieView($galeries);
-		$viewGuest->render('Home');
+		// $viewGuest = new GalerieView($galeries);
+		// $viewGuest->render('home');
+
+		$galerie = \mediaphotoapp\model\Galerie::all();
+    $vue = new \mediaphotoapp\view\GalerieView($galerie);
+
+
+    $vue->render('home');
 	}
 
 	//Lister une galerie spécifique
-	public function listUneGalerie(int $id){ 
-		$galerie = Galerie::select()
-					->where("idGalerie","=",$id)
-					->first();
-		return $galerie;
+	public function listUneGalerie(){ 
+		// $galerie = Galerie::select()
+		// 			->where("idGalerie","=",$id)
+		// 			->first();
+		// return $galerie;
+
+		$galerie = \mediaphotoapp\model\Galerie::all();
+    $vue = new \mediaphotoapp\view\GalerieView($galerie);
+
+
+		$vue->render('galerie');
 	}
 
 	//Lister les galeries (public OR private OR protected)

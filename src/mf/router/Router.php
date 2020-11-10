@@ -1,68 +1,69 @@
 <?php
+
 namespace mf\router;
 
-use mf\router\AbstractRouter;
+class Router extends AbstractRouter {
 
-class Router extends AbstractRouter
-{
-
-    public function construct()
-    {
-        parent::construct();
+    public function __construct() {
+        parent::__construct();
     }
 
-    public function addRoute($name, $url, $ctrl, $mth)
-    {
+    public function setDefaultRoute($url) {
+        self::$aliases['default'] = $url;
+    }
 
+    public function addRoute($name, $url, $ctrl, $mth) {
         self::$routes[$url] = array($ctrl, $mth);
-
-        self::$aliases[$name] = "$url";
+        self::$aliases[$name] = $url;
     }
 
-    public function setDefaultRoute($url)
-    {
-        self::$aliases['default'] = "$url";
+    public function run() {
+        if (array_key_exists($this->http_req->path_info, self::$routes)) {
+            $controller = self::$routes[$this->http_req->path_info][0];
+            $method = self::$routes[$this->http_req->path_info][1];
+
+            $c = new $controller();
+            $c->$method();
+        }
+
+        else {
+            $default = self::$aliases['default'];
+
+            $controller = self::$routes[$default][0];
+            $method = self::$routes[$default][1];
+
+            $c = new $controller();
+            $c->$method();
+        }
     }
 
-    public function urlFor($route_name, $param_list = [])
-    {
-        $url = $this->http_req->script_name . self::$aliases[$route_name];
+    static function executeRoute($alias) {
+        if (array_key_exists($alias, self::$aliases)) {
+            $route = self::$aliases[$alias];
+            $controller = self::$routes[$alias][0];
+            $method = self::$routes[$alias][1];
 
-        if (!empty($param_list)) {
-            $url .= '?';
-            foreach($param_list as $key => $param) {
-                $multiparam = $param == end($param_list) ? '' : '&';
-                $url .= $key . '=' . $param . $multiparam;
+            $c = new $controller();
+            $c->$method();
+        }
+    }
+
+    public function urlFor($route_name, $param_list=[]) {
+        if(isset(self::$aliases[$route_name])) {
+            $url_aliases = self::$aliases[$route_name];
+            //var_dump($url_aliases);
+            //$url_aliases = implode($url_aliases);
+            //var_dump($url_aliases);
+            $url = $this->http_req->script_name . $url_aliases;
+
+            // * Note faire condition si plusieurs paramètres dans $param_list, faire avec l'éperluette 
+            if(count($param_list) > 0) {
+                $url = $url . "?";
+                foreach($param_list as $param){
+                    $url = $url . $param[0] . "=" . $param[1];
+                }
             }
+            return $url;
         }
-
-        return $url;
-    }
-
-    public function run()
-    {
-        $url = $this->http_req->path_info;
-
-        if (!isset(self::$routes[$url])) {
-            $url = self::$aliases['default'];
-        }
-
-        $ctrl_name = self::$routes[$url][0];
-        $mth_name = self::$routes[$url][1];
-
-        $ctrl = new $ctrl_name;
-        $ctrl->$mth_name();
-
-    }
-
-    public static function executeRoute($alias)
-    {
-      if(!isset(self::$routes[$alias])) {
-            $url = self::$aliases['default'];
-        }
-        $controller = self::$routes[$alias] [0];
-        $methode = self::$routes[$alias] [1];
-        $c = new $controller();                                // au lieu de mettre return $html on viens recupérer direct grace à cette instanciation
-        $c->$methode();
     }
 }

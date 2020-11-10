@@ -8,5 +8,8 @@ class Photo extends \Illuminate\Database\Eloquent\Model{
 	protected $primaryKey ='idPhoto';
 	public $timestamps=false;
 
-	
+	public function user() {
+		return $this->belongsTo('mediaphotoapp\model\Utilisateur', 'idUser');
+}
+
 }

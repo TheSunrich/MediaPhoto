@@ -20,7 +20,8 @@
 
     $config = parse_ini_file('conf/conf.ini');
 
-    \mf\view\AbstractView::addStyleSheet('src/css/styles.css');
+    
+    \mf\view\AbstractView::addStyleSheet('src/css/home_login.css');
 
     // une instance de connexion
     $db = new Illuminate\Database\Capsule\Manager();
@@ -32,12 +33,22 @@
     //Les routes ! : 
     $router = new Router();
 
-    $router->addRoute('Home',
-                  '/Home',
+    $router->addRoute('home',
+                  '/home/',
                   '\mediaphotoapp\control\GalerieController',
                   'homeGuest');
 
-    $router->setDefaultRoute('/Home');
+    $router->addRoute('photo',
+                  '/photo/',
+                  '\mediaphotoapp\control\PhotoController',
+                  'listerUnePhoto');
+
+    $router->addRoute('galerie',
+                  '/galerie/',
+                  '\mediaphotoapp\control\GalerieController',
+                  'listUneGalerie');
+
+    $router->setDefaultRoute('/home/');
 
     
     $router->run();
@@ -45,103 +56,98 @@
 
 
 
+    // $galeriesPublic = new Galerie();
+    // $galController = new mediaphotoapp\control\GalerieController();
+    // echo "afficher une galerie (idGalerie = 7) :";echo "<br>";
+    // echo $galController->listUneGalerie(7);
 
-    //$galeriesPublic = new Galerie();
-    /*$galController = new mediaphotoapp\control\GalerieController();
-    echo "afficher une galerie (idGalerie = 7) :";echo "<br>";
-    echo $galController->listUneGalerie(7);
+    // echo "<br>";
+    // echo "<br>";
 
-    echo "<br>";
-    echo "<br>";
+    // echo "afficher toutes les galeries (type = 0 : public) :";echo "<br>";
+    // echo $galController->listGalerie(0);
 
-    echo "afficher toutes les galeries (type = 0 : public) :";echo "<br>";
-    echo $galController->listGalerie(0); // 
+    // echo "<br>";
+    // echo "<br>";
 
-    echo "<br>";
-    echo "<br>";
+    // echo "afficher les galeries d'utilisateur : 3";echo "<br>";
+    // echo $galController->listGaleriesUser(3); 
+    // echo "<br>";
+    // echo "<br>";
 
-    echo "afficher les galeries d'utilisateur : 3";echo "<br>";
-    echo $galController->listGaleriesUser(3); 
-    echo "<br>";
-    echo "<br>";
+    // echo "afficher selon MOTS CLES :";
+    // echo "<br>";
+    // echo $galController->listGaleriesMotsCles("Tech");
 
-    echo "afficher selon MOTS CLES :";
-    echo "<br>";
-    echo $galController->listGaleriesMotsCles("Tech");
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
 
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-
-    $photoController = new mediaphotoapp\control\PhotoController();
-    echo "lister les photos de la galerie 3 :";echo "<br>";
-    echo $photoController->listPhotosGalerie(3);
-
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "lister les photos de l'utilisateur' 1 :"; echo "<br>";
-    echo $photoController->listsPhotosUser(1);
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "lister les photos selon les motsCles :"; echo "<br>";
-    echo $photoController->listsPhotosMotsCles('Nature');
-
-     echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "lister les utilisateur qui ont une ou plusieurs galeries :"; echo "<br>";
-    $userController = new mediaphotoapp\control\UtilisateurController();
-    echo $userController->listUserGalerie();
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Inscription :"; echo "<br>";
-    echo $userController->inscrire("NOM1","aaaa","aaaa","hamza@mail.com","PASSSSWORD");
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Se connecter :"; echo "<br>";
-    echo $userController->seConnecter('toufiktaha','12345678910');
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Modifier le profil :"; echo "<br>";
-    echo $userController->modifierProfil(3,"bouuuum","PRENOM1","BBBBBBB","BBB@mail.fr","pipiii");
-/*
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Ajouter photo :"; echo "<br>";
-    $photoController = new mediaphotoapp\control\PhotoController();
-    echo $photoController->ajouterPhoto("photoTEST","blablablablabla","Nature",4);
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Ajouter photo DANS GALERIE 1:"; echo "<br>";
-    echo $galController->ajouterPhotoDansGalerie([7,8],1);
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Ajouter user DANS GROUPE:"; echo "<br>";
-    $galController->ajouterUserDansGalerie(false);
-
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo "Ajouter user DANS GROUPE:"; echo "<br>";
-    $galController->ajouterUserDansGalerie(true);
-    */
+    // $photoController = new mediaphotoapp\control\PhotoController();
+    // echo "lister les photos de la galerie 3 :";echo "<br>";
+    // echo $photoController->listPhotosGalerie(3);
 
 
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "lister les photos de l'utilisateur' 1 :"; echo "<br>";
+    // echo $photoController->listsPhotosUser(1);
 
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "lister les photos selon les motsCles :"; echo "<br>";
+    // echo $photoController->listsPhotosMotsCles('Nature');
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "lister les utilisateur qui ont une ou plusieurs galeries :"; echo "<br>";
+    // $userController = new mediaphotoapp\control\UtilisateurController();
+    // echo $userController->listUserGalerie();
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Inscription :"; echo "<br>";
+    // echo $userController->inscrire("NOM1","aaaa","aaaa","hamza@mail.com","PASSSSWORD");
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Se connecter :"; echo "<br>";
+    // echo $userController->seConnecter('toufiktaha','12345678910');
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Modifier le profil :"; echo "<br>";
+    // echo $userController->modifierProfil(3,"bouuuum","PRENOM1","BBBBBBB","BBB@mail.fr","pipiii");
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Ajouter photo :"; echo "<br>";
+    // $photoController = new mediaphotoapp\control\PhotoController();
+    // echo $photoController->ajouterPhoto("photoTEST","blablablablabla","Nature",4);
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Ajouter photo DANS GALERIE 1:"; echo "<br>";
+    // echo $galController->ajouterPhotoDansGalerie([7,8],1);
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Ajouter user DANS GROUPE:"; echo "<br>";
+    // $galController->ajouterUserDansGalerie(false);
+
+    // echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
+    // echo "Ajouter user DANS GROUPE:"; echo "<br>";
+    // $galController->ajouterUserDansGalerie(true);

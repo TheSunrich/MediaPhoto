@@ -12,11 +12,16 @@ class PhotoController extends \mf\control\AbstractController{
 	}
 
 	//Lister une photo spécifique
-	public function listerUnePhoto(int $idPhoto){ 
-		$photo = Photo::select()
-					->where("idPhoto","=",$idPhoto)
-					->first();
-		return $photo;
+	public function listerUnePhoto(){ 
+		$photo = \mediaphotoapp\model\Photo::all();
+    $vue = new \mediaphotoapp\view\GalerieView($photo);
+
+
+    $vue->render('photo');
+		// $photo = Photo::select()
+		// 			->where("idPhoto","=",$idPhoto)
+		// 			->first();
+		// return $photo;
 	}
 
 	//Lister toutes les photos 

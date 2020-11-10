@@ -157,15 +157,15 @@ li {
 	position: absolute;
 	z-index: 1;
 	& a {
-	text-align : left;
+		text-align: left;
 	}
 }
 
 a {
-		color: white;
-		display: block;
-		text-align : center;
-		padding: 0px 0px 0px 5px;
+	color: white;
+	display: block;
+	text-align: center;
+	padding: 0px 0px 0px 5px;
 }
 
 .enfant li:hover {
@@ -176,8 +176,7 @@ a {
 	display: block;
 	text-align: center;
 	list-style-type: none;
-	width : 30%;
-	
+	width: 30%;
 }
 
 /*************************** MEDIUM MENU **********************/
@@ -229,7 +228,7 @@ body main.home {
 		grid-column-start: 1;
 		grid-column-end: span 12;
 		text-align: center;
-		margin-top: 5%;
+		//margin-top: 5%;
 		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 		font-size: 3rem;
 		margin-bottom: 0%;
@@ -331,7 +330,7 @@ body main.createGallery {
 	margin: 0 10% 0 10%;
 	// Le titre
 	& h1 {
-		padding-top : 20px;
+		padding-top: 20px;
 		text-align: center;
 		color: black;
 		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

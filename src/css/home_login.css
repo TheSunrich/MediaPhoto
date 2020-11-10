@@ -218,7 +218,6 @@ body main.home h1 {
   grid-column-start: 1;
   grid-column-end: span 12;
   text-align: center;
-  margin-top: 5%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 3rem;
   margin-bottom: 0%;
