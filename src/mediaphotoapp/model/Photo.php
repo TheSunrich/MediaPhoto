@@ -12,4 +12,8 @@ class Photo extends \Illuminate\Database\Eloquent\Model{
 		return $this->belongsTo('mediaphotoapp\model\Utilisateur', 'idUser');
 }
 
+public function galeries() {
+	return $this->belongsToMany('mediaphotoapp\model\galerie', 'depot', 'idPhoto', 'idGalerie');
+}
+
 }

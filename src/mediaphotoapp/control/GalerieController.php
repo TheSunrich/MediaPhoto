@@ -72,19 +72,25 @@ class GalerieController extends \mf\control\AbstractController {
 	}
 
 	//Ajouter une nouvelle galerie
-	public function ajouterGalerie(string $nom, int $type,string $motsCles, string $description, string $dateCreation, int $idUser){
+	public function ajouterGalerie(){
 
-		$galerie = new Galerie();
-		$galerie->nom=$nom;
-		$galerie->type=$type;
-		$galerie->motsCles=$motsCles;
-		$galerie->description=$description;
-		$galerie->dateCreation=$dateCreation;
-		$galerie->idUser=$idUser;
+		// $galerie = new Galerie();
+		// $galerie->nom=$nom;
+		// $galerie->type=$type;
+		// $galerie->motsCles=$motsCles;
+		// $galerie->description=$description;
+		// $galerie->dateCreation=$dateCreation;
+		// $galerie->idUser=$idUser;
 		
-		$galerie->save(); 
+		// $galerie->save(); 
 
-		return $galerie;
+		// return $galerie;
+
+		$creerGalerie = \mediaphotoapp\model\Galerie::all();
+    $vue = new \mediaphotoapp\view\GalerieView($galerie);
+
+
+		$vue->render('creerGalerie');
 
 	}
 	//Modifier une galerie

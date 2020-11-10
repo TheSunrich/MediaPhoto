@@ -51,7 +51,7 @@ class GalerieView extends AbstractView {
             </div>
             
             <div class='logo'>
-                <a href= '" . $router->urlFor('Home',"") ."  ' > <img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo-app' /> <a/>
+                <a href=\"" . $router->urlFor('home') . "\"><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
             </div>
 
             <div class='icon'>
@@ -76,6 +76,7 @@ class GalerieView extends AbstractView {
     public function renderHomeGuest(){
         $html="";
         $router = new \mf\router\Router();
+
         
         $photo = Photo::select()
             ->join('depot', 'photo.idPhoto', '=', 'depot.idPhoto')
@@ -85,16 +86,18 @@ class GalerieView extends AbstractView {
 
         foreach ($photo as $key) {
             
+            $photos = Photo::where('idPhoto', '=', $key->idPhoto)->first();
+            $user = $photos->user()->first();
+
+
             $titre = "<h1>ACCUEIL</h1>";
             
             $html .="<section class='galerie'>
             
-            <a href=\"" . $router->urlFor('galerie', [['id', $key->idGalerie]]) . "\"><img src=" . $key->metaDonnees . "></a>
-                
-            <div class='infosGalerieHover'>
-                <h3>Style japonais</h3>
-                <p>Par Antonin Winterstein</p>
-            </div>
+            <a href=\"" . $router->urlFor('galerie', [['id', $key->idGalerie]]) . "\"><img src=" . $photos->metaDonnees . "><div class='infosGalerieHover'>
+            <h3>$photos->nom</h3>
+            <p>Galerie de ". $user->prenom . ' ' . $user->nom . "</p>
+        </div></a>
             </section>";
         }
         return $titre . $html;
@@ -141,10 +144,6 @@ class GalerieView extends AbstractView {
             </h1>
         </div>
 
-        <p class='dateCreation'>
-            Photo ajoutée à la galerie le ... par " . $user->prenom . ' ' . $user->nom . "
-        </p>
-
         <div class='grid photosGallery'>
             <div class='thePhoto' id='myPhoto'>
                 <img src=" . $requete->metaDonnees . ">
@@ -162,15 +161,63 @@ class GalerieView extends AbstractView {
         $html = '';
         $galerie = $this->data;
         $router = new Router();
+        
 
         foreach ($_GET as $valeur) {
         $requete = Galerie::select()
 					->where("idGalerie","=",$valeur)
-					->first();
-                    
-            $html = "<h1>$requete->nom</h1>";
+                    ->first();
+        
+        $user = $requete->user()->first();
+        
+        $liste_photos = $requete->photos()->get();
+
+        $photos = '';
+
+        foreach ($liste_photos as $v) {
+
+            $photos .= "<div class='thePhoto'><a href=\"" . $router->urlFor('photo', [['id', $v->idPhoto]]) . "\"><img src=" . $v->metaDonnees . "></a></div>";
+
+            
+
+            $html = "<div class='grid heading'>
+            <h1>
+                " . $requete->nom . " <br />
+                <span>Galerie publique (par " . $user->prenom . ' ' .  $user->nom . ")</span>
+            </h1>
+        </div>
+    
+        <p class='lengthPhotos'></p>
+    
+        <p class='dateCreation'>
+            Galerie créée le " . $requete->dateCreation . " par  " . $user->prenom . ' ' .  $user->nom . "
+        </p>
+    
+        <div class='grid photosGallery'>
+            " . $photos . "
+        </div>
+    
+        <div class='keywordsPhoto'>
+            <span>" . $requete->motsCles . "</span>
+        </div>";
+        }
         }
 		return $html;
+    }
+
+    private function renderCreerGalerie() {
+        $router = new \mf\router\Router();
+
+        $html = "<form action='http://localhost/MediaPhoto/main.php/creerGalerie/' method='post'>
+        <div>
+            <textarea type='text' name='postTweet' placeholder='Entrer tweet...'></textarea> <br /><br />
+        </div>
+        <div>
+            <button name='bouton' type='submit'>Poster la galerie</button><br /><br />
+        </div>
+     </form>";
+
+        return $html;
     }
 
     //Ajouter une galerie, après afficher toutes les galeries de cet user
@@ -197,15 +244,46 @@ class GalerieView extends AbstractView {
             case "galerie":
                 $main = $this->renderGalerie();
                 break;
+            case "creerGalerie":
+                $main = $this->renderCreerGalerie();
+                break;
         }
         
         $html = "
         <body>
             <header class='grid'>$header</header>
-            <main class='grid home myGallery'>
+            <main class='grid home myGallery createGallery'>
                 $main
             </main>
             <footer class='grid'>$footer</footer>
+            
+    
+		<script src='../../src/js/modal.js'></script>
+
+
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+
+		<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
+
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js'></script>
+        
+
+        <script>
+            $( document ).ready(function() {
+                var lengthPhoto = $('.thePhoto').length;
+                $('.lengthPhotos').html('Nombre de photos : ' + lengthPhoto + ' photos');
+
+                var mybutton = document.getElementById('buttonGoTop');
+      
+                mybutton.onclick = function () {
+                  $('#myModal').scrollTop(0);
+                }
+            });
+      
+
+      
+
+      </script>
         </body>";
 
         return $html;

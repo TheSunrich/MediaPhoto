@@ -224,6 +224,8 @@ body main.home h1 {
 }
 body main.home .galerie {
   margin-top: 5%;
+}
+body main.home .galerie a {
   position: relative;
 }
 body main.home .galerie img {

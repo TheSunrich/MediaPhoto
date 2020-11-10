@@ -193,7 +193,6 @@ a {
 }
 /*********************************************************************/
 
-
 // Le footer
 body > footer {
 	background-color: #383838;
@@ -236,7 +235,10 @@ body main.home {
 	}
 	& .galerie {
 		margin-top: 5%;
-		position: relative;
+
+		& a {
+			position: relative;
+		}
 		& img {
 			width: 100%;
 			height: auto;
