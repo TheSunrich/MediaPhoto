@@ -218,6 +218,7 @@ class GalerieView extends AbstractView {
             <button name='bouton' type='submit'>Poster la galerie</button><br /><br />
         </div>
      </form>";
+        }
 
     private function renderModGalerie(){
         $router = new Router();
