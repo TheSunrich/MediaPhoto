@@ -13,7 +13,7 @@ class Photo extends \Illuminate\Database\Eloquent\Model{
 }
 
 public function galeries() {
-	return $this->belongsToMany('mediaphotoapp\model\galerie', 'depot', 'idPhoto', 'idGalerie');
+	return $this->belongsToMany('mediaphotoapp\model\Galerie', 'depot', 'idPhoto', 'idGalerie');
 }
 
 }
