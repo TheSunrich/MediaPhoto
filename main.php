@@ -77,9 +77,6 @@
                   '\mediaphotoapp\control\GalerieController',
                   'listUneGalerieLogin');
 
-    
-    
-
     $router->addRoute('mesgalerie',
                   '/mesgalerie/',
                   '\mediaphotoapp\control\GalerieController',

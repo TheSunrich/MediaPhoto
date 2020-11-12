@@ -4,7 +4,7 @@ namespace mf\view;
 
 abstract class AbstractView {
 
-    static protected $style_sheets = []; /* un tableau de fichiers style */
+ /* un tableau de fichiers style */
     static protected $app_title    = "MediaPhoto"; /* un titre de document */
     
     protected $data = null; /* les données nécessaires */
