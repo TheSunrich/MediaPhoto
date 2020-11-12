@@ -6,9 +6,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-image: url("https://ma-credence-deco.com/2265-cred_large/fond-de-hotte-marbre-blanc-de-carrare.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
 }
 
 .content {
@@ -34,6 +31,7 @@ header {
   header {
     grid-column: 2/12;
     grid-row: 2/3;
+    background-size: 100%;
   }
 }
 @media screen and (min-width: 571px) {
@@ -75,19 +73,19 @@ label {
 @media screen and (max-width: 570px) {
   .form {
     grid-column: 2/12;
-    grid-row: 3/5;
+    grid-row: 2/5 !important;
   }
 }
 @media screen and (min-width: 571px) {
   .form {
     grid-column: 4/10;
-    grid-row: 3/5;
+    grid-row: 2/5 !important;
   }
 }
 @media screen and (min-width: 920px) {
   .form {
     grid-column: 5/9;
-    grid-row: 3/5;
+    grid-row: 2/5 !important;
   }
 }
 .form input[type=text], .form input[type=password] {

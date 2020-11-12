@@ -21,6 +21,6 @@ abstract class AbstractRouter {
 
     abstract public function setDefaultRoute($url);
 
-    abstract public function addRoute($name, $url, $ctrl, $mth);
+    abstract public function addRoute($name, $url, $ctrl, $mth, $access_level);
 
 }

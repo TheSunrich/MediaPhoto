@@ -6,9 +6,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-image: url("https://ma-credence-deco.com/2265-cred_large/fond-de-hotte-marbre-blanc-de-carrare.jpg");
-  background-repeat: no-repeat;
-  background-size: 120%;
 }
 
 .content {
@@ -141,7 +138,7 @@ label {
 
 p {
   grid-column: 5/9;
-  grid-row: 6/7;
+  grid-row: 5/7 !important;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.7rem;
   text-align: center;

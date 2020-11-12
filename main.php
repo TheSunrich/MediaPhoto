@@ -17,12 +17,11 @@
     use \mediaphotoapp\control\GalerieController;
     use \mediaphotoapp\control\PhotoController;
 
+    use \mediaphotoapp\auth\MediaphotoAuthentification as Auth;
+
     use \mf\router\Router;
 
     $config = parse_ini_file('conf/conf.ini');
-
-    
-    \mf\view\AbstractView::addStyleSheet('src/css/home_login.css');
 
     // une instance de connexion
     $db = new Illuminate\Database\Capsule\Manager();
@@ -40,72 +39,78 @@
     $router->addRoute('home',
                   '/home/',
                   '\mediaphotoapp\control\GalerieController',
-                  'homeGuest');
+                  'homeGuest', Auth::ACCESS_LEVEL_NONE);
+
+   $router->addRoute('login', '/login/', '\mediaphotoapp\control\MediaphotoAdminController', 'viewLogin', Auth::ACCESS_LEVEL_NONE);
+   $router->addRoute('connexion', '/connexion/', '\mediaphotoapp\control\MediaphotoAdminController', 'checkLogin', Auth::ACCESS_LEVEL_NONE);
+   $router->addRoute('logout', '/logout/', '\mediaphotoapp\control\MediaphotoAdminController', 'logout', Auth::ACCESS_LEVEL_USER);
+   $router->addRoute('signupform', '/signup/', '\mediaphotoapp\control\MediaphotoAdminController', 'viewSignup', Auth::ACCESS_LEVEL_NONE);
+   $router->addRoute('inscription', '/inscription/', '\mediaphotoapp\control\MediaphotoAdminController', 'checkSignUp', Auth::ACCESS_LEVEL_NONE);   
 
     $router->addRoute('photo',
                   '/photo/',
                   '\mediaphotoapp\control\GalerieController',
-                  'listerUnePhoto');
+                  'listerUnePhoto', Auth::ACCESS_LEVEL_USER)  ;
 
     $router->addRoute('galerie',
                   '/galerie/',
                   '\mediaphotoapp\control\GalerieController',
-                  'listUneGalerie');
+                  'listUneGalerie', Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('homelogin',
                   '/homelogin/',
                   '\mediaphotoapp\control\GalerieController',
-                  'homeLogin');
+                  'homeLogin', Auth::ACCESS_LEVEL_NONE);
 
     $router->addRoute('toutegalerie',
                   '/toutegalerie/',
                   '\mediaphotoapp\control\GalerieController',
-                  'touteGalerie');
+                  'touteGalerie', Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('partagegalerie',
                   '/partagegalerie/',
                   '\mediaphotoapp\control\GalerieController',
-                  'partageGalerie');
+                  'partageGalerie', Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('photologin',
                   '/photologin/',
                   '\mediaphotoapp\control\GalerieController',
-                  'listerUnePhotoLogin');
+                  'listerUnePhotoLogin', Auth::ACCESS_LEVEL_NONE);
 
     $router->addRoute('galerielogin',
                   '/galerielogin/',
                   '\mediaphotoapp\control\GalerieController',
-                  'listUneGalerieLogin');
+                  'listUneGalerieLogin', Auth::ACCESS_LEVEL_NONE);
 
     $router->addRoute('mesgalerie',
                   '/mesgalerie/',
                   '\mediaphotoapp\control\GalerieController',
-                  'mesGalerie');
+                  'mesGalerie', Auth::ACCESS_LEVEL_NONE);
 
     $router->addRoute('mesphoto',
                   '/mesphoto/',
                   '\mediaphotoapp\control\GalerieController',
-                  'mesPhoto');
+                  'mesPhoto', Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('galeriemy',
                   '/galeriemy/',
                   '\mediaphotoapp\control\GalerieController',
-                  'listMesGalerie');
+                  'listMesGalerie', Auth::ACCESS_LEVEL_USER);
     
     $router->addRoute('photomy',
                   '/photomy/',
                   '\mediaphotoapp\control\GalerieController',
-                  'listMesPhoto');
+                  'listMesPhoto', Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('creerGalerie',
                   '/galerie/add',
                   '\mediaphotoapp\control\GalerieController',
-                  'ajouterGalerie');
+                  'ajouterGalerie', Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('modGalerie',
                   '/galerie/mod',
                   '\mediaphotoapp\control\GalerieController',
-                  'modifierGalerie');
+                  'modifierGalerie', Auth::ACCESS_LEVEL_USER);
 
 
     $router->setDefaultRoute('/home/');

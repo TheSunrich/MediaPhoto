@@ -7,6 +7,8 @@ use \mediaphotoapp\model\Galerie as Galerie;
 use \mf\router\Router as Router;
 use \mediaphotoapp\model\Photo as Photo;
 
+\mf\view\AbstractView::addStyleSheet('src/css/home_login.css');
+
 class GalerieView extends AbstractView {
 
 
@@ -35,8 +37,8 @@ class GalerieView extends AbstractView {
 
             <div class='icon'>
                 <img src='https://i.ibb.co/PjtNj2R/icon-login.png' alt='icon-login'/>
-                <a href=\"" . $router->urlFor('homelogin') . "\">Login</a>
-                <a href='inscription.html'>Register</a> 
+                <a href=\"" . $router->urlFor('login') . "\">Login</a>
+                <a href='" . $router->urlFor('signupform') ." '>Register</a>  
             </div>";
 
         return $html;
