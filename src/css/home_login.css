@@ -92,8 +92,6 @@ header div.icon a:hover {
   z-index: 2;
   background-color: #a93226;
   box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
-  grid-column-start: 1;
-  grid-column-end: 13;
 }
 .menu > ul {
   padding: 0px;
@@ -203,6 +201,12 @@ body > footer .socialNetworks {
 body > footer .socialNetworks a {
   padding: 0 3%;
 }
+body > footer .socialNetworks a:nth-child(1) img {
+  width: 30px;
+}
+body > footer .socialNetworks a:nth-child(2) img {
+  width: 95px;
+}
 body > footer p {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.2rem;
@@ -234,8 +238,6 @@ body main.home h2 {
 }
 body main.home .galerie {
   margin-top: 5%;
-}
-body main.home .galerie a {
   position: relative;
 }
 body main.home .galerie img {
@@ -243,7 +245,7 @@ body main.home .galerie img {
   height: auto;
 }
 body main.home .galerie:hover {
-  filter: grayscale(100%);
+  filter: grayscale(50%);
   transition: all 0.3s ease-in-out 0s;
 }
 body main.home .galerie:hover .infosGalerieHover {
@@ -569,6 +571,7 @@ body main.createGallery form .choosePhotos .arrowGoTop {
   margin-right: 10%;
   margin-bottom: 10%;
   cursor: pointer;
+  width: 50px;
 }
 
 @media screen and (max-width: 768px) {

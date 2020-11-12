@@ -97,7 +97,6 @@ header {
 	z-index: 2;
 	background-color: #a93226;
 	box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
-	grid-column-start:1; grid-column-end : 13;
 	& > ul {
 		padding: 0px;
 		margin: 0px;
@@ -207,6 +206,18 @@ body > footer {
 		& a {
 			padding: 0 3%;
 		}
+
+		& a:nth-child(1) {
+			& img {
+				width: 30px;
+			}
+		}
+
+		& a:nth-child(2) {
+			& img {
+				width: 95px;
+			}
+		}
 	}
 
 	// Les copyright
@@ -234,7 +245,7 @@ body main.home {
 		font-size: 3rem;
 		margin-bottom: 0%;
 	}
-	& h2{
+	& h2 {
 		grid-column-start: 1;
 		grid-column-end: span 12;
 		text-align: center;
@@ -245,10 +256,7 @@ body main.home {
 	}
 	& .galerie {
 		margin-top: 5%;
-
-		& a {
-			position: relative;
-		}
+		position: relative;
 		& img {
 			width: 100%;
 			height: auto;
@@ -257,7 +265,7 @@ body main.home {
 
 	// Apparition du texte + effet au hover de l'image
 	& .galerie:hover {
-		filter: grayscale(100%);
+		filter: grayscale(50%);
 		transition: all 0.3s ease-in-out 0s;
 	}
 
@@ -309,12 +317,10 @@ body main.home {
 		& .galerie:nth-child(2n + 0) {
 			grid-column: col-start 7 / span 6;
 		}
-				
 
 		& .galerie:nth-child(2n + 1) {
-			grid-column: col-start / span 6
+			grid-column: col-start / span 6;
 		}
-			
 	}
 }
 
@@ -322,18 +328,15 @@ body main.home {
 @media screen and (min-width: 992px) {
 	body > main {
 		& .galerie:nth-child(3n + 0) {
-			grid-column: col-start  / span 4;
-			//grid-column: col-start 9 / span 4;
+			grid-column: col-start / span 4;
 		}
 
 		& .galerie:nth-child(3n + 1) {
 			grid-column: col-start 5 / span 4;
-			//grid-column: col-start / span 4;
 		}
 
 		& .galerie:nth-child(3n + 2) {
-			grid-column: col-start 9/ span 4;
-			//grid-column: col-start 5 / span 4;
+			grid-column: col-start 9 / span 4;
 		}
 	}
 }
@@ -618,6 +621,7 @@ body main.createGallery {
 				margin-right: 10%;
 				margin-bottom: 10%;
 				cursor: pointer;
+				width: 50px;
 			}
 		}
 	}
