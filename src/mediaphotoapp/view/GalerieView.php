@@ -93,7 +93,7 @@ class GalerieView extends AbstractView {
             $user = $photos->user()->first();
 
             $titre = "<h1>ACCUEIL</h1>";
-            $soustitre = "<h2>VEUILLEZ TROUVER ICI DE MULTIPLES GALERIES.</h2>";
+            $soustitre = "<h2>VEUILLEZ TROUVER ICI DE MULTIPLES GALERIES</h2>";
             
             $html .=
             "<section class='galerie'>
