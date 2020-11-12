@@ -12,8 +12,8 @@ class Router extends AbstractRouter {
         self::$aliases['default'] = $url;
     }
 
-    public function addRoute($name, $url, $ctrl, $mth) {
-        self::$routes[$url] = array($ctrl, $mth);
+    public function addRoute($name, $url, $ctrl, $mth, $access_level) {
+        self::$routes[$url] = array($ctrl, $mth, $access_level);
         self::$aliases[$name] = $url;
     }
 

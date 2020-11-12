@@ -8,93 +8,108 @@
 	</head>
 	<body>
 		<header class="grid">
-			<div class="recherche" method="GET" action="searchbar.php">
-				<form>
-					<input id="search" type="search" name="searchbar" placeholder="Recherche..." ></input>
+			<div class="recherche">
+				<form method="GET" action="searchbar.php">
+					<input
+						id="search"
+						type="search"
+						name="searchbar"
+						placeholder="Recherche..."
+					/>
 				</form>
 			</div>
-			
+
 			<div class="logo">
-				<img src="../images/logo.png" alt="logo-app"/>
+				<img src="../images/logo.png" alt="logo-app" />
 			</div>
 
 			<div class="icon">
-				<img src="../images/icon_login.png" alt="icon-login"/>
+				<img src="../images/icon_login.png" alt="icon-login" />
 				<a href="profil.html">[$username]</a>
-				<a href="index.html">Deconnexion</a>	
-			</div>		
+				<a href="index.html">Deconnexion</a>
+			</div>
 		</header>
 
 		<div class="menu">
 			<ul class="grid">
-			  <li><a href="home_login.html">Accueil</a></li>
-			  <li><a href="mesPhotos.html">Mes Photos</a></li>
-			  <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
-			  <div class="deroulant">
-			  <li><a href="#">Galeries</a></li>
-			  <ul class="enfant">
-				  <li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
-				  <li><a href="galeriesPartage.html">Galeries Partagées</a></li>
-				  <li><a href="mesGaleries.html">Galeries Privées</a></li>
-			  </ul>
-			  </div>
-			  <li><a href="creerGalerie.html">Créer Galerie</a></li>
-			  <li><a href="profil.html">Profil</a></li>
+				<li><a href="home_login.html">Accueil</a></li>
+				<li><a href="mesPhotos.html">Mes Photos</a></li>
+				<li><a href="ajouterPhoto.html">Ajouter Photos</a></li>
+				<li class="deroulant">
+					<a href="#">Galeries</a>
+					<ul class="enfant">
+						<li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
+						<li><a href="galeriesPartage.html">Galeries Partagées</a></li>
+						<li><a href="mesGaleries.html">Galeries Privées</a></li>
+					</ul>
+				</li>
+
+				<li><a href="creerGalerie.html">Créer Galerie</a></li>
+				<li><a href="profil.html">Profil</a></li>
 			</ul>
 		</div>
 
 		<main class="grid home">
-			<h1> MES PHOTOS </h1>
+			<h1>MES PHOTOS</h1>
+			<h2>VEUILLEZ TROUVER ICI TOUTES VOS PHOTOS.</h2>
 			<section class="galerie">
-				<a href="maPhoto.html"><img src="../images/image_test.jpg" alt="Photo test"></a>
+				<a href="maPhoto.html"
+					><img src="../images/image_test.jpg" alt="Photo test"
+				/></a>
 				<div class="infosGalerieHover">
 					<h3>Style japonais</h3>
 					<p>Par Antonin Winterstein</p>
 				</div>
 			</section>
 			<section class="galerie">
-				<img src="../images/image_test.jpg" alt="Photo test">
+				<img src="../images/image_test.jpg" alt="Photo test" />
 				<div class="infosGalerieHover">
 					<h3>Style japonais</h3>
 					<p>Par Antonin Winterstein</p>
 				</div>
 			</section>
 			<section class="galerie">
-				<img src="../images/image_test.jpg" alt="Photo test">
+				<img src="../images/image_test.jpg" alt="Photo test" />
 				<div class="infosGalerieHover">
 					<h3>Style japonais</h3>
 					<p>Par Antonin Winterstein</p>
 				</div>
 			</section>
 			<section class="galerie">
-				<img src="../images/image_test.jpg" alt="Photo test">
+				<img src="../images/image_test.jpg" alt="Photo test" />
 				<div class="infosGalerieHover">
 					<h3>Style japonais</h3>
 					<p>Par Antonin Winterstein</p>
 				</div>
 			</section>
 			<section class="galerie">
-				<img src="../images/image_test.jpg" alt="Photo test">
+				<img src="../images/image_test.jpg" alt="Photo test" />
 				<div class="infosGalerieHover">
 					<h3>Style japonais</h3>
 					<p>Par Antonin Winterstein</p>
 				</div>
 			</section>
 			<section class="galerie">
-			<img src="../images/image_test.jpg" alt="Photo test">
-			<div class="infosGalerieHover">
-				<h3>Style japonais</h3>
-				<p>Par Antonin Winterstein</p>
-			</div>
+				<img src="../images/image_test.jpg" alt="Photo test" />
+				<div class="infosGalerieHover">
+					<h3>Style japonais</h3>
+					<p>Par Antonin Winterstein</p>
+				</div>
 			</section>
 		</main>
-		
+
 		<footer class="grid">
 			<div class="socialNetworks">
-				<a href="https://github.com/RichardJohnRx/MediaPhoto"><img src="../images/icon_github.svg" alt="Logo de Github" width="30px"/></a>
-				<a href="https://www.univ-lorraine.fr/"><img src="../images/icon_lorraine.svg" alt="Logo de l'Université de Lorraine" width="95px"/></a>
+				<a href="https://github.com/RichardJohnRx/MediaPhoto"
+					><img src="../images/icon_github.svg" alt="Logo de Github"
+				/></a>
+				<a href="https://www.univ-lorraine.fr/"
+					><img
+						src="../images/icon_lorraine.svg"
+						alt="Logo de l'Université de Lorraine"
+				/></a>
 			</div>
-			
+
 			<p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>
 		</footer>
 	</body>

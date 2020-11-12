@@ -8,6 +8,8 @@ use \mf\router\Router as Router;
 use \mediaphotoapp\model\Photo as Photo;
 use Illuminate\Support\Facades\Storage as Storage;
 
+\mf\view\AbstractView::addStyleSheet('src/css/home_login.css');
+
 class GalerieView extends AbstractView {
 
 
@@ -21,32 +23,53 @@ class GalerieView extends AbstractView {
     }
 
 
-    private function renderHeader(){
+    private function renderHeaderGuest(){
         $router = new Router();
         $html = "
-            <div class='recherche' method='GET' action='searchbar.php'>
-                <form>
-                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' ></input>
+            <div class='recherche'>
+                <form method='GET' action='searchbar.php'>
+                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' >
                 </form>
             </div>
-            
+
             <div class='logo'>
-                <a href=\"" . $router->urlFor('home') . "\"><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
+                <a href='" . $router->urlFor('home') . "'><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
             </div>
 
             <div class='icon'>
                 <img src='https://i.ibb.co/PjtNj2R/icon-login.png' alt='icon-login'/>
-                <a href=\"" . $router->urlFor('homelogin') . "\">Login</a>
-                <a href='inscription.html'>Register</a> 
+                <a href='" . $router->urlFor('login') . "'>Login</a>
+                <a href='" . $router->urlFor('signupform') ." '>Register</a>
             </div>";
 
         return $html;
     } 
 
+    private function renderHeader(){
+        $router = new Router();
+        $html = "
+            <div class='recherche'>
+                <form method='GET' action='searchbar.php'>
+                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' >
+                </form>
+            </div>
+
+            <div class='logo'>
+                <a href='" . $router->urlFor('home') . "'><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
+            </div>
+
+            <div class='icon'>
+                <img src='https://i.ibb.co/PjtNj2R/icon-login.png' alt='icon-login'/>
+                <a href='" . $router->urlFor('login') . "'>Déconnexion</a>
+            </div>";
+
+        return $html;
+    }
+
     private function renderFooter(){
         $html = "<div class='socialNetworks'>
-                <a href='https://github.com/RichardJohnRx/MediaPhoto'><img src='https://i.ibb.co/HtS8z2k/icon-github.png' alt='Logo de Github' width='30px'/></a>
-                <a href='https://www.univ-lorraine.fr/'><img src='https://i.ibb.co/1Z6YJJ4/icon-lorraine.png' alt='Logo Université de Lorraine' width='95px'/></a>
+                <a href='https://github.com/RichardJohnRx/MediaPhoto'><img src='https://i.ibb.co/HtS8z2k/icon-github.png' alt='Logo de Github'/></a>
+                <a href='https://www.univ-lorraine.fr/'><img src='https://i.ibb.co/1Z6YJJ4/icon-lorraine.png' alt='Logo Université de Lorraine'/></a>
             </div>
 
             
@@ -72,7 +95,7 @@ class GalerieView extends AbstractView {
             $user = $photos->user()->first();
 
             $titre = "<h1>ACCUEIL</h1>";
-            $soustitre = "<h2>VEUILLEZ TROUVER ICI DE MULTIPLES GALERIES.</h2>";
+            $soustitre = "<h2>VEUILLEZ TROUVER ICI DE MULTIPLES GALERIES</h2>";
             
             $html .=
             "<section class='galerie'>
@@ -104,6 +127,7 @@ class GalerieView extends AbstractView {
             $user = $photos->user()->first();
 
             $menu = "<div class='menu'>
+
                 <ul class='grid'>
                     <li><a href=\"" . $router->urlFor('homelogin') . "\">Accueil</a></li>
                     <li><a href=\"" . $router->urlFor('mesPhotos') . "\">Mes Photos</a></li>
@@ -119,6 +143,7 @@ class GalerieView extends AbstractView {
                     <li><a href='". $router->urlFor('creerGalerie')."'>Créer Galerie</a></li>
                     <li><a href='#'>Profil</a></li>
                 </ul>
+
             </div>";
 
             $titre = "<h1>BIENVENUE ". $user->prenom ."</h1>";
@@ -393,7 +418,9 @@ class GalerieView extends AbstractView {
                 break;
             }
 
-            $photos .= "<div class='thePhoto'><a href=\"" . $router->urlFor('photo', [['id', $v->idPhoto]]) . "\"><img src=" . $v->metaDonnees . "></a></div>";
+            $photos .= "<div class='thePhoto'><a href=\"" . $router->urlFor('photo', [['id', $v->idPhoto]]) . "\"><img src=" . $v->metaDonnees . "><div class='infosGalerieHover'>
+            <h3>$v->nom</h3>
+            </div></a></div>";
 
             
 
@@ -412,11 +439,26 @@ class GalerieView extends AbstractView {
     
         <div class='grid photosGallery'>
             " . $photos . "
+            
         </div>
     
         <div class='keywordsPhoto'>
             <span>" . $requete->motsCles . "</span>
-        </div>";
+        </div>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+
+        <script>
+            $( document ).ready(function() {
+                var lengthPhoto = $('.thePhoto').length;
+                $('.lengthPhotos').html('Nombre de photos : ' + lengthPhoto + ' photos');
+
+                var mybutton = document.getElementById('buttonGoTop');
+      
+                mybutton.onclick = function () {
+                  $('#myModal').scrollTop(0);
+                }
+            });
+      </script>";
         }
         }
         return $html;
@@ -450,7 +492,8 @@ class GalerieView extends AbstractView {
 				<div class='nameGallery'>
 					<label for='nom'>Nom : <span>*</span></label>
 					<br />
-					<input
+                    <input
+                    id='nom'
 						type='text'
 						name='nom'
                         placeholder='Entrez le nom de la photo'
@@ -459,7 +502,8 @@ class GalerieView extends AbstractView {
 				<div class='keywordsGallery'>
 					<label for='motsCles'>Mots-clés : <span>*</span></label>
 					<br />
-					<input
+                    <input
+                    id='motsCles'
 						type='text'
 						name='motsCles'
                         placeholder='Entrez un ou plusieurs mots-clés'
@@ -468,12 +512,12 @@ class GalerieView extends AbstractView {
         <div class='descriptionGallery'>
           <label for='description'>Description :</label>
           <br />
-          <textarea name='description' placeholder='Entrer une définition pour la galerie'></textarea>
+          <textarea id='description' name='description' placeholder='Entrer une définition pour la galerie'></textarea>
         </div>
         <div class='accessMode'>
             <label for='type'>Mode d'accès : <span>*</span></label>
             <br />
-            <select name='type'>
+            <select id='type' name='type'>
                 <option selected value='0'>Public</option>
                 <option value='1'>Privé</option>
                 <option value='2'>Partagé</option>
@@ -481,7 +525,7 @@ class GalerieView extends AbstractView {
         </div>
         
         <div class='choosePhotos'>
-          <label for='choosePhotos'>Choisir les photos : <span>*</span></label>
+          <label>Choisir les photos : <span>*</span></label>
           <br />
           <!-- Le bouton pour la modal -->
           <button type='button' id='myBtn'>Choisir des photos</button>
@@ -508,7 +552,7 @@ class GalerieView extends AbstractView {
 
         $html .= "
             </div>
-              <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
+              <a class='arrowGoTop' id='buttonGoTop'><img src='https://i.ibb.co/cc92XPX/icon-arrow.png' alt='Flèche pour remonter'></a>
             </div>
             
           </div>
@@ -598,6 +642,7 @@ class GalerieView extends AbstractView {
                     <label for='nom'>Nom : <span>*</span></label>
                     <br />
                     <input
+                    id='nom'
                         type='text'
                         name='nom'
                         placeholder='Entrez le nom de la photo'
@@ -608,6 +653,7 @@ class GalerieView extends AbstractView {
                     <label for='motsCles'>Mots-clés : <span>*</span></label>
                     <br />
                     <input
+                    id='motsCles'
                         type='text'
                         name='motsCles'
                         placeholder='Entrez un ou plusieurs mots-clés'
@@ -617,20 +663,13 @@ class GalerieView extends AbstractView {
         <div class='descriptionGallery'>
           <label for='description'>Description :</label>
           <br />
-          <textarea name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
+          <textarea id='description' name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
         </div>
-                <div class='accessMode'>
-                    <label for='type'>Mode d'accès : <span>*</span></label>
-                    <br />
-                    <select name='type' value='".$this->data->type."'>
-                        <option value='0'>Public</option>
-                        <option value='1'>Privé</option>
-                        <option value='2'>Partagé</option>
-                    </select>
+                
         <div class='accessMode'>
             <label for='type'>Mode d'accès : <span>*</span></label>
             <br />
-            <select name='type' value='".$this->data->type."'>
+            <select id='type' name='type' value='".$this->data->type."'>
                 <option value='0'>Public</option>
                 <option value='1'>Privé</option>
                 <option value='2'>Partagé</option>
@@ -638,18 +677,18 @@ class GalerieView extends AbstractView {
         </div>
         
         <div class='choosePhotos'>
-          <label for='choosePhotos'>Choisir les photos : <span>*</span></label>
+          <label>Choisir les photos : <span>*</span></label>
           <br />
           <!-- Le bouton pour la modal -->
           <button type='button' id='myBtn'>Choisir des photos</button>
           
           ";
         foreach ($galerie as $image){
-            $html .= "<img id='photo' src='".$image->metaDonnees."' alt='" . $image->nom . "' />";
+            $html .= "<img id='photo' src='".$image->metaDonnees."' alt='" . $image->nom . "' style='max-height: unset;'/>";
         }
 
         $html .= "
-            <p>Vos photos s'afficheront ici</p>
+            
           <!-- La modal -->
           <div id='myModal' class='modal'>
             <!-- Le contenu de la modal -->
@@ -670,7 +709,7 @@ class GalerieView extends AbstractView {
 
         $html .= "
             </div>
-              <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
+              <a class='arrowGoTop' id='buttonGoTop'><img src='https://i.ibb.co/cc92XPX/icon-arrow.png' alt='Flèche pour remonter'></a>
             </div>
             
           </div>
@@ -679,7 +718,7 @@ class GalerieView extends AbstractView {
                 <input class='sendForm' type='submit' value='Modifier la galerie' src='" . $router->urlfor('/ModGalerie',["idGalerie" => $this->data->idGalerie]) ."'></form>
 
 				</div>
-                <input class='sendForm' type='submit' value='Modifier la galerie'></form>";
+                </form>";
 
         $html .= '
         <script>
@@ -963,18 +1002,22 @@ class GalerieView extends AbstractView {
         switch ($selector) {
 
             case "home":
+                $header = $this->renderHeaderGuest();
                 $main = $this->renderHomeGuest();
                 break;
             case "homelogin":
+                $header = $this->renderHeader();
                 $main = $this->renderHomeLogin();
                 break;
             case "mesPhotos":
                 $main = $this->renderMesPhotoPrive();
                 break;
             case "photo":
+                $header = $this->renderHeader();
                 $main = $this->renderPhoto();
                 break;
             case "galerie":
+                $header = $this->renderHeader();
                 $main = $this->renderGalerie();
                 break;
             case "touteGalerie":
@@ -990,9 +1033,11 @@ class GalerieView extends AbstractView {
                 $main = $this->renderCreerGalerie();
                 break;
             case "modGalerie":
+                $header = $this->renderHeader();
                 $main = $this->renderModGalerie();
                 break;
             case "mesphoto": 
+                $header = $this->renderHeader();
                 $main = $this->renderMesPhoto();
                 break;
             case "addPhoto":
@@ -1007,30 +1052,6 @@ class GalerieView extends AbstractView {
             <header class='grid'>$header</header>
             <main class='grid home myGallery createGallery'>$main</main>
             <footer class='grid'>$footer</footer>
-            
-    
-		<script src='../../src/js/modal.js'></script>
-
-
-		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
-
-		<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
-
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js'></script>
-        
-
-        <script>
-            $( document ).ready(function() {
-                var lengthPhoto = $('.thePhoto').length;
-                $('.lengthPhotos').html('Nombre de photos : ' + lengthPhoto + ' photos');
-
-                var mybutton = document.getElementById('buttonGoTop');
-      
-                mybutton.onclick = function () {
-                  $('#myModal').scrollTop(0);
-                }
-            });
-      </script>
         </body>";
 
         return $html;

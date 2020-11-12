@@ -8,77 +8,94 @@
 	</head>
 	<body>
 		<header class="grid">
-			<div class="recherche" method="GET" action="searchbar.php">
-				<form>
-					<input id="search" type="search" name="searchbar" placeholder="Recherche..." ></input>
+			<div class="recherche">
+				<form method="GET" action="searchbar.php">
+					<input
+						id="search"
+						type="search"
+						name="searchbar"
+						placeholder="Recherche..."
+					/>
 				</form>
 			</div>
-			
+
 			<div class="logo">
-				<img src="../images/logo.png" alt="logo-app"/>
+				<img src="../images/logo.png" alt="logo-app" />
 			</div>
 
 			<div class="icon">
-				<img src="../images/icon_login.png" alt="icon-login"/>
+				<img src="../images/icon_login.png" alt="icon-login" />
 				<a href="profil.html">[$username]</a>
 				<a href="index.html">Deconnexion</a>
-			</div>		
+			</div>
 		</header>
 
 		<div class="menu">
 			<ul class="grid">
-			  <li><a href="home_login.html">Accueil</a></li>
-			  <li><a href="mesPhotos.html">Mes Photos</a></li>
-			  <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
-			  <div class="deroulant">
-			  <li><a href="#">Galeries</a></li>
-			  <ul class="enfant">
-				  <li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
-				  <li><a href="galeriesPartage.html">Galeries Partagées</a></li>
-				  <li><a href="galeriesPrivé.html">Galeries Privées</a></li>
-			  </ul>
-			  </div>
-			  <li><a href="creerGalerie.html">Créer Galerie</a></li>
-			  <li><a href="profil.html">Profil</a></li>
+				<li><a href="home_login.html">Accueil</a></li>
+				<li><a href="mesPhotos.html">Mes Photos</a></li>
+				<li><a href="ajouterPhoto.html">Ajouter Photos</a></li>
+				<li class="deroulant">
+					<a href="#">Galeries</a>
+					<ul class="enfant">
+						<li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
+						<li><a href="galeriesPartage.html">Galeries Partagées</a></li>
+						<li><a href="mesGaleries.html">Galeries Privées</a></li>
+					</ul>
+				</li>
+
+				<li><a href="creerGalerie.html">Créer Galerie</a></li>
+				<li><a href="profil.html">Profil</a></li>
 			</ul>
 		</div>
 
-
 		<main class="grid home">
-				<h1>PROFIL</h1>
-			<form action="" name="" class="form">
+			<h1>PROFIL</h1>
+			<form class="form">
 				<div>
-					<img class="iconSmall" src="../images/userIcon2.png" />
+					<img
+						class="iconSmall"
+						src="../images/userIcon2.png"
+						alt="userIcon2"
+					/>
 					<label>Prénom</label><span> *</span>
-					<input name="firstName" type="text" placeholder="" required/>
+					<input name="firstName" type="text" placeholder="" required />
 				</div>
 				<div>
-					<img class="iconSmall" src="../images/userIcon2.png" />
+					<img
+						class="iconSmall"
+						src="../images/userIcon2.png"
+						alt="userIcon2"
+					/>
 					<label>Nom</label><span> *</span>
 					<input name="lastName" type="text" placeholder="" required />
 				</div>
 				<div>
-					<img class="iconMedium" src="../images/userIcon.png" />
+					<img class="iconMedium" src="../images/userIcon.png" alt="userIcon" />
 					<label>Nom d'utilisateur</label><span> *</span>
 					<input name="username" type="text" placeholder="" required />
 				</div>
 				<div>
-					<img class="iconSmall" src="../images/emailIcon.png" />
+					<img
+						class="iconSmall"
+						src="../images/emailIcon.png"
+						alt="emailIcon"
+					/>
 					<label>Courrier</label><span> *</span>
 					<input name="email" type="email" placeholder="" required />
 				</div>
 				<div>
-					<img class="iconLarge" src="../images/passIcon.png" />
+					<img class="iconLarge" src="../images/passIcon.png" alt="passIcon" />
 					<label>Mot de passe actuel</label><span> *</span>
 					<input name="passAct" type="password" placeholder="" required />
 				</div>
 				<div>
-					<img class="iconLarge" src="../images/passIcon.png" />
+					<img class="iconLarge" src="../images/passIcon.png" alt="passIcon" />
 					<label>Nouveau mot de passe</label><span> *</span>
 					<input name="passwordNew" type="password" placeholder="" required />
 				</div>
 				<div>
-					<img class="iconLarge" src="../images/passIcon.png" />
+					<img class="iconLarge" src="../images/passIcon.png" alt="passIcon" />
 					<label>Confirmer mot de passe</label><span> *</span>
 					<input name="passwordConf" type="password" placeholder="" required />
 				</div>
@@ -87,17 +104,22 @@
 					<div>
 						<input type="submit" value="SE CONNECTER" />
 					</div>
-					<div>
 				</div>
 			</form>
 		</main>
-		
+
 		<footer class="grid">
 			<div class="socialNetworks">
-				<a href="https://github.com/RichardJohnRx/MediaPhoto"><img src="../images/icon_github.svg" alt="Logo de Github" width="30px"/></a>
-				<a href="https://www.univ-lorraine.fr/"><img src="../images/icon_lorraine.svg" alt="Logo de l'Université de Lorraine" width="95px"/></a>
+				<a href="https://github.com/RichardJohnRx/MediaPhoto"
+					><img src="../images/icon_github.svg" alt="Logo de Github"
+				/></a>
+				<a href="https://www.univ-lorraine.fr/"
+					><img
+						src="../images/icon_lorraine.svg"
+						alt="Logo de l'Université de Lorraine"
+				/></a>
 			</div>
-			
+
 			<p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>
 		</footer>
 	</body>

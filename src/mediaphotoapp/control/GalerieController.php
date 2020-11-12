@@ -153,12 +153,13 @@ class GalerieController extends \mf\control\AbstractController {
                 $galerie->motsCles=$_POST['motsCles'];
                 $galerie->description=$_POST['description'];
                 $galerie->save();
-            }
+						}
+						$vue = new \mediaphotoapp\view\GalerieView($galerie);
+        		$vue->render('modGalerie');
 	    } else {
 	        Router::executeRoute('home');
         }
-        $vue = new \mediaphotoapp\view\GalerieView($galerie);
-        $vue->render('modGalerie');
+        
 
 	}
 
