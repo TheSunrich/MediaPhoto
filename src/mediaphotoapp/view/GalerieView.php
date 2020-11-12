@@ -22,6 +22,28 @@ class GalerieView extends AbstractView {
     }
 
 
+    private function renderHeaderGuest(){
+        $router = new Router();
+        $html = "
+            <div class='recherche'>
+                <form method='GET' action='searchbar.php'>
+                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' >
+                </form>
+            </div>
+
+            <div class='logo'>
+                <a href='" . $router->urlFor('home') . "'><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
+            </div>
+
+            <div class='icon'>
+                <img src='https://i.ibb.co/PjtNj2R/icon-login.png' alt='icon-login'/>
+                <a href='" . $router->urlFor('login') . "'>Login</a>
+                <a href='" . $router->urlFor('signupform') ." '>Register</a>
+            </div>";
+
+        return $html;
+    } 
+
     private function renderHeader(){
         $router = new Router();
         $html = "
@@ -30,19 +52,18 @@ class GalerieView extends AbstractView {
                     <input id='search' type='search' name='searchbar' placeholder='Recherche...' >
                 </form>
             </div>
-            
+
             <div class='logo'>
-                <a href=\"" . $router->urlFor('home') . "\"><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
+                <a href='" . $router->urlFor('home') . "'><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
             </div>
 
             <div class='icon'>
                 <img src='https://i.ibb.co/PjtNj2R/icon-login.png' alt='icon-login'/>
-                <a href=\"" . $router->urlFor('login') . "\">Login</a>
-                <a href='" . $router->urlFor('signupform') ." '>Register</a>  
+                <a href='" . $router->urlFor('login') . "'>Se déconnecter</a>
             </div>";
 
         return $html;
-    } 
+    }
 
     private function renderFooter(){
         $html = "<div class='socialNetworks'>
@@ -543,24 +564,30 @@ class GalerieView extends AbstractView {
         switch ($selector) {
 
             case "home":
+                $header = $this->renderHeaderGuest();
                 $main = $this->renderHomeGuest();
                 break;
             case "homelogin":
+                $header = $this->renderHeader();
                 $main = $this->renderHomeLogin();
                 break;
             case "photo":
+                $header = $this->renderHeader();
                 $main = $this->renderPhoto();
                 break;
             case "galerie":
+                $header = $this->renderHeader();
                 $main = $this->renderGalerie();
                 break;
             case "creerGalerie":
                 $main = $this->renderCreerGalerie();
                 break;
             case "modGalerie":
+                $header = $this->renderHeader();
                 $main = $this->renderModGalerie();
                 break;
             case "mesphoto": 
+                $header = $this->renderHeader();
                 $main = $this->renderMesPhoto();
         }
 
