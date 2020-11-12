@@ -43,7 +43,9 @@ header div.recherche form input:hover {
 }
 header div.logo {
   grid-column: col-start 5/span 4;
-  width: 100%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 header div.logo img {
   margin: 0px auto 0px auto;
@@ -55,7 +57,7 @@ header div.icon {
   display: flex;
   flex-direction: column;
   margin: auto 0px auto 0px;
-  width: 100%;
+  width: 70%;
 }
 header div.icon img {
   margin: 10px auto 0px auto;
@@ -83,6 +85,14 @@ header div.icon a:hover {
 @media screen and (min-width: 992px) {
   body > header > div:nth-child(3) > a {
     font-size: 2rem;
+  }
+
+  header div.logo {
+    width: 60%;
+    margin: 0 auto 0 auto;
+  }
+  header div.icon img {
+    width: 75%;
   }
 }
 body > footer {
@@ -113,17 +123,21 @@ body main.home {
 }
 body main.home .galerie {
   margin-top: 5%;
+}
+body main.home .galerie a {
   position: relative;
 }
 body main.home .galerie img {
   width: 100%;
   height: auto;
 }
-body main.home .galerie:hover {
-  filter: grayscale(50%);
+body main.home .galerie:hover,
+body main.home .thePhoto:hover {
+  filter: grayscale(80%);
   transition: all 0.3s ease-in-out 0s;
 }
-body main.home .galerie:hover .infosGalerieHover {
+body main.home .galerie:hover .infosGalerieHover,
+body main.home .thePhoto:hover .infosGalerieHover {
   top: 50%;
   left: 50%;
   opacity: 1;

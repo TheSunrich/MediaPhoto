@@ -138,7 +138,7 @@ label {
 
 p {
   grid-column: 5/9;
-  grid-row: 5/7 !important;
+  grid-row: 6/7;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.7rem;
   text-align: center;

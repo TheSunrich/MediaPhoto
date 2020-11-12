@@ -90,6 +90,17 @@ header {
 	body > header > div:nth-child(3) > a {
 		font-size: 2rem;
 	}
+
+	header {
+		& div.logo {
+			width: 60%;
+			margin: 0 auto 0 auto;
+		}
+
+		& div.icon img {
+			width: 75%;
+		}
+	}
 }
 /******************************* MENU *******************************/
 .menu {
@@ -257,7 +268,10 @@ body main.home {
 	}
 	& .galerie {
 		margin-top: 5%;
-		position: relative;
+
+		& a {
+			position: relative;
+		}
 		& img {
 			width: 100%;
 			height: auto;
@@ -265,12 +279,14 @@ body main.home {
 	}
 
 	// Apparition du texte + effet au hover de l'image
-	& .galerie:hover {
-		filter: grayscale(50%);
+	& .galerie:hover,
+	.thePhoto:hover {
+		filter: grayscale(80%);
 		transition: all 0.3s ease-in-out 0s;
 	}
 
-	& .galerie:hover .infosGalerieHover {
+	& .galerie:hover .infosGalerieHover,
+	.thePhoto:hover .infosGalerieHover {
 		top: 50%;
 		left: 50%;
 		opacity: 1;
@@ -717,8 +733,10 @@ body main.myGallery {
 		}
 		& .thePhoto {
 			margin-top: 2%;
-			position: relative;
 
+			& a {
+				position: relative;
+			}
 			// La croix sur la photo qui permet la suppression d'une photo dans la page "Ma galerie"
 			& .deletePhoto {
 				position: absolute;

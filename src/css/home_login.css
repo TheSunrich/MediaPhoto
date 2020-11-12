@@ -85,6 +85,14 @@ header div.icon a:hover {
   body > header > div:nth-child(3) > a {
     font-size: 2rem;
   }
+
+  header div.logo {
+    width: 60%;
+    margin: 0 auto 0 auto;
+  }
+  header div.icon img {
+    width: 75%;
+  }
 }
 /******************************* MENU *******************************/
 .menu {
@@ -239,17 +247,21 @@ body main.home h2 {
 }
 body main.home .galerie {
   margin-top: 5%;
+}
+body main.home .galerie a {
   position: relative;
 }
 body main.home .galerie img {
   width: 100%;
   height: auto;
 }
-body main.home .galerie:hover {
-  filter: grayscale(50%);
+body main.home .galerie:hover,
+body main.home .thePhoto:hover {
+  filter: grayscale(80%);
   transition: all 0.3s ease-in-out 0s;
 }
-body main.home .galerie:hover .infosGalerieHover {
+body main.home .galerie:hover .infosGalerieHover,
+body main.home .thePhoto:hover .infosGalerieHover {
   top: 50%;
   left: 50%;
   opacity: 1;
@@ -649,6 +661,8 @@ body main.myGallery .photosGallery #myPhoto {
 }
 body main.myGallery .photosGallery .thePhoto {
   margin-top: 2%;
+}
+body main.myGallery .photosGallery .thePhoto a {
   position: relative;
 }
 body main.myGallery .photosGallery .thePhoto .deletePhoto {

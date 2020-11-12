@@ -59,7 +59,7 @@ class GalerieView extends AbstractView {
 
             <div class='icon'>
                 <img src='https://i.ibb.co/PjtNj2R/icon-login.png' alt='icon-login'/>
-                <a href='" . $router->urlFor('login') . "'>Se déconnecter</a>
+                <a href='" . $router->urlFor('login') . "'>Déconnexion</a>
             </div>";
 
         return $html;
@@ -221,7 +221,9 @@ class GalerieView extends AbstractView {
                 break;
             }
 
-            $photos .= "<div class='thePhoto'><a href=\"" . $router->urlFor('photo', [['id', $v->idPhoto]]) . "\"><img src=" . $v->metaDonnees . "></a></div>";
+            $photos .= "<div class='thePhoto'><a href=\"" . $router->urlFor('photo', [['id', $v->idPhoto]]) . "\"><img src=" . $v->metaDonnees . "><div class='infosGalerieHover'>
+            <h3>$v->nom</h3>
+            </div></a></div>";
 
             
 
@@ -240,6 +242,7 @@ class GalerieView extends AbstractView {
     
         <div class='grid photosGallery'>
             " . $photos . "
+            
         </div>
     
         <div class='keywordsPhoto'>
