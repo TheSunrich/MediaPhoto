@@ -7,149 +7,173 @@
 		<link rel="stylesheet" href="../css/home_login.css" />
 	</head>
 	<body>
-    <header class="grid">
-      <div class="recherche" method="GET" action="searchbar.php">
-        <form>
-          <input id="search" type="search" name="searchbar" placeholder="Recherche..." ></input>
-        </form>
-      </div>
-      
-      <div class="logo">
-        <img src="../images/logo.png" alt="logo-app"/>
-      </div>
-  
-      <div class="icon">
-        <img src="../images/icon_login.png" alt="icon-login"/>
-        <a href="profil.html">[$username]</a>
-        <a href="index.html">Deconnexion</a>	
-      </div>		
-    </header>
-  
-    <div class="menu">
-      <ul class="grid">
-        <li><a href="home_login.html">Accueil</a></li>
-        <li><a href="mesPhotos.html">Mes Photos</a></li>
-        <li><a href='ajouterPhoto.html'>Ajouter Photos</a></li>
-        <div class="deroulant">
-        <li><a href="#">Galeries</a></li>
-        <ul class="enfant">
-            <li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
-            <li><a href="galeriesPartage.html">Galeries Partagées</a></li>
-            <li><a href="mesGaleries.html">Galeries Privées</a></li>
-        </ul>
-        </div>
-        <li><a href="creerGalerie.html">Créer Galerie</a></li>
-        <li><a href="profil.html">Profil</a></li>
-      </ul>
-    </div>
+		<header class="grid">
+			<div class="recherche">
+				<form method="GET" action="searchbar.php">
+					<input
+						id="search"
+						type="search"
+						name="searchbar"
+						placeholder="Recherche..."
+					/>
+				</form>
+			</div>
+
+			<div class="logo">
+				<img src="../images/logo.png" alt="logo-app" />
+			</div>
+
+			<div class="icon">
+				<img src="../images/icon_login.png" alt="icon-login" />
+				<a href="profil.html">[$username]</a>
+				<a href="index.html">Deconnexion</a>
+			</div>
+		</header>
+
+		<div class="menu">
+			<ul class="grid">
+				<li><a href="home_login.html">Accueil</a></li>
+				<li><a href="mesPhotos.html">Mes Photos</a></li>
+				<li><a href="ajouterPhoto.html">Ajouter Photos</a></li>
+				<li class="deroulant">
+					<a href="#">Galeries</a>
+					<ul class="enfant">
+						<li><a href="touteGaleries.html">Toutes Les Galeries</a></li>
+						<li><a href="galeriesPartage.html">Galeries Partagées</a></li>
+						<li><a href="mesGaleries.html">Galeries Privées</a></li>
+					</ul>
+				</li>
+
+				<li><a href="creerGalerie.html">Créer Galerie</a></li>
+				<li><a href="profil.html">Profil</a></li>
+			</ul>
+		</div>
 
 		<main class="grid createGallery">
 			<h1>CRÉER GALERIE</h1>
 			<hr />
-			<form class="grid" method="post" action="add">
-				<div class="nom">
-					<label for="nom">Nom : <span>*</span></label>
+			<form class="grid" action="post">
+				<div class="nameGallery">
+					<label for="nameGallery">Nom : <span>*</span></label>
 					<br />
 					<input
+						id="nom"
 						type="text"
 						name="nameGallery"
 						placeholder="Entrez le nom de la photo"
 					/>
 				</div>
-				<div class="motsCles">
-					<label for="motsCles">Mots-clés : <span>*</span></label>
+				<div class="keywordsGallery">
+					<label for="keywordsGallery">Mots-clés : <span>*</span></label>
 					<br />
 					<input
+						id="motsCles"
 						type="text"
 						name="keywordsGallery"
 						placeholder="Entrez un ou plusieurs mots-clés"
 					/>
-        </div>
-        <div class="description">
-          <label for="description">Description :</label>
-          <br />
-          <textarea name="descriptionGallery" placeholder="Entrer une définition pour la galerie"></textarea>
-        </div>
-                <div class='accessMode'>
-                    <label for='type'>Mode d'accès : <span>*</span></label>
-                    <br />
-                    <select name='type'>
-                        <option selected value='0'>Public</option>
-                        <option value='1'>Privé</option>
-                        <option value='2'>Partagé</option>
-                    </select>
-                </div>
-        
-        <div class="choosePhotos">
-          <label for="choosePhotos">Choisir les photos : <span>*</span></label>
-          <br />
-          <!-- Le bouton pour la modal -->
-          <button type="button" id="myBtn">Choisir des photos</button>
-          
-          <img id="photo" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Image importée" />
-            <p>Vos photos s'afficheront ici</p>
-          
-
-          <!-- La modal -->
-          <div id="myModal" class="modal">
-            <!-- Le contenu de la modal -->
-            <div class="modal-content grid">
-              <!-- Le header -->
-              <div class="modal-header">
-                <span class="close">&times;</span>
-                <input class="search" type="search" placeholder="Chercher une photo..."></input>
-              </div>
-              <!-- Le body -->
-              <div class="modal-body grid">
-                <h1>Sélectionnez les photos que vous voulez ajouter à votre galerie</h1>
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-                <img src="../images/image_test.jpg" alt="Image test">
-              </div>
-              <a class="arrowGoTop" id="buttonGoTop"><img src="../images/icon_arrow.svg" alt="Flèche pour remonter" width="50px"></a>
-            </div>
-            
-          </div>
-          
 				</div>
-				<input class="sendForm" type="submit" value="Créer la galerie"></input>
+				<div class="descriptionGallery">
+					<label for="descriptionGallery">Description :</label>
+					<br />
+					<textarea
+						name="descriptionGallery"
+						placeholder="Entrer une définition pour la galerie"
+					></textarea>
+				</div>
+				<div class="accessMode">
+					<label for="accessMode">Mode d'accès : <span>*</span></label>
+					<br />
+					<select name="accessMode">
+						<option selected>Public</option>
+						<option>Privé</option>
+						<option>Partagé</option>
+					</select>
+				</div>
+
+				<div class="choosePhotos">
+					<label for="choosePhotos">Choisir les photos : <span>*</span></label>
+					<br />
+					<!-- Le bouton pour la modal -->
+					<button type="button" id="myBtn">Choisir des photos</button>
+
+					<img
+						id="photo"
+						src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+						alt="Image importée"
+					/>
+					<p>Vos photos s'afficheront ici</p>
+
+					<!-- La modal -->
+					<div id="myModal" class="modal">
+						<!-- Le contenu de la modal -->
+						<div class="modal-content grid">
+							<!-- Le header -->
+							<div class="modal-header">
+								<span class="close">&times;</span>
+								<input
+									class="search"
+									type="search"
+									placeholder="Chercher une photo..."
+								/>
+							</div>
+							<!-- Le body -->
+							<div class="modal-body grid">
+								<h1>
+									Sélectionnez les photos que vous voulez ajouter à votre
+									galerie
+								</h1>
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+								<img src="../images/image_test.jpg" alt="Image test" />
+							</div>
+							<a class="arrowGoTop" id="buttonGoTop"
+								><img src="../images/icon_arrow.svg" alt="Flèche pour remonter"
+							/></a>
+						</div>
+					</div>
+				</div>
+				<input class="sendForm" type="submit" value="Créer la galerie" />
 			</form>
-    </main>
+		</main>
 
-    <script>
-      //Get the button
-      // var mybutton = document.getElementById("buttonGoTop");
+		<footer class="grid">
+			<div class="socialNetworks">
+				<a href="https://github.com/RichardJohnRx/MediaPhoto"
+					><img src="../images/icon_github.svg" alt="Logo de Github"
+				/></a>
+				<a href="https://www.univ-lorraine.fr/"
+					><img
+						src="../images/icon_lorraine.svg"
+						alt="Logo de l'Université de Lorraine"
+				/></a>
+			</div>
 
-     
-      
-      // Flèche pour revenir en haut de page
-      var mybutton = document.getElementById("buttonGoTop");
-      
-      mybutton.onclick = function () {
-        $('#myModal').scrollTop(0);
-      };
+			<p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>
+		</footer>
 
-      </script>
-    
-      <footer class="grid">
-      <div class="socialNetworks">
-        <a href="https://github.com/RichardJohnRx/MediaPhoto"><img src="../images/icon_github.svg" alt="Logo de Github" width="30px"/></a>
-        <a href="https://www.univ-lorraine.fr/"><img src="../images/icon_lorraine.svg" alt="Logo de l'Université de Lorraine" width="95px"/></a>
-      </div>
-      
-      <p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>
-    </footer>
-    
-    <!-- Importation de la méthode pour la modal -->
+		<script>
+			//Get the button
+			// var mybutton = document.getElementById("buttonGoTop");
+
+			// Flèche pour revenir en haut de page
+			var mybutton = document.getElementById("buttonGoTop");
+
+			mybutton.onclick = function () {
+				$("#myModal").scrollTop(0);
+			};
+		</script>
+
+		<!-- Importation de la méthode pour la modal -->
 		<script src="../js/modal.js"></script>
 
 		<!-- Importation de jQuery -->
