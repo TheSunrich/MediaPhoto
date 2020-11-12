@@ -572,6 +572,9 @@ body main.createGallery form .choosePhotos .arrowGoTop {
   margin-right: 10%;
   margin-bottom: 10%;
   cursor: pointer;
+}
+body main.addPhoto form .choosePhotos .arrowGoTop img,
+body main.createGallery form .choosePhotos .arrowGoTop img {
   width: 50px;
 }
 

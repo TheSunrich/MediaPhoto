@@ -409,18 +409,11 @@ class GalerieView extends AbstractView {
           <br />
           <textarea id='description' name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
         </div>
-                <div class='accessMode'>
-                    <label for='type1'>Mode d'accès : <span>*</span></label>
-                    <br />
-                    <select id='type1' name='type1' value='".$this->data->type."'>
-                        <option value='0'>Public</option>
-                        <option value='1'>Privé</option>
-                        <option value='2'>Partagé</option>
-                    </select>
+                
         <div class='accessMode'>
-            <label for='type2'>Mode d'accès : <span>*</span></label>
+            <label for='type'>Mode d'accès : <span>*</span></label>
             <br />
-            <select id='type2' name='type2' value='".$this->data->type."'>
+            <select id='type' name='type' value='".$this->data->type."'>
                 <option value='0'>Public</option>
                 <option value='1'>Privé</option>
                 <option value='2'>Partagé</option>
@@ -435,11 +428,11 @@ class GalerieView extends AbstractView {
           
           ";
         foreach ($galerie as $image){
-            $html .= "<img id='photo' src='".$image->metaDonnees."' alt='" . $image->nom . "' />";
+            $html .= "<img id='photo' src='".$image->metaDonnees."' alt='" . $image->nom . "' style='max-height: unset;'/>";
         }
 
         $html .= "
-            <p>Vos photos s'afficheront ici</p>
+            
           <!-- La modal -->
           <div id='myModal' class='modal'>
             <!-- Le contenu de la modal -->
@@ -469,7 +462,7 @@ class GalerieView extends AbstractView {
                 <input class='sendForm' type='submit' value='Modifier la galerie' src='" . $router->urlfor('/ModGalerie',["idGalerie" => $this->data->idGalerie]) ."'></form>
 
 				</div>
-                <input class='sendForm' type='submit' value='Modifier la galerie'></form>";
+                </form>";
 
         $html .= '
         <script>
