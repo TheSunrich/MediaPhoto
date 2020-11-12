@@ -35,7 +35,7 @@
    
 
     //Les routes ! : 
-    $router = new Router();
+   	$router = new Router();
 
     $router->addRoute('home',
                   '/home/',
@@ -57,13 +57,13 @@
                   '\mediaphotoapp\control\GalerieController',
                   'homeLogin');
 
-    $router->addRoute('toutegalerie',
-                  '/toutegalerie/',
+    $router->addRoute('touteGalerie',
+                  '/galerie/toutes',
                   '\mediaphotoapp\control\GalerieController',
                   'touteGalerie');
 
-    $router->addRoute('partagegalerie',
-                  '/partagegalerie/',
+    $router->addRoute('galeriePartage',
+                  '/galerie/partage',
                   '\mediaphotoapp\control\GalerieController',
                   'partageGalerie');
 
@@ -77,23 +77,23 @@
                   '\mediaphotoapp\control\GalerieController',
                   'listUneGalerieLogin');
 
-    $router->addRoute('mesgalerie',
-                  '/mesgalerie/',
+    $router->addRoute('galeriePrive',
+                  '/galerie/private',
                   '\mediaphotoapp\control\GalerieController',
                   'mesGalerie');
 
-    $router->addRoute('mesphoto',
-                  '/mesphoto/',
+    $router->addRoute('photoPrive',
+                  '/photo/private',
                   '\mediaphotoapp\control\GalerieController',
                   'mesPhoto');
 
-    $router->addRoute('galeriemy',
-                  '/galeriemy/',
+    $router->addRoute('mesGalerie',
+                  '/galerie/my',
                   '\mediaphotoapp\control\GalerieController',
                   'listMesGalerie');
     
-    $router->addRoute('photomy',
-                  '/photomy/',
+    $router->addRoute('mesPhotos',
+                  '/photo/my',
                   '\mediaphotoapp\control\GalerieController',
                   'listMesPhoto');
 
@@ -107,12 +107,22 @@
                   '\mediaphotoapp\control\GalerieController',
                   'modifierGalerie');
 
+    $router->addRoute('addPhoto',
+                  '/photo/add',
+                  '\mediaphotoapp\control\GalerieController',
+                  'ajouterPhoto');
+
+    $router->addRoute('modPhoto',
+                  '/photo/mod',
+                  '\mediaphotoapp\control\GalerieController',
+                  'modifierPhoto');
+
 
     $router->setDefaultRoute('/home/');
     $router->run();
 
 
-
+    
 
     // $galeriesPublic = new Galerie();
     // $galController = new mediaphotoapp\control\GalerieController();

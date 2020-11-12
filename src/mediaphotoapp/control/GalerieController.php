@@ -8,6 +8,7 @@ use \mediaphotoapp\model\Galerie as Galerie;
 use \mediaphotoapp\model\Depot as Depot;
 use \mediaphotoapp\model\Photo as Photo;
 use \mediaphotoapp\view\GalerieView as GalerieView;
+use Illuminate\Support\Facades\Storage as Storage;
 
 
 class GalerieController extends \mf\control\AbstractController {
@@ -53,14 +54,14 @@ class GalerieController extends \mf\control\AbstractController {
 	
 	$galerie = Galerie::all();
     $vue = new GalerieView($galerie);
-    $vue->render('toutegalerie');
+    $vue->render('touteGalerie');
 	}
 
 	public function partageGalerie(){ 
 	
 	$galerie = Galerie::all();
     $vue = new GalerieView($galerie);
-    $vue->render('partagegalerie');
+    $vue->render('galeriePartage');
 	}
 
 	
@@ -92,15 +93,15 @@ class GalerieController extends \mf\control\AbstractController {
 	
 	$galerie = Galerie::all();
     $vue = new GalerieView($galerie);
-	$vue->render('mesgalerie');
+	$vue->render('galeriePrive');
 	}
 
 	
 	public function listMesPhoto(){ 
 	
-	$galerie = Galerie::all();
-    $vue = new GalerieView($galerie);
-	$vue->render('photomy');
+	$photo = Photo::all();
+    $vue = new GalerieView($photo);
+	$vue->render('mesPhotos');
 	}
 	
 	public function listMesGalerie(){ 
@@ -138,27 +139,7 @@ class GalerieController extends \mf\control\AbstractController {
 		return $listsGaleries;
 	}
 
-	//Ajouter une nouvelle galerie
-	public function ajouterGalerie(){
-
-        if(isset($_POST['nom'])){
-            $galerie = new Galerie();
-            $galerie->nom=$_POST['nom'];
-            $galerie->type=$_POST['type'];
-            $galerie->motsCles=$_POST['motsCles'];
-            $galerie->description=$_POST['description'];
-            $galerie->dateCreation = date('Y-m-d');
-            $galerie->idUser = 1;
-            $galerie->save();
-            $vue = new \mediaphotoapp\view\GalerieView(null);
-            $vue->render('creerGalerie');
-        } else {
-            $vue = new \mediaphotoapp\view\GalerieView(null);
-            $vue->render('creerGalerie');
-        }
-
-
-	}
+	
 	//Modifier une galerie
 	public function modifierGalerie(){
 	    $galerie = Galerie::select()->first();
@@ -180,6 +161,8 @@ class GalerieController extends \mf\control\AbstractController {
         $vue->render('modGalerie');
 
 	}
+
+
 	//supprimer une galerie
 	public function supprimerGalerie(int $idGalerie){
 
@@ -202,4 +185,71 @@ class GalerieController extends \mf\control\AbstractController {
 		
 		return "ok";
 	}
+
+	//Ajouter une nouvelle galerie
+	public function ajouterGalerie(){
+
+        if(isset($_POST['nom'])){
+            $galerie = new Galerie();
+            $galerie->nom=$_POST['nom'];
+            $galerie->type=$_POST['type'];
+            $galerie->motsCles=$_POST['motsCles'];
+            $galerie->description=$_POST['description'];
+            $galerie->dateCreation = date('Y-m-d');
+            $galerie->idUser = 1;
+            $galerie->save();
+            $vue = new \mediaphotoapp\view\GalerieView(null);
+            $vue->render('creerGalerie');
+        } else {
+            $vue = new \mediaphotoapp\view\GalerieView(null);
+            $vue->render('creerGalerie');
+        }
+	}
+
+
+	//Ajouter une nouvelle photo
+    public function ajouterPhoto(){
+    	
+    	
+
+     	if(isset($_POST['nom'])){
+            $photo = new Photo();
+            $photo->nom = $_POST['nom'];
+            $photo->motsCles = $_POST['motsCles'];
+            $photo->metaDonnees = "Image Choisi";  
+            //$photo->metaDonnees = $FILE['imageChoisi'];  
+            $photo->idUser = 1;         	
+            $photo->save();
+            $vue = new GalerieView(null);
+            $vue->render('addPhoto');
+     
+		} else {
+            $vue = new GalerieView(null);
+            $vue->render('addPhoto');
+        }
+	}
+
+
+	//Modifier une photo
+	public function modifierPhoto(){
+	    $photo = Photo::select()->first();
+	    if(isset($_GET['id']) || isset($_POST['idPhoto'])){
+            if(isset($_GET['id'])){
+                $photo = Photo::select()->where("idPhoto","=",$_GET['id'])->first();
+            } else {
+                $photo = Photo::select()->where("idPhoto","=",$_POST['idPhoto'])->first();
+                $photo->nom = $_POST['nom'];
+            	$photo->motsCles = $_POST['motsCles'];
+            	$photo->metaDonnees = "Image Choisi";  
+            	$photo->idUser = 1;
+                $photo->save();
+            }
+	    } else {
+	        Router::executeRoute('home');
+        }
+        $vue = new \mediaphotoapp\view\GalerieView($galerie);
+        $vue->render('modPhoto');
+
+	}
+	
 }
