@@ -23,9 +23,9 @@ class GalerieView extends AbstractView {
     private function renderHeader(){
         $router = new Router();
         $html = "
-            <div class='recherche' method='GET' action='searchbar.php'>
-                <form>
-                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' ></input>
+            <div class='recherche'>
+                <form method='GET' action='searchbar.php'>
+                    <input id='search' type='search' name='searchbar' placeholder='Recherche...' >
                 </form>
             </div>
             
@@ -44,8 +44,8 @@ class GalerieView extends AbstractView {
 
     private function renderFooter(){
         $html = "<div class='socialNetworks'>
-                <a href='https://github.com/RichardJohnRx/MediaPhoto'><img src='https://i.ibb.co/HtS8z2k/icon-github.png' alt='Logo de Github' width='30px'/></a>
-                <a href='https://www.univ-lorraine.fr/'><img src='https://i.ibb.co/1Z6YJJ4/icon-lorraine.png' alt='Logo Université de Lorraine' width='95px'/></a>
+                <a href='https://github.com/RichardJohnRx/MediaPhoto'><img src='https://i.ibb.co/HtS8z2k/icon-github.png' alt='Logo de Github'/></a>
+                <a href='https://www.univ-lorraine.fr/'><img src='https://i.ibb.co/1Z6YJJ4/icon-lorraine.png' alt='Logo Université de Lorraine'/></a>
             </div>
             
             <p>© Tous droits réservés à l'IUT Nancy-Charlemagne</p>";
@@ -106,14 +106,13 @@ class GalerieView extends AbstractView {
               <li><a href=\"" . $router->urlFor('homelogin') . "\">Accueil</a></li>
               <li><a href=\"" . $router->urlFor('#') . "\">Mes Photos</a></li>
               <li><a href='#'>Ajouter Photos</a></li>
-              <div class='deroulant'>
-              <li><a href='#'>Galeries</a></li>
-              <ul class='enfant grid'>
-                  <li><a href=\"" . $router->urlFor('#') . "\">Toutes Les Galeries</a></li>
-                  <li><a href=\"" . $router->urlFor('#') . "\">Galeries Partagées</a></li>
-                  <li><a href=\"" . $router->urlFor('#') . "\">Galeries Privées</a></li>
-              </ul>
-              </div>
+              <li class='deroulant'><a href='#'>Galeries</a>
+                <ul class='enfant grid'>
+                    <li><a href=\"" . $router->urlFor('#') . "\">Toutes Les Galeries</a></li>
+                    <li><a href=\"" . $router->urlFor('#') . "\">Galeries Partagées</a></li>
+                    <li><a href=\"" . $router->urlFor('#') . "\">Galeries Privées</a></li>
+                </ul>
+              </li>
               <li><a href='". $router->urlFor('creerGalerie')."'>Créer Galerie</a></li>
               <li><a href='#'>Profil</a></li>
             </ul>
@@ -222,7 +221,21 @@ class GalerieView extends AbstractView {
     
         <div class='keywordsPhoto'>
             <span>" . $requete->motsCles . "</span>
-        </div>";
+        </div>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
+
+        <script>
+            $( document ).ready(function() {
+                var lengthPhoto = $('.thePhoto').length;
+                $('.lengthPhotos').html('Nombre de photos : ' + lengthPhoto + ' photos');
+
+                var mybutton = document.getElementById('buttonGoTop');
+      
+                mybutton.onclick = function () {
+                  $('#myModal').scrollTop(0);
+                }
+            });
+      </script>";
         }
         }
         return $html;
@@ -239,7 +252,8 @@ class GalerieView extends AbstractView {
 				<div class='nameGallery'>
 					<label for='nom'>Nom : <span>*</span></label>
 					<br />
-					<input
+                    <input
+                    id='nom'
 						type='text'
 						name='nom'
                         placeholder='Entrez le nom de la photo'
@@ -248,7 +262,8 @@ class GalerieView extends AbstractView {
 				<div class='keywordsGallery'>
 					<label for='motsCles'>Mots-clés : <span>*</span></label>
 					<br />
-					<input
+                    <input
+                    id='motsCles'
 						type='text'
 						name='motsCles'
                         placeholder='Entrez un ou plusieurs mots-clés'
@@ -257,12 +272,12 @@ class GalerieView extends AbstractView {
         <div class='descriptionGallery'>
           <label for='description'>Description :</label>
           <br />
-          <textarea name='description' placeholder='Entrer une définition pour la galerie'></textarea>
+          <textarea id='description' name='description' placeholder='Entrer une définition pour la galerie'></textarea>
         </div>
         <div class='accessMode'>
             <label for='type'>Mode d'accès : <span>*</span></label>
             <br />
-            <select name='type'>
+            <select id='type' name='type'>
                 <option selected value='0'>Public</option>
                 <option value='1'>Privé</option>
                 <option value='2'>Partagé</option>
@@ -270,7 +285,7 @@ class GalerieView extends AbstractView {
         </div>
         
         <div class='choosePhotos'>
-          <label for='choosePhotos'>Choisir les photos : <span>*</span></label>
+          <label>Choisir les photos : <span>*</span></label>
           <br />
           <!-- Le bouton pour la modal -->
           <button type='button' id='myBtn'>Choisir des photos</button>
@@ -297,7 +312,7 @@ class GalerieView extends AbstractView {
 
         $html .= "
             </div>
-              <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
+              <a class='arrowGoTop' id='buttonGoTop'><img src='https://i.ibb.co/cc92XPX/icon-arrow.png' alt='Flèche pour remonter'></a>
             </div>
             
           </div>
@@ -369,6 +384,7 @@ class GalerieView extends AbstractView {
                     <label for='nom'>Nom : <span>*</span></label>
                     <br />
                     <input
+                    id='nom'
                         type='text'
                         name='nom'
                         placeholder='Entrez le nom de la photo'
@@ -379,6 +395,7 @@ class GalerieView extends AbstractView {
                     <label for='motsCles'>Mots-clés : <span>*</span></label>
                     <br />
                     <input
+                    id='motsCles'
                         type='text'
                         name='motsCles'
                         placeholder='Entrez un ou plusieurs mots-clés'
@@ -388,20 +405,20 @@ class GalerieView extends AbstractView {
         <div class='descriptionGallery'>
           <label for='description'>Description :</label>
           <br />
-          <textarea name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
+          <textarea id='description' name='description' placeholder='Entrer une définition pour la galerie'>".$this->data->description."</textarea>
         </div>
                 <div class='accessMode'>
-                    <label for='type'>Mode d'accès : <span>*</span></label>
+                    <label for='type1'>Mode d'accès : <span>*</span></label>
                     <br />
-                    <select name='type' value='".$this->data->type."'>
+                    <select id='type1' name='type1' value='".$this->data->type."'>
                         <option value='0'>Public</option>
                         <option value='1'>Privé</option>
                         <option value='2'>Partagé</option>
                     </select>
         <div class='accessMode'>
-            <label for='type'>Mode d'accès : <span>*</span></label>
+            <label for='type2'>Mode d'accès : <span>*</span></label>
             <br />
-            <select name='type' value='".$this->data->type."'>
+            <select id='type2' name='type2' value='".$this->data->type."'>
                 <option value='0'>Public</option>
                 <option value='1'>Privé</option>
                 <option value='2'>Partagé</option>
@@ -409,7 +426,7 @@ class GalerieView extends AbstractView {
         </div>
         
         <div class='choosePhotos'>
-          <label for='choosePhotos'>Choisir les photos : <span>*</span></label>
+          <label>Choisir les photos : <span>*</span></label>
           <br />
           <!-- Le bouton pour la modal -->
           <button type='button' id='myBtn'>Choisir des photos</button>
@@ -441,7 +458,7 @@ class GalerieView extends AbstractView {
 
         $html .= "
             </div>
-              <a class='arrowGoTop' id='buttonGoTop'><img src='../images/icon_arrow.svg' alt='Flèche pour remonter' width='50px'></a>
+              <a class='arrowGoTop' id='buttonGoTop'><img src='https://i.ibb.co/cc92XPX/icon-arrow.png' alt='Flèche pour remonter'></a>
             </div>
             
           </div>
@@ -557,30 +574,6 @@ class GalerieView extends AbstractView {
             <header class='grid'>$header</header>
             <main class='grid home myGallery createGallery'>$main</main>
             <footer class='grid'>$footer</footer>
-            
-    
-		<script src='../../src/js/modal.js'></script>
-
-
-		<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>
-
-		<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
-
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js'></script>
-        
-
-        <script>
-            $( document ).ready(function() {
-                var lengthPhoto = $('.thePhoto').length;
-                $('.lengthPhotos').html('Nombre de photos : ' + lengthPhoto + ' photos');
-
-                var mybutton = document.getElementById('buttonGoTop');
-      
-                mybutton.onclick = function () {
-                  $('#myModal').scrollTop(0);
-                }
-            });
-      </script>
         </body>";
 
         return $html;

@@ -97,6 +97,7 @@ header {
 	z-index: 2;
 	background-color: #a93226;
 	box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
+	grid-column: col-start / span 12;
 	& > ul {
 		padding: 0px;
 		margin: 0px;

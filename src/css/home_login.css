@@ -92,6 +92,7 @@ header div.icon a:hover {
   z-index: 2;
   background-color: #a93226;
   box-shadow: 0 0.1cm 0.3cm rgba(0, 0, 0, 0.308);
+  grid-column: col-start/span 12;
 }
 .menu > ul {
   padding: 0px;
