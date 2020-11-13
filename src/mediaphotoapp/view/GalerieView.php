@@ -204,7 +204,7 @@ return $html;
 
             </div>";
 
-            $titre = "<h1>BIENVENUE ". $user->prenom ."</h1>";
+            $titre = "<h1>BIENVENUE</h1>";
 
             $html .=
                 "<section class='galerie'>
