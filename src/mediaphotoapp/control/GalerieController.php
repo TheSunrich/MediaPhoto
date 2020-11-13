@@ -17,6 +17,14 @@ class GalerieController extends \mf\control\AbstractController {
 		parent::__construct();
 	}
 
+	//Informations et liens utiles
+	public function aPropos(){ 
+	
+	$info = Galerie::all();
+    $vue = new GalerieView('');
+    $vue->render('aPropos');
+	}
+
 	//Lister les galeries (public) (GUEST)
 	public function homeGuest(){ 
 	
@@ -219,7 +227,7 @@ class GalerieController extends \mf\control\AbstractController {
             $photo->motsCles = $_POST['motsCles'];
             $photo->metaDonnees = "Image Choisi";  
             //$photo->metaDonnees = $FILE['imageChoisi'];  
-            $photo->idUser = 1;         	
+            //$photo->idUser = $_SESSION['idUser'];         	
             $photo->save();
             $vue = new GalerieView(null);
             $vue->render('addPhoto');

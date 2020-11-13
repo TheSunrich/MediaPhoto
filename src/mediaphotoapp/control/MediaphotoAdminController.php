@@ -36,6 +36,11 @@
                 $user = Utilisateur::select()
                                 ->where('username', '=', $_SESSION['user_login'])
                                 ->first();
+                /*session_start();
+                    if(!isset($_SESSION['idUser'])){
+                        isset($_SESSION['idUser'] = $user->idUser;
+                }   */
+
                 $view = new GalerieView($user);
                 $view->render('homelogin');
             } catch (\Exception $e) {

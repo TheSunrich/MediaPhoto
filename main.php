@@ -115,12 +115,17 @@
     $router->addRoute('addPhoto',
                   '/photo/add',
                   '\mediaphotoapp\control\GalerieController',
-                  'ajouterPhoto');
+                  'ajouterPhoto',  Auth::ACCESS_LEVEL_USER);
 
     $router->addRoute('modPhoto',
                   '/photo/mod',
                   '\mediaphotoapp\control\GalerieController',
-                  'modifierPhoto');
+                  'modifierPhoto',  Auth::ACCESS_LEVEL_USER);
+
+       $router->addRoute('aPropos',
+                  '/apropos/',
+                  '\mediaphotoapp\control\GalerieController',
+                  'aPropos',  Auth::ACCESS_LEVEL_USER);
 
 
     $router->setDefaultRoute('/home/');

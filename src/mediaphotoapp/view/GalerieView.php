@@ -23,6 +23,62 @@ class GalerieView extends AbstractView {
     }
 
 
+
+    private function renderAPropos(){
+
+    	$html = "
+<style> 
+html {
+	width :100%;
+}
+body > main.grid {
+	display : block;
+}
+main a {
+	color : unset;
+	text-align : left;
+}
+</style>
+<html>
+<h3>Lien vers le Dépôt GITHUB : <a href='https://github.com/RichardJohnRx/MediaPhoto'>https://github.com/RichardJohnRx/MediaPhoto</a> <h3> 
+
+<h1>Les Documents de Conception : </h1>
+
+<h2> 1 - LES DIAGRAMMES </h2> 
+
+<h3>Diagramme Use Case</h3> 
+
+<a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/1%20Use%20Cases.png'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/1%20Use%20Cases.png</a>
+
+<h3>Diagramme User Stories Mapping</h3>
+
+<a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/2%20User%20Stories%20Mapping.jpg'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/2%20User%20Stories%20Mapping.jpg</a>
+
+<h3>Diagramme d'Activité du Login</h3>
+
+<a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/4%20Diagramme%20d%27activit%c3%a9s%20_%20Connexion%20-%20D%c3%a9connexion%20-%20Inscription.png'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/4%20Diagramme%20d%27activit%c3%a9s%20_%20Connexion%20-%20D%c3%a9connexion%20-%20Inscription.png</a>
+
+<h3>Diagramme d'Activité Ajouter Photos / Créer Galeries</h3>
+
+<a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/5%20Diagramme%20d%27activit%c3%a9s%20_%20Ajouter%20Photo%20-%20Cr%c3%a9er%20Galerie.pdf'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/5%20Diagramme%20d%27activit%c3%a9s%20_%20Ajouter%20Photo%20-%20Cr%c3%a9er%20Galerie.pdf</a>
+
+<h3>Diagramme de Class</h3>
+
+<a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/3%20Diagramme_de_classes.png'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/3%20Diagramme_de_classes.png</a>
+
+<h2> 2 - LA MAQUETTES </h2> 
+
+<h3>Le Scénario D'Usage + Le WireFrame</h3> 
+
+<a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Maquettes/Scenario_usages.pdf'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Maquettes/Scenario_usages.pdf</a>
+</html>
+";
+
+
+return $html;
+    }
+
+
     private function renderHeaderGuest(){
         $router = new Router();
         $html = "
@@ -67,13 +123,15 @@ class GalerieView extends AbstractView {
     }
 
     private function renderFooter(){
-        $html = "<div class='socialNetworks'>
+    	$router = new Router();
+        $html = "
+        <div class='socialNetworks'>
                 <a href='https://github.com/RichardJohnRx/MediaPhoto'><img src='https://i.ibb.co/HtS8z2k/icon-github.png' alt='Logo de Github'/></a>
                 <a href='https://www.univ-lorraine.fr/'><img src='https://i.ibb.co/1Z6YJJ4/icon-lorraine.png' alt='Logo Université de Lorraine'/></a>
             </div>
 
             
-            <p><a href='src/apropos.php'>À Propos</a> - © Tous droits réservés à l'IUT Nancy-Charlemagne.</p>";
+            <p> <a href=\"" . $router->urlFor('aPropos') ."\">A Propos</a> - © Tous droits réservés à l'IUT Nancy-Charlemagne.</p>";
         return $html;
     }
 
@@ -125,9 +183,8 @@ class GalerieView extends AbstractView {
             
             $photos = Photo::where('idPhoto', '=', $key->idPhoto)->first();
             $user = $photos->user()->first();
-
+            
             $menu = "<div class='menu'>
-
                 <ul class='grid'>
                     <li><a href=\"" . $router->urlFor('homelogin') . "\">Accueil</a></li>
                     <li><a href=\"" . $router->urlFor('mesPhotos') . "\">Mes Photos</a></li>
@@ -1045,6 +1102,10 @@ class GalerieView extends AbstractView {
                 break;
             case "modPhoto":
                 $main = $this->renderModPhoto();
+                 break;
+            case "aPropos":
+                $main = $this->renderAPropos();
+                break;
         }
 
         
