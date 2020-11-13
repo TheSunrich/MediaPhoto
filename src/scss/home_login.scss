@@ -212,7 +212,7 @@ body > footer {
 	margin-top: 2%;
 	// Les réseaux sociaux
 	& .socialNetworks {
-		grid-column: col-start / span 6;
+		grid-column: col-start / span 4;
 		display: flex;
 		align-items: center;
 		& a {
@@ -232,11 +232,24 @@ body > footer {
 		}
 	}
 
+	& a {
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 1.5rem;
+		grid-column: col-start 5 / span 4;
+		margin: auto 0 auto 0;
+		text-decoration: none;
+		font-weight: bold;
+
+		&:hover {
+			color: #ef4532;
+		}
+	}
+
 	// Les copyright
 	& p {
 		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 		font-size: 1.2rem;
-		grid-column: col-start 7 / span 6;
+		grid-column: col-start 9 / span 4;
 		text-align: right;
 		margin-right: 5%;
 		color: white;

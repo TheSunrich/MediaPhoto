@@ -35,7 +35,7 @@ body > main.grid {
 	display : block;
 }
 main a {
-	color : unset;
+	color : blue;
 	text-align : left;
 }
 </style>
@@ -54,21 +54,21 @@ main a {
 
 <a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/2%20User%20Stories%20Mapping.jpg'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/2%20User%20Stories%20Mapping.jpg</a>
 
-<h3>Diagramme d'Activité du Login</h3>
+<h3>Diagramme d'Activités du Login</h3>
 
 <a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/4%20Diagramme%20d%27activit%c3%a9s%20_%20Connexion%20-%20D%c3%a9connexion%20-%20Inscription.png'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/4%20Diagramme%20d%27activit%c3%a9s%20_%20Connexion%20-%20D%c3%a9connexion%20-%20Inscription.png</a>
 
-<h3>Diagramme d'Activité Ajouter Photos / Créer Galeries</h3>
+<h3>Diagramme d'Activités Ajouter Photos / Créer Galeries</h3>
 
 <a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/5%20Diagramme%20d%27activit%c3%a9s%20_%20Ajouter%20Photo%20-%20Cr%c3%a9er%20Galerie.pdf'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/5%20Diagramme%20d%27activit%c3%a9s%20_%20Ajouter%20Photo%20-%20Cr%c3%a9er%20Galerie.pdf</a>
 
-<h3>Diagramme de Class</h3>
+<h3>Diagramme de Classes</h3>
 
 <a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/3%20Diagramme_de_classes.png'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Diagrammes/3%20Diagramme_de_classes.png</a>
 
-<h2> 2 - LA MAQUETTES </h2> 
+<h2> 2 - LA MAQUETTE </h2> 
 
-<h3>Le Scénario D'Usage + Le WireFrame</h3> 
+<h3>Les Scénarios D'Usages + Le WireFrame</h3> 
 
 <a href='https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Maquettes/Scenario_usages.pdf'>https://webetu.iutnc.univ-lorraine.fr/www/winters24u/mediaphotoapp/rendu/Conception/Maquettes/Scenario_usages.pdf</a>
 </html>
@@ -89,7 +89,7 @@ return $html;
             </div>
 
             <div class='logo'>
-                <a href='" . $router->urlFor('home') . "'><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
+                <img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'>
             </div>
 
             <div class='icon'>
@@ -111,7 +111,7 @@ return $html;
             </div>
 
             <div class='logo'>
-                <a href='" . $router->urlFor('home') . "'><img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'></a>
+                <img src='https://i.ibb.co/Q9zB0mr/logo.png' alt='logo application MediaPhoto'>
             </div>
 
             <div class='icon'>
@@ -130,8 +130,9 @@ return $html;
                 <a href='https://www.univ-lorraine.fr/'><img src='https://i.ibb.co/1Z6YJJ4/icon-lorraine.png' alt='Logo Université de Lorraine'/></a>
             </div>
 
+            <a href=\"" . $router->urlFor('aPropos') ."\">À PROPOS</a>
             
-            <p> <a href=\"" . $router->urlFor('aPropos') ."\">A Propos</a> - © Tous droits réservés à l'IUT Nancy-Charlemagne.</p>";
+            <p>© Tous droits réservés à l'IUT Nancy-Charlemagne.</p>";
         return $html;
     }
 
