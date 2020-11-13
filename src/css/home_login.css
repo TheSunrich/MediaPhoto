@@ -476,7 +476,7 @@ body main.addPhoto form .choosePhotos .modal,
 body main.createGallery form .choosePhotos .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -658,6 +658,9 @@ body main.myGallery .photosGallery {
 body main.myGallery .photosGallery #myPhoto {
   grid-column: col-start/span 12;
   margin-top: 1%;
+}
+body main.myGallery .photosGallery #myPhoto:hover {
+  filter: unset;
 }
 body main.myGallery .photosGallery .thePhoto {
   margin-top: 2%;

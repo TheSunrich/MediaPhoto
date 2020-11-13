@@ -253,7 +253,7 @@ return $html;
 
             $html .=
                 "<section class='galerie'>
-                    <a href=\"" . $router->urlFor('galerie', [['id', $key->idGalerie]]) . "\"><img src=" . 
+                    <a href=\"" . $router->urlFor('photo', [['id', $key->idPhoto]]) . "\"><img src=" . 
                     $photos->metaDonnees . ">
                         <div class='infosGalerieHover'>
                             <h3>$photos->nom</h3>
@@ -284,14 +284,16 @@ return $html;
                     <li><a href=\"" . $router->urlFor('homelogin') . "\">Accueil</a></li>
                     <li><a href=\"" . $router->urlFor('mesPhotos') . "\">Mes Photos</a></li>
                     <li><a href=\"" . $router->urlFor('addPhoto') . "\">Ajouter Photos</a></li>
-                    <div class='deroulant'>
-                        <li><a href='#'>Galeries</a></li>
-                        <ul class='enfant grid'>
-                            <li><a href=\"" . $router->urlFor('touteGalerie') . "\">Toutes Les Galeries</a></li>
-                            <li><a href=\"" . $router->urlFor('galeriePartage') . "\">Galeries Partagées</a></li>
-                            <li><a href=\"" . $router->urlFor('galeriePrive') . "\">Galeries Privées</a></li>
-                        </ul>
-                    </div>
+                    
+                        <li><a href='#'>Galeries</a>
+                            <ul class='enfant grid'>
+                                <li><a href=\"" . $router->urlFor('touteGalerie') . "\">Toutes Les Galeries</a></li>
+                                <li><a href=\"" . $router->urlFor('galeriePartage') . "\">Galeries Partagées</a></li>
+                                <li><a href=\"" . $router->urlFor('galeriePrive') . "\">Galeries Privées</a></li>
+                            </ul>
+                        </li>
+                        
+                    
                     <li><a href='". $router->urlFor('creerGalerie')."'>Créer Galerie</a></li>
                     <li><a href='#'>Profil</a></li>
                 </ul>
@@ -891,15 +893,33 @@ return $html;
                 </label> <br />
             
                 <input type='hidden' name='MAX_FILE_SIZE' value='250000' />
-                <input type='file' name='imageChoisi' size=50 />
+                <input type='file' name='imageChoisi' size=50 onchange='readURL(this);'/>
               
                 <img id='photo' src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' alt='Image importée' >
 
                  <p>La photo s'affichera ici</p>
             </div>
           
-            <input class='sendForm' type='submit' value='Créer la photo'>
-        </form>";
+            <input class='sendForm' type='submit' value='Ajouter la photo'>
+        </form>
+        <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+        
+                reader.onload = function (e) {
+                    $('#photo').attr('src', e.target.result);
+                    $('#photo').css('border', 'none');
+                    $('.choosePhotos p').css('display', 'none');
+                    $('.choosePhotos img').css('width', 'unset');
+                };
+        
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
+        </script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'></script>";
 
         return $menu . $title  . $html;
     }
