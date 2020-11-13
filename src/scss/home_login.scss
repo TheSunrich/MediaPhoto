@@ -520,7 +520,7 @@ body main.createGallery {
 			.modal {
 				display: none;
 				position: fixed;
-				z-index: 1;
+				z-index: 10;
 				padding-top: 100px;
 				left: 0;
 				top: 0;
@@ -730,6 +730,10 @@ body main.myGallery {
 		& #myPhoto {
 			grid-column: col-start / span 12;
 			margin-top: 1%;
+		}
+
+		& #myPhoto:hover {
+			filter: unset;
 		}
 		& .thePhoto {
 			margin-top: 2%;
