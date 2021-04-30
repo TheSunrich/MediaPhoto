@@ -286,7 +286,7 @@ return $html;
                     <li><a href=\"" . $router->urlFor('mesPhotos') . "\">Mes Photos</a></li>
                     <li><a href=\"" . $router->urlFor('addPhoto') . "\">Ajouter Photos</a></li>
                     
-                        <li><a href='#'>Galeries</a>
+                        <li class='deroulant'><a href='#'>Galeries</a>
                             <ul class='enfant grid'>
                                 <li><a href=\"" . $router->urlFor('touteGalerie') . "\">Toutes Les Galeries</a></li>
                                 <li><a href=\"" . $router->urlFor('galeriePartage') . "\">Galeries Partagées</a></li>
@@ -512,11 +512,7 @@ return $html;
                 var lengthPhoto = $('.thePhoto').length;
                 $('.lengthPhotos').html('Nombre de photos : ' + lengthPhoto + ' photos');
 
-                var mybutton = document.getElementById('buttonGoTop');
-      
-                mybutton.onclick = function () {
-                  $('#myModal').scrollTop(0);
-                }
+                
             });
       </script>";
         }

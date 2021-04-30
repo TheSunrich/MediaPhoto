@@ -205,7 +205,11 @@ class GalerieController extends \mf\control\AbstractController {
             $galerie->motsCles=$_POST['motsCles'];
             $galerie->description=$_POST['description'];
             $galerie->dateCreation = date('Y-m-d');
-            $galerie->idUser = 1;
+            // if(isset($_COOKIE['idUser'])){
+						// 	$_COOKIE['idUser'];
+						// 	$galerie->idUser = 	$_COOKIE['idUser'];
+						// }
+						$galerie->idUser = 2;
             $galerie->save();
             $vue = new \mediaphotoapp\view\GalerieView(null);
             $vue->render('creerGalerie');
@@ -227,7 +231,7 @@ class GalerieController extends \mf\control\AbstractController {
             $photo->motsCles = $_POST['motsCles'];
             $photo->metaDonnees = "Image Choisi";  
             //$photo->metaDonnees = $FILE['imageChoisi'];  
-            //$photo->idUser = $_SESSION['idUser'];         	
+            $photo->idUser = 2;         	
             $photo->save();
             $vue = new GalerieView(null);
             $vue->render('addPhoto');
@@ -250,7 +254,7 @@ class GalerieController extends \mf\control\AbstractController {
                 $photo->nom = $_POST['nom'];
             	$photo->motsCles = $_POST['motsCles'];
             	$photo->metaDonnees = "Image Choisi";  
-            	$photo->idUser = 1;
+            	$photo->idUser = 2;
                 $photo->save();
             }
 	    } else {

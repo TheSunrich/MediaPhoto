@@ -36,6 +36,10 @@
                 $user = Utilisateur::select()
                                 ->where('username', '=', $_SESSION['user_login'])
                                 ->first();
+                                
+                                
+                //setcookie("idUser", $user->idUser, time()-7200);
+                setcookie('idUser', $user->idUser, time()+3600, 'main.php/galerie/add');
                 /*session_start();
                     if(!isset($_SESSION['idUser'])){
                         isset($_SESSION['idUser'] = $user->idUser;
